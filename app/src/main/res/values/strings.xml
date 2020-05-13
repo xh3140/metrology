@@ -4,14 +4,14 @@
     <string name="app_metrology_name">metrology</string>
     <string name="app_metrology_copyright">© 2020 xh3140</string>
     <!--activity-->
-    <string name="activity_formula_title">公算算法</string>
+    <string name="activity_formula_title">公式算法</string>
 
     <!--fragment-->
     <string name="main_fragment_home_title">主页</string>
-    <string name="main_fragment_tool_title">工具</string>
+    <string name="main_fragment_tools_title">工具</string>
     <string name="main_fragment_setting_title">设置</string>
 
-    <string name="formula_fragment_intro_title">简介</string>
+    <string name="formula_fragment_formula_title">公式</string>
     <string name="formula_fragment_algorithm_title">算法</string>
     <string name="formula_fragment_setting_title">设置</string>
 

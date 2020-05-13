@@ -9,15 +9,15 @@
         android:id="@+id/fragmentHome"
         android:name="com.xh3140.metrology.main.fragment.HomeFragment"
         android:label="@string/main_fragment_home_title"
-        tools:layout="@layout/main_fragment_home" />
+        tools:layout="@layout/fragment_main_home" />
     <fragment
         android:id="@+id/fragmentWork"
         android:name="com.xh3140.metrology.main.fragment.ToolsFragment"
-        android:label="@string/main_fragment_tool_title"
-        tools:layout="@layout/main_fragment_tools" />
+        android:label="@string/main_fragment_tools_title"
+        tools:layout="@layout/fragment_main_tools" />
     <fragment
         android:id="@+id/fragmentSetting"
         android:name="com.xh3140.metrology.main.fragment.SettingFragment"
         android:label="@string/main_fragment_setting_title"
-        tools:layout="@layout/main_fragment_setting" />
+        tools:layout="@layout/fragment_main_setting" />
 </navigation>

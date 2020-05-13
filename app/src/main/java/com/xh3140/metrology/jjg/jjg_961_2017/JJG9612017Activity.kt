@@ -8,7 +8,7 @@ import com.xh3140.metrology.base.BaseActivity
 import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR1Fragment
 import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR2Fragment
 import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR3Fragment
-import kotlinx.android.synthetic.main.activity_formula.*
+import kotlinx.android.synthetic.main.activity_calculate.*
 
 class JJG9612017Activity : BaseActivity() {
     override fun getLayoutResID(): Int = R.layout.activity_jjg_961_2017

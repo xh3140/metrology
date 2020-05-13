@@ -8,22 +8,22 @@ import com.xh3140.core.widget.dialog.CircleInputDialog
 import com.xh3140.core.widget.dialog.CircleListDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.BaseFragment
-import com.xh3140.metrology.formula.FormulaActivity
+import com.xh3140.metrology.calculate.CalculateActivity
 import com.xh3140.metrology.jjg.JJGActivity
 import com.xh3140.metrology.jjg.MrHomogeneityActivity
-import kotlinx.android.synthetic.main.main_fragment_home.*
+import kotlinx.android.synthetic.main.fragment_main_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class HomeFragment : BaseFragment() {
 
-    override fun getLayoutResID(): Int = R.layout.main_fragment_home
+    override fun getLayoutResID(): Int = R.layout.fragment_main_home
 
     override fun initListener() {
         // 公式算法
         buttonFormula.setOnClickListener {
-            startActivity<FormulaActivity>()
+            startActivity<CalculateActivity>()
         }
 
         // 计量器具检校

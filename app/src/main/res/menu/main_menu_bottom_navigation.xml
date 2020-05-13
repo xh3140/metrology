@@ -7,7 +7,7 @@
     <item
         android:id="@+id/fragmentWork"
         android:icon="@drawable/ic_tool_black_24dp"
-        android:title="@string/main_fragment_tool_title" />
+        android:title="@string/main_fragment_tools_title" />
     <item
         android:id="@+id/fragmentSetting"
         android:icon="@drawable/ic_settings_black_24dp"

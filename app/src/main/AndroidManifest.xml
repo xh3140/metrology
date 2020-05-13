@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:replace="android:label">
-        <activity android:name="com.xh3140.metrology.formula.FormulaActivity" />
+        <activity android:name="com.xh3140.metrology.calculate.CalculateActivity" />
         <activity android:name="com.xh3140.metrology.jjg.JJGActivity" />
         <activity android:name="com.xh3140.metrology.jjg.jjg_961_2017.JJG9612017Activity" />
         <activity android:name="com.xh3140.metrology.jjg.JJGGZ162018Activity" />
