@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.fragment.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/buttonFormula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_home_formula_button_text"
+            app:niceTheme="THEME_RED" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/buttonCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_home_jjg_jjf_button_text"
+            app:niceTheme="THEME_BLUE" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/buttonMrHomogeneity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MR图像均匀性"
+            app:niceTheme="THEME_GREEN" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/testCircleDialog1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试 内容对话框" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/testCircleDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试 单选对话框" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/testCircleDialog3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试 多选对话框" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/testCircleDialog4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试 输入对话框" />
+    </LinearLayout>
+</ScrollView>

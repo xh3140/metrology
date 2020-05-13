@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:key="switch_boolean_formula_batch"
+        android:summary="@string/batch_operation_tip"
+        android:title="@string/switch_batch_operation"
+        app:defaultValue="true"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:summary="开启项可在运算结果中显示对应结果项"
+            android:title="基础运算结果项"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:key="check_boolean_formula_maximum"
+            android:title="@string/switch_maximum"
+            app:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:key="check_boolean_formula_minimum"
+            android:title="@string/switch_minimum"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:key="check_boolean_formula_range"
+            android:title="@string/switch_range"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:key="check_boolean_formula_summation"
+            android:title="@string/switch_summation"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:key="check_boolean_formula_average"
+            android:title="@string/switch_average"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

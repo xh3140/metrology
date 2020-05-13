@@ -1,0 +1,134 @@
+<resources>
+    <!--app-->
+    <string name="app_name">metrology</string>
+    <string name="app_metrology_name">metrology</string>
+    <string name="app_metrology_copyright">© 2020 xh3140</string>
+    <!--activity-->
+    <string name="activity_formula_title">公算算法</string>
+
+    <!--fragment-->
+    <string name="main_fragment_home_title">主页</string>
+    <string name="main_fragment_tool_title">工具</string>
+    <string name="main_fragment_setting_title">设置</string>
+
+    <string name="formula_fragment_intro_title">简介</string>
+    <string name="formula_fragment_algorithm_title">算法</string>
+    <string name="formula_fragment_setting_title">设置</string>
+
+    <string name="formula_button_select_text">选择公式</string>
+    <string name="formula_button_append_text">添加数据</string>
+    <string name="formula_button_remove_text">删除数据</string>
+    <string name="formula_button_calculate_text">计算数据</string>
+    <string name="formula_button_clear_text">清除数据</string>
+    <string name="formula_button_chart_text">绘制图表</string>
+
+    <string name="main_fragment_home_formula_button_text">公式算法</string>
+    <string name="main_fragment_home_jjg_jjf_button_text">计量器具检校</string>
+    <string name="activity_ultrasound_title">B型超声</string>
+
+    <string name="formula_button_reset_text">重置图表</string>
+    <string name="item_data_index_text_format">数据%s</string>
+    <string name="item_data_number_hint">请输入…</string>
+    <string name="dialog_clear_data_message">请确定是否清除数据？</string>
+    <string name="item_result_number_hint">请计算…</string>
+    <string name="item_change_error_message">操作失败</string>
+    <string name="item_append_error_message">添加失败</string>
+    <string name="item_remove_error_message">删除失败</string>
+    <string name="dialog_batch_append_title">批量添加数据</string>
+    <string name="dialog_batch_remove_title">批量删除数据</string>
+    <string name="dialog_button_cancel_text">取消</string>
+    <string name="dialog_button_append_text">添加</string>
+    <string name="dialog_button_remove_text">删除</string>
+    <string name="dialog_button_append_to_text">添加到</string>
+    <string name="dialog_button_remove_to_text">删除到</string>
+    <string name="dialog_input_integer_hint">请输入数量</string>
+    <string name="switch_batch_operation">批量操作</string>
+    <string name="radio_fuzzy_calculation">模糊计算</string>
+    <string name="radio_precise_calculation">精确计算</string>
+
+    <string name="record_unit_name">单位名称</string>
+    <string name="record_check_date">检校日期</string>
+    <string name="record_equipment_name">设备名称</string>
+    <string name="record_equipment_model">设备型号</string>
+    <string name="record_equipment_number">设备编号</string>
+    <string name="record_remarks">备注</string>
+    <string name="record_select_text">…</string>
+    <string name="record_unit_name_hint">请输入单位名称</string>
+    <string name="record_check_date_hint">请输入检校日期</string>
+    <string name="record_equipment_name_hint">请输入设备名称</string>
+    <string name="record_equipment_model_hint">请输入设备型号</string>
+    <string name="record_equipment_number_hint">请输入设备编号</string>
+
+    <string name="batch_operation_tip">开启后长按[添加]/[删除]按钮可进行批量操作。</string>
+
+    <string name="ultrasound_switch_require">显示技术要求</string>
+    <string name="ultrasound_switch_resolution">仅使用分辨力判档</string>
+    <string name="ultrasound_label_level">B型\n超声档次</string>
+    <string name="ultrasound_label_frequency">探头标称\n频率/MHz</string>
+    <string name="ultrasound_label_probe">探头类型</string>
+    <string name="ultrasound_label_h_resolution">侧向（横向）\n分辨力/mm</string>
+    <string name="ultrasound_label_v_resolution">轴向（纵向）\n分辨力/mm</string>
+    <string name="ultrasound_label_depth">最大探测\n深度/mm</string>
+    <string name="ultrasound_label_blind">盲区/mm</string>
+    <string name="ultrasound_label_geometric_error">几何位置\n示值误差/%</string>
+    <string name="ultrasound_label_cystic_error">囊性病灶\n直径误差/%</string>
+    <string name="ultrasound_level1">B型A档</string>
+    <string name="ultrasound_level2">B型B档</string>
+    <string name="ultrasound_level3">B型C档</string>
+    <string name="ultrasound_level4">B型D档</string>
+    <string name="ultrasound_frequency1">0.0＜f≤2.5</string>
+    <string name="ultrasound_frequency2">2.5＜f≤4.0</string>
+    <string name="ultrasound_frequency3">4.0＜f≤5.0</string>
+    <string name="ultrasound_frequency4">5.0＜f≤7.5</string>
+    <string name="ultrasound_probe1">线阵，\nR≥60mm凸阵</string>
+    <string name="ultrasound_probe2">扇扫，相控阵，\nR＜60mm凸阵</string>
+    <string name="ultrasound_probe3">扇扫，\nR＜60mm凸阵</string>
+    <string name="ultrasound_probe4">线阵</string>
+    <string name="ultrasound_probe5">扇扫</string>
+    <string name="ultrasound_hint_resolution30">30</string>
+    <string name="ultrasound_hint_resolution50">50</string>
+    <string name="ultrasound_hint_resolution70">70</string>
+    <string name="ultrasound_hint_resolution120">120</string>
+    <string name="ultrasound_hint_resolution160">160</string>
+    <string name="ultrasound_hint_blind">盲区</string>
+    <string name="ultrasound_hint_depth">探测深度</string>
+    <string name="ultrasound_hint_h_error">横向误差</string>
+    <string name="ultrasound_hint_v_error">纵向误差</string>
+    <string name="ultrasound_require_h_resolution">≤2(深度≤80)≤4(80＜深度≤130)</string>
+    <string name="ultrasound_require_v_resolution">≤1(深度≤80)≤2(80＜深度≤130)</string>
+    <string name="ultrasound_require_depth">≥160</string>
+    <string name="ultrasound_require_blind">≤8</string>
+    <string name="ultrasound_require_geometric_h_error">≤10.0</string>
+    <string name="ultrasound_require_geometric_v_error">≤10.0</string>
+    <string name="ultrasound_require_cystic_h_error">≤10.0</string>
+    <string name="ultrasound_require_cystic_v_error">≤10.0</string>
+    <string name="ultrasound_button_check">判断档次</string>
+    <string name="ultrasound_button_clear">清除数据</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="formula_degrees_135">135°</string>
+    <string name="formula_degrees_90">90°</string>
+    <string name="formula_degrees_45">45°</string>
+    <string name="formula_degrees_center">O</string>
+    <string name="formula_degrees_180">180°</string>
+    <string name="formula_degrees_0">0°</string>
+    <string name="formula_degrees_225">225°</string>
+    <string name="formula_degrees_315">315°</string>
+    <string name="formula_degrees_270">270°</string>
+
+    <string name="widget_circle_dialog_title">标题</string>
+    <string name="widget_circle_dialog_content">内容</string>
+    <string name="widget_circle_dialog_positive">确定</string>
+    <string name="widget_circle_dialog_negative">取消</string>
+    <string name="widget_circle_dialog_ignore">忽略</string>
+
+    <string name="jjg_961_2017">JJG 961–2017</string>
+    <string name="switch_maximum">最大值</string>
+    <string name="switch_minimum">最小值</string>
+    <string name="switch_range">极　差</string>
+    <string name="switch_summation">总　和</string>
+    <string name="switch_average">平均值</string>
+    <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
+    <string name="jjg_639_1998">JJG 639–1998</string>
+
+</resources>

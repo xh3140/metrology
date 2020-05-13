@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".jjg.jjg_961_2017.fragment.CTLCR2Fragment">
+
+    <com.daquexian.flexiblerichtextview.FlexibleRichTextView
+        android:id="@+id/flexibleRichTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/calculateGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calculateGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flexibleRichTextView">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_h050"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_h060"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_v033"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.333" />
+
+        <TextView
+            android:id="@+id/textViewCTm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CTm"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v033"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h010"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h005"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextCTm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="物质的CT值/HU"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v033"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h050"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h010"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewSDm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SDm"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v033"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h060"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h050"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextSDm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="物质的标准偏差"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v033"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h095"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h060"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewCTw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CTw"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v066"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h010"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h005"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v033" />
+
+        <EditText
+            android:id="@+id/editTextCTw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="水的CT值/HU"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v066"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h050"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h010"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v033" />
+
+        <TextView
+            android:id="@+id/textViewSDw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SDw"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v066"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h060"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h050"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v033" />
+
+        <EditText
+            android:id="@+id/editTextSDw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="水的标准偏差"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_v066"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h095"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h060"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v033" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_h005"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_h095"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_h010"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_v066"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.666" />
+
+        <TextView
+            android:id="@+id/textViewWL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WL"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h010"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h005"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v066" />
+
+        <TextView
+            android:id="@+id/textViewWLValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:gravity="center"
+            android:hint="窗位/HU"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h050"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h010"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_v066" />
+
+        <TextView
+            android:id="@+id/textViewWW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WW"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h060"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h050"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v066" />
+
+        <TextView
+            android:id="@+id/textViewWWValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/theme_input_gray"
+            android:gravity="center"
+            android:hint="窗宽/HU"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_h095"
+            app:layout_constraintStart_toStartOf="@+id/guideline_h060"
+            app:layout_constraintTop_toTopOf="@+id/guideline_v066" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculateGroup">
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/buttonCalculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="计算数据"
+            app:groupLocation="LEFT"
+            app:niceTheme="THEME_BLUE" />
+
+        <com.xh3140.core.widget.button.NiceButton
+            android:id="@+id/buttonClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="清除数据"
+            app:groupLocation="RIGHT"
+            app:niceTheme="THEME_RED" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
