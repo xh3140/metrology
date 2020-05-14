@@ -6,9 +6,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.BaseActivity
-import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR1Fragment
-import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR2Fragment
-import com.xh3140.metrology.jjg.jjg_961_2017.fragment.CTLCR3Fragment
+import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part1Fragment
+import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part2Fragment
+import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part3Fragment
 import kotlinx.android.synthetic.main.activity_jjg_gz_16_2018.*
 
 class JJGGZ162018Activity : BaseActivity() {
@@ -20,9 +20,9 @@ class JJGGZ162018Activity : BaseActivity() {
         viewPager2.adapter = object : FragmentStateAdapter(this) {
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> CTLCR1Fragment()
-                    1 -> CTLCR2Fragment()
-                    else -> CTLCR3Fragment()
+                    0 -> JJG96120171Part1Fragment()
+                    1 -> JJG96120171Part2Fragment()
+                    else -> JJG96120171Part3Fragment()
                 }
             }
 

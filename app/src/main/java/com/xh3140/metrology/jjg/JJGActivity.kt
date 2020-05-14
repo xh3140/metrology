@@ -2,7 +2,7 @@ package com.xh3140.metrology.jjg
 
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.BaseActivity
-import com.xh3140.metrology.jjg.jjg_961_2017.JJG9612017Activity
+import com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity
 import kotlinx.android.synthetic.main.activity_jjg.*
 
 class JJGActivity : BaseActivity() {
