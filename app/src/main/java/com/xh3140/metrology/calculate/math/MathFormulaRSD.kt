@@ -4,7 +4,7 @@ import com.xh3140.core.math.sqrt
 import java.math.BigDecimal
 
 object MathFormulaRSD : MathFormula() {
-    override fun getName(): String = "相对标准偏差"
+    override fun getChineseName(): String = "相对标准偏差"
 
     override fun getEnglishName(): String = "RSD,Relative Standard Deviation"
 
@@ -35,13 +35,20 @@ object MathFormulaRSD : MathFormula() {
      */
     data class Result(val sd: BigDecimal, val rsd: BigDecimal)
 
-    fun calculate(list: List<BigDecimal>): Result {
-        val n = BigDecimal(list.size)
+    fun calculate(data: List<BigDecimal>): Result {
+        if (data.isEmpty()) {
+            throw IllegalArgumentException("data list is empty")
+        }
+        val n = BigDecimal(data.size)
         var sum = BigDecimal.ZERO
-        for (big in list) sum = sum.add(big)
+        for (big in data) {
+            sum = sum.add(big)
+        }
         val avg = sum.divide(n, 16, BigDecimal.ROUND_HALF_UP)
         var temp = BigDecimal.ZERO
-        for (big in list) temp = temp.add(big.subtract(avg).pow(2))
+        for (big in data) {
+            temp = temp.add(big.subtract(avg).pow(2))
+        }
         val sd = (temp.divide(n.subtract(BigDecimal.ONE), 16, BigDecimal.ROUND_HALF_UP)).sqrt()
         val rsd = sd.divide(avg, 16, BigDecimal.ROUND_HALF_UP)
         return Result(sd, rsd)

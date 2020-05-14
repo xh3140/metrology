@@ -2,19 +2,26 @@ package com.xh3140.metrology.calculate.math
 
 import java.math.BigDecimal
 
-abstract class MathFormula : MathFormulaInfo {
+abstract class MathFormula {
     /**
-     * 获取由中文和英文名称组成的标题
+     * 公式名称
      */
-    fun getNameTitle(): String {
-        val chineseName = getName()
-        val englishName = getEnglishName()
-        return if (englishName.isEmpty()) {
-            chineseName
-        } else {
-            String.format("%s\n%s", chineseName, englishName)
-        }
-    }
+    abstract fun getChineseName(): String
+
+    /**
+     * 公式英文名称
+     */
+    abstract fun getEnglishName(): String
+
+    /**
+     * 公式描述
+     */
+    abstract fun getDescription(): String
+
+    /**
+     * 公式LaTeX
+     */
+    abstract fun getLatexString(): String
 
     /**
      * @property max 最大值
@@ -32,15 +39,15 @@ abstract class MathFormula : MathFormulaInfo {
     )
 
     companion object {
-        /**
-         * 计算基本数据
-         */
-        fun calculateBase(list: List<BigDecimal>): BaseResult {
-            val n = BigDecimal(list.size)
-            var max = list.first()
-            var min = list.first()
+        fun calculateBase(data: List<BigDecimal>): BaseResult {
+            if (data.isEmpty()) {
+                throw IllegalArgumentException("data list is empty")
+            }
+            val n = BigDecimal(data.size)
+            var max = data.first()
+            var min = data.first()
             var sum = BigDecimal.ZERO
-            for (big in list) {
+            for (big in data) {
                 max = max.max(big)
                 min = min.min(big)
                 sum = sum.add(big)

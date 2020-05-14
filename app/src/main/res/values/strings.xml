@@ -4,23 +4,23 @@
     <string name="app_metrology_name">metrology</string>
     <string name="app_metrology_copyright">© 2020 xh3140</string>
     <!--activity-->
-    <string name="activity_formula_title">公式算法</string>
+    <string name="activity_calculate_title">公式算法</string>
 
     <!--fragment-->
     <string name="main_fragment_home_title">主页</string>
     <string name="main_fragment_tools_title">工具</string>
     <string name="main_fragment_setting_title">设置</string>
 
-    <string name="formula_fragment_formula_title">公式</string>
-    <string name="formula_fragment_algorithm_title">算法</string>
-    <string name="formula_fragment_setting_title">设置</string>
+    <string name="calculate_fragment_formula_title">公式</string>
+    <string name="calculate_fragment_algorithm_title">算法</string>
+    <string name="calculate_fragment_setting_title">设置</string>
 
-    <string name="formula_button_select_text">选择公式</string>
-    <string name="formula_button_append_text">添加数据</string>
-    <string name="formula_button_remove_text">删除数据</string>
-    <string name="formula_button_calculate_text">计算数据</string>
-    <string name="formula_button_clear_text">清除数据</string>
-    <string name="formula_button_chart_text">绘制图表</string>
+    <string name="calculate_button_select_text">选择公式</string>
+    <string name="calculate_button_append_text">添加数据</string>
+    <string name="calculate_button_remove_text">删除数据</string>
+    <string name="calculate_button_calculate_text">计算数据</string>
+    <string name="calculate_button_clear_text">清除数据</string>
+    <string name="calculate_button_chart_text">绘制图表</string>
 
     <string name="main_fragment_home_formula_button_text">公式算法</string>
     <string name="main_fragment_home_jjg_jjf_button_text">计量器具检校</string>

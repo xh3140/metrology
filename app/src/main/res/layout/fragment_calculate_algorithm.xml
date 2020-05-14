@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/formula_button_append_text"
+            android:text="@string/calculate_button_append_text"
             android:textSize="18sp"
             app:groupLocation="LEFT"
             app:niceTheme="THEME_BLUE" />
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/formula_button_remove_text"
+            android:text="@string/calculate_button_remove_text"
             android:textSize="18sp"
             app:groupLocation="RIGHT"
             app:niceTheme="THEME_RED" />
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/formula_button_calculate_text"
+            android:text="@string/calculate_button_calculate_text"
             android:textSize="18sp"
             app:groupLocation="LEFT"
             app:niceTheme="THEME_BLUE" />
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/formula_button_clear_text"
+            android:text="@string/calculate_button_clear_text"
             android:textSize="18sp"
             app:groupLocation="RIGHT"
             app:niceTheme="THEME_RED" />
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:text="@string/formula_button_chart_text"
+        android:text="@string/calculate_button_chart_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

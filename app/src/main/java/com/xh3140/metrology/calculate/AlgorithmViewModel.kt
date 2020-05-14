@@ -18,13 +18,9 @@ class AlgorithmViewModel(application: Application, private val handle: SavedStat
 
     val items: List<String>
         get() = if (handle.contains(KEY_DATA_ITEMS)) {
-            handle.getLiveData<List<String>>(KEY_DATA_ITEMS).value ?: List(
-                MIN_ITEM_COUNT
-            ) { "" }
+            handle.getLiveData<List<String>>(KEY_DATA_ITEMS).value ?: List(MIN_ITEM_COUNT) { "" }
         } else {
-            List(MIN_ITEM_COUNT) { "" }.apply {
-                handle.set(KEY_DATA_ITEMS, this)
-            }
+            List(MIN_ITEM_COUNT) { "" }.apply { handle.set(KEY_DATA_ITEMS, this) }
         }
 
     val numbers: List<Double>
