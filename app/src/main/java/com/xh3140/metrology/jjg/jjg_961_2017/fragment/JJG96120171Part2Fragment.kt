@@ -4,10 +4,12 @@ import android.app.AlertDialog
 
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_ctlcr2.*
+import kotlinx.android.synthetic.main.fragment_jjg_961_2017_part2.*
 
-class CTLCR2Fragment : BaseFragment() {
-    override fun getLayoutResID(): Int = R.layout.fragment_ctlcr2
+class JJG96120171Part2Fragment : BaseFragment() {
+
+    override fun getLayoutResID(): Int = R.layout.fragment_jjg_961_2017_part2
+
     override fun initData() {
         val builder = StringBuilder()
         builder.append("$$\\[WL=\\frac{CT_M+CT_W}{2}\\]$$\n\n")
@@ -18,6 +20,11 @@ class CTLCR2Fragment : BaseFragment() {
         builder.append("$$\\[CT_M:低对比物质的CT值;\\]$$\n")
         builder.append("$$\\[SD_{max}:两种物质测量区域中较大的那个标准偏差值。\\]$$")
         flexibleRichTextView.setText(builder.toString())
+
+
+    }
+
+    override fun initListener() {
         // 计算窗宽与窗位
         buttonCalculate.setOnClickListener {
             val ctm = editTextCTm.text.toString()
@@ -77,7 +84,5 @@ class CTLCR2Fragment : BaseFragment() {
                 }
             dialogBuilder.create().show()
         }
-
     }
-
 }

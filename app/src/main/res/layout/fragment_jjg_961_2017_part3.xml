@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".jjg.jjg_961_2017.fragment.CTLCR3Fragment">
+    tools:context=".jjg.jjg_961_2017.fragment.JJG96120171Part3Fragment">
 
     <com.xh3140.metrology.jjg.jjg_961_2017.CTModelLCRView
         android:id="@+id/CTModelLCRView"
