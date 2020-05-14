@@ -23,7 +23,7 @@ class FormulaActivity : BaseActivity() {
     override fun getLayoutResID(): Int = R.layout.activity_formula
 
     override fun initData() {
-        setTitle(R.string.activity_formula_title)
+        setTitle(R.string.activity_calculate_title)
         setActionBarBackEnabled(true)
         // 配适器
         viewPager2.adapter = object : FragmentStateAdapter(this) {
@@ -41,8 +41,8 @@ class FormulaActivity : BaseActivity() {
         TabLayoutMediator(tabLayout, viewPager2, TabConfigurationStrategy { tab, position ->
             when (position) {
                 0 -> tab.setText(R.string.formula_fragment_intro_title)
-                1 -> tab.setText(R.string.formula_fragment_algorithm_title)
-                else -> tab.setText(R.string.formula_fragment_setting_title)
+                1 -> tab.setText(R.string.calculate_fragment_algorithm_title)
+                else -> tab.setText(R.string.calculate_fragment_setting_title)
             }
         }).attach()
 

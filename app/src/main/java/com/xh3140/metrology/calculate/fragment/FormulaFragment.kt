@@ -42,7 +42,10 @@ class FormulaFragment : BaseFragment() {
 
     private fun setMathFormula(formula: MathFormula) {
         mMathFormula = formula
-        textViewTitle.text = formula.getNameTitle()
+        val chinese = formula.getChineseName()
+        val english = formula.getEnglishName()
+        val title = if (english.isEmpty()) chinese else "${chinese}\n${english}"
+        textViewTitle.text = title
         flexibleRichTextView.setText(formula.getLatexString())
         textViewDescription.text = formula.getDescription()
     }

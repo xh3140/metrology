@@ -18,17 +18,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/formula_fragment_formula_title" />
+            android:text="@string/calculate_fragment_formula_title" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/formula_fragment_algorithm_title" />
+            android:text="@string/calculate_fragment_algorithm_title" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/formula_fragment_setting_title" />
+            android:text="@string/calculate_fragment_setting_title" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
