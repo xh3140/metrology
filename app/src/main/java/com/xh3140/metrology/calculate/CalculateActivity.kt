@@ -31,7 +31,8 @@ class CalculateActivity : BaseActivity() {
                 return when (position) {
                     0 -> formulaFragment
                     1 -> algorithmFragment
-                    else -> settingFragment
+                    2 -> settingFragment
+                    else -> Fragment()
                 }
             }
 
@@ -42,10 +43,10 @@ class CalculateActivity : BaseActivity() {
             when (position) {
                 0 -> tab.setText(R.string.calculate_fragment_formula_title)
                 1 -> tab.setText(R.string.calculate_fragment_algorithm_title)
-                else -> tab.setText(R.string.calculate_fragment_setting_title)
+                2 -> tab.setText(R.string.calculate_fragment_setting_title)
+                else -> tab.text = ""
             }
         }).attach()
-
     }
 
 }

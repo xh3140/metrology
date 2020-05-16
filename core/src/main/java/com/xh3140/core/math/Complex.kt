@@ -109,22 +109,30 @@ class Complex(var real: Double, var imaginary: Double) {
     }
 
     operator fun div(other: Int): Complex {
-        if (other == 0) throw ArithmeticException("除数不能为0")
+        if (other == 0) {
+            throw ArithmeticException("除数不能为0")
+        }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Long): Complex {
-        if (other == 0L) throw ArithmeticException("除数不能为0")
+        if (other == 0L) {
+            throw ArithmeticException("除数不能为0")
+        }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Float): Complex {
-        if (other == 0F) throw ArithmeticException("除数不能为0")
+        if (other == 0F) {
+            throw ArithmeticException("除数不能为0")
+        }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Double): Complex {
-        if (other == 0.0) throw ArithmeticException("除数不能为0")
+        if (other == 0.0) {
+            throw ArithmeticException("除数不能为0")
+        }
         return Complex(real / other, imaginary / other)
     }
 
