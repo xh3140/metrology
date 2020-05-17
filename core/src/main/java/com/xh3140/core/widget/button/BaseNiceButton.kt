@@ -52,11 +52,11 @@ abstract class BaseNiceButton : AppCompatButton {
     /**
      * 构造函数
      */
-    constructor(context: Context?) : super(context)
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr)
 
     /**

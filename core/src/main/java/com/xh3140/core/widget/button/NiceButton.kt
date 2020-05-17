@@ -62,15 +62,15 @@ class NiceButton : BaseNiceButton {
     /**
      * 构造函数
      */
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         configViewByXML(context, null)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         configViewByXML(context, attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr) {
         configViewByXML(context, attrs)
     }
@@ -78,8 +78,8 @@ class NiceButton : BaseNiceButton {
     /**
      * 由XML初始化视图
      */
-    private fun configViewByXML(context: Context?, attrs: AttributeSet?) {
-        if (context != null && attrs != null) {
+    private fun configViewByXML(context: Context, attrs: AttributeSet?) {
+        if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
             configBackgroundByXML(typedArray)
             typedArray.recycle()

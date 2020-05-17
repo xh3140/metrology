@@ -9,7 +9,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.StyleRes
-import com.xh3140.core.widget.dialog.listener.FooterButtonOnClickListener
+import com.xh3140.core.widget.dialog.listener.ButtonOnClickListener
 import com.xh3140.core.widget.dialog.params.BuilderParams
 import com.xh3140.core.widget.dialog.view.RootView
 
@@ -279,13 +279,13 @@ abstract class CircleDialog(params: BuilderParams) : BaseCircleDialog(params.dia
             return this
         }
 
-        fun setButtonOnClickListener(listener: FooterButtonOnClickListener?): Builder<D> {
+        fun setButtonOnClickListener(listener: ButtonOnClickListener?): Builder<D> {
             mParams.footerParams.buttonOnClickListener = listener
             return this
         }
 
         fun setButtonOnClickListener(listener: ((CircleDialog, View, Int) -> Unit)): Builder<D> {
-            mParams.footerParams.buttonOnClickListener = object : FooterButtonOnClickListener {
+            mParams.footerParams.buttonOnClickListener = object : ButtonOnClickListener {
                 override fun onClick(dialog: CircleDialog, view: View, index: Int) {
                     listener.invoke(dialog, view, index)
                 }

@@ -1,6 +1,6 @@
 package com.xh3140.core.widget.dialog.params
 
-import com.xh3140.core.widget.dialog.listener.FooterButtonOnClickListener
+import com.xh3140.core.widget.dialog.listener.ButtonOnClickListener
 
 class FooterParams(buttonCount: Int) {
     /**
@@ -11,5 +11,5 @@ class FooterParams(buttonCount: Int) {
     /**
      * 按钮点击监听器
      */
-    var buttonOnClickListener: FooterButtonOnClickListener? = null
+    var buttonOnClickListener: ButtonOnClickListener? = null
 }
