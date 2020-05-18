@@ -5,7 +5,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseActivity
+import com.xh3140.metrology.base.ui.activity.BaseActivity
 import com.xh3140.metrology.calculate.fragment.AlgorithmFragment
 import com.xh3140.metrology.calculate.fragment.FormulaFragment
 import com.xh3140.metrology.calculate.fragment.SettingFragment

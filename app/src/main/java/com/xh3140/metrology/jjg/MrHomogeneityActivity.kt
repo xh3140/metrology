@@ -1,9 +1,9 @@
 package com.xh3140.metrology.jjg
 
 import android.view.View
-import com.xh3140.core.widget.dialog.CircleContentDialog
+import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseActivity
+import com.xh3140.metrology.base.ui.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_mr_homogeneity.*
 import java.math.BigDecimal
 import java.util.*

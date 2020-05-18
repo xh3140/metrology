@@ -3,7 +3,7 @@ package com.xh3140.metrology.jjg.jjg9612017.fragment
 import android.app.AlertDialog
 
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_jjg_961_2017_part2.*
 
 class JJG96120171Part2Fragment : BaseFragment() {

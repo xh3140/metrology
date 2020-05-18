@@ -3,7 +3,7 @@ package com.xh3140.metrology.calculate.fragment
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 
 
 class SettingFragment : BaseFragment() {

@@ -1,8 +1,8 @@
 package com.xh3140.metrology.calculate.fragment
 
-import com.xh3140.core.widget.dialog.CircleListDialog
+import com.xh3140.core.widgets.dialog.CircleListDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.math.MathFormula
 import com.xh3140.metrology.calculate.math.MathFormulaRMD
 import com.xh3140.metrology.calculate.math.MathFormulaRSD

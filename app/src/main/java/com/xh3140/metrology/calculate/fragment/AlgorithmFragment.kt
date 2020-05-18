@@ -5,10 +5,10 @@ import android.text.InputType
 import androidx.fragment.app.viewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.xh3140.core.widget.dialog.CircleContentDialog
-import com.xh3140.core.widget.dialog.CircleInputDialog
+import com.xh3140.core.widgets.dialog.CircleContentDialog
+import com.xh3140.core.widgets.dialog.CircleInputDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.AlgorithmViewModel
 import com.xh3140.metrology.calculate.CalculateActivity
 import com.xh3140.metrology.calculate.adapter.ListDataAdapter
@@ -85,16 +85,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.appendEmptyItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
-                                2 -> mViewModel.appendToEmptyItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
+                                1 -> mViewModel.appendEmptyItems(count, recyclerViewData, mDataAdapter)
+                                2 -> mViewModel.appendToEmptyItems(count, recyclerViewData, mDataAdapter)
                             }
                         }
                     }

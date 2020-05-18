@@ -1,7 +1,7 @@
 package com.xh3140.metrology.jjg.jjg9612017.fragment
 
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 
 
 class JJG96120171Part3Fragment : BaseFragment() {

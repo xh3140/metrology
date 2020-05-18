@@ -4,7 +4,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseActivity
+import com.xh3140.metrology.base.ui.activity.BaseActivity
 import io.github.kbiakov.codeview.classifier.CodeProcessor
 import kotlinx.android.synthetic.main.activity_main.*
 import org.scilab.forge.jlatexmath.core.AjLatexMath

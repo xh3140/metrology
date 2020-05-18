@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.xh3140.core.widget.button.NiceButton
+        <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonJJG6391998"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/jjg_639_1998"
             app:niceTheme="THEME_RED" />
 
-        <com.xh3140.core.widget.button.NiceButton
+        <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonJJG9612017"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

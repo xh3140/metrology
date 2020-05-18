@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.xh3140.core.widget.utils.PixelUtil
+import com.xh3140.core.utils.PixelUtil
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.pow

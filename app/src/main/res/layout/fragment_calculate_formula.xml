@@ -45,7 +45,7 @@
 
     </ScrollView>
 
-    <com.xh3140.core.widget.button.NiceButton
+    <com.xh3140.core.widgets.button.NiceButton
         android:id="@+id/buttonSelect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

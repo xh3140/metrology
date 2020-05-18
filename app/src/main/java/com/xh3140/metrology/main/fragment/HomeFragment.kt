@@ -3,11 +3,11 @@ package com.xh3140.metrology.main.fragment
 import android.text.InputType
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatTextView
-import com.xh3140.core.widget.dialog.CircleContentDialog
-import com.xh3140.core.widget.dialog.CircleInputDialog
-import com.xh3140.core.widget.dialog.CircleListDialog
+import com.xh3140.core.widgets.dialog.CircleContentDialog
+import com.xh3140.core.widgets.dialog.CircleInputDialog
+import com.xh3140.core.widgets.dialog.CircleListDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.base.BaseFragment
+import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateActivity
 import com.xh3140.metrology.jjg.JJGActivity
 import com.xh3140.metrology.jjg.MrHomogeneityActivity

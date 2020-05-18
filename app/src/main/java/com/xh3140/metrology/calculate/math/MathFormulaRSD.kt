@@ -1,6 +1,6 @@
 package com.xh3140.metrology.calculate.math
 
-import com.xh3140.core.math.sqrt
+import com.xh3140.core.extensions.sqrt
 import java.math.BigDecimal
 
 object MathFormulaRSD : MathFormula() {

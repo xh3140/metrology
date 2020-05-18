@@ -180,7 +180,7 @@
             android:layout_margin="8dp"
             android:orientation="horizontal">
 
-            <com.xh3140.core.widget.button.NiceButton
+            <com.xh3140.core.widgets.button.NiceButton
                 android:id="@+id/buttonCalculate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
                 app:groupLocation="LEFT"
                 app:niceTheme="THEME_BLUE" />
 
-            <com.xh3140.core.widget.button.NiceButton
+            <com.xh3140.core.widgets.button.NiceButton
                 android:id="@+id/buttonClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

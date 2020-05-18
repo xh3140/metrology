@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.recyclerview.widget.RecyclerView
-import com.xh3140.core.math.toDouble
+import com.xh3140.core.extensions.toDouble
 import com.xh3140.metrology.calculate.adapter.ListDataAdapter
 import com.xh3140.metrology.calculate.adapter.ListResultAdapter
 import com.xh3140.metrology.calculate.math.MathFormula
