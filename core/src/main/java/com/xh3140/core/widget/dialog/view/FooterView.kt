@@ -59,10 +59,10 @@ class FooterView(context: Context) : LinearLayout(context) {
 
     private fun onButtonClick(view: View, index: Int) {
         mCircleDialog?.also { dialog ->
-            if (mFooterParams.buttonOnClickListener == null) {
+            mFooterParams.buttonOnClickListener?.also { listener ->
+                listener.onClick(dialog, view, index)
+            } ?: also {
                 dialog.dismiss()
-            } else {
-                mFooterParams.buttonOnClickListener?.onClick(dialog, view, index)
             }
         }
     }

@@ -85,16 +85,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.appendEmptyItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
-                                2 -> mViewModel.appendToEmptyItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
+                                1 -> mViewModel.appendEmptyItems(count, recyclerViewData, mDataAdapter)
+                                2 -> mViewModel.appendToEmptyItems(count, recyclerViewData, mDataAdapter)
                             }
                         }
                     }

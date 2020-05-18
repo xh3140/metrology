@@ -41,8 +41,7 @@ class BodyContentView(context: Context) : AppCompatTextView(context) {
             if (params.height != 0) {
                 minHeight = PixelUtil.dp2px(context, params.height)
             }
-            if (params.padding != null) {
-                val padding = params.padding as IntArray
+            params.padding?.also { padding ->
                 setPadding(
                     PixelUtil.dp2px(context, padding[0]),
                     PixelUtil.dp2px(context, padding[1]),

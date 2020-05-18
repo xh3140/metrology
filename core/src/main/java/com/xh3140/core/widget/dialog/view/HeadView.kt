@@ -94,8 +94,7 @@ class HeadView(context: Context) : LinearLayout(context) {
             if (params.height != 0) {
                 mTitleView.height = PixelUtil.dp2px(context, params.height)
             }
-            if (params.padding != null) {
-                val padding = params.padding as IntArray
+            params.padding?.also { padding ->
                 mTitleView.setPadding(
                     PixelUtil.dp2px(context, padding[0]),
                     PixelUtil.dp2px(context, padding[1]),
@@ -125,8 +124,7 @@ class HeadView(context: Context) : LinearLayout(context) {
             if (params.height != 0) {
                 mSummaryView.height = PixelUtil.dp2px(context, params.height)
             }
-            if (params.padding != null) {
-                val padding = params.padding as IntArray
+            params.padding?.also { padding ->
                 mSummaryView.setPadding(
                     PixelUtil.dp2px(context, padding[0]),
                     PixelUtil.dp2px(context, padding[1]),

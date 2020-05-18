@@ -5,10 +5,10 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.LinearLayout
-import android.widget.RadioButton
+import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xh3140.core.widget.dialog.params.ListParams
@@ -72,8 +72,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
         if (params.isDividerList) {
             addItemDecoration(VerticalItemDecoration(context))
         }
-        if (params.padding != null) {
-            val padding = params.padding as IntArray
+        params.padding?.also { padding ->
             setPadding(
                 PixelUtil.dp2px(context, padding[0]),
                 PixelUtil.dp2px(context, padding[1]),
@@ -87,8 +86,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
         button.textSize = mListParams.textSize
         button.setTextColor(mListParams.textColor)
         button.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        if (mListParams.padding != null) {
-            val padding = mListParams.padding as IntArray
+        mListParams.padding?.also { padding ->
             button.setPadding(
                 PixelUtil.dp2px(context, padding[0]),
                 PixelUtil.dp2px(context, padding[1]),
@@ -106,15 +104,14 @@ class BodyListView(context: Context) : RecyclerView(context) {
         override fun getItemCount(): Int = mListParams.items.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val button = if (mListParams.isMultiChoice) {
-                CheckBox(parent.context)
+            val button: CompoundButton = if (mListParams.isMultiChoice) {
+                AppCompatCheckBox(parent.context)
             } else {
-                RadioButton(parent.context)
+                AppCompatRadioButton(parent.context)
             }
             configItemView(button)
             return ViewHolder(button)
         }
-
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.button.text = mItemList[position].text
             holder.button.isChecked = mItemList[position].checked
@@ -123,7 +120,8 @@ class BodyListView(context: Context) : RecyclerView(context) {
         inner class ViewHolder(val button: CompoundButton) : RecyclerView.ViewHolder(button) {
             init {
                 when (button) {
-                    is RadioButton -> {
+                    // 单选按钮
+                    is AppCompatRadioButton -> {
                         button.setOnCheckedChangeListener { _, isChecked ->
                             val position = adapterPosition
                             if (isChecked && position != mCheckedIndex) {
@@ -143,7 +141,8 @@ class BodyListView(context: Context) : RecyclerView(context) {
                             }
                         }
                     }
-                    is CheckBox -> {
+                    // 多选按钮
+                    is AppCompatCheckBox -> {
                         button.setOnCheckedChangeListener { _, isChecked ->
                             val position = adapterPosition
                             if (position in mListParams.items.indices) {

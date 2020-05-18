@@ -119,19 +119,9 @@ abstract class BaseNiceButton : AppCompatButton {
         setTextColor(mTextColor)
         // 设置背景
         background = if (mIsRipple) {
-            DrawableUtil.getRippleDrawable(
-                mBackgroundColor,
-                mPressedBackgroundColor,
-                mRadius,
-                if (mIsInset) mInset else null
-            )
+            DrawableUtil.getRippleDrawable(mBackgroundColor, mPressedBackgroundColor, mRadius, if (mIsInset) mInset else null)
         } else {
-            DrawableUtil.getStateListDrawable(
-                mBackgroundColor,
-                mPressedBackgroundColor,
-                mRadius,
-                if (mIsInset) mInset else null
-            )
+            DrawableUtil.getStateListDrawable(mBackgroundColor, mPressedBackgroundColor, mRadius, if (mIsInset) mInset else null)
         }
     }
 }

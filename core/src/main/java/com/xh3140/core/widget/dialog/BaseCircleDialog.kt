@@ -94,11 +94,10 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
             params.x = mDialogParams.xOffset
             params.y = mDialogParams.yOffset
             // 设置外边距
-            if (mDialogParams.padding != null) {
-                val padding = mDialogParams.padding as IntArray
+            mDialogParams.padding?.also { padding ->
                 params.width = WindowManager.LayoutParams.MATCH_PARENT
                 window.decorView.setPadding(padding[0], padding[1], padding[2], padding[3])
-            } else {
+            } ?: also {
                 // 设置宽度
                 if (mDialogParams.width > 1) {
                     params.width = mDialogParams.width.toInt()
@@ -145,10 +144,7 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
      * 设置显示键盘模式
      */
     protected fun setSoftInputMode() {
-        dialog?.window?.setSoftInputMode(
-            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-                    or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-        )
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
     /**
