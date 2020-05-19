@@ -99,7 +99,7 @@ class Complex(var real: Double, var imaginary: Double) {
      */
     operator fun div(other: Complex): Complex {
         if (other.real == 0.0 && other.imaginary == 0.0) {
-            throw ArithmeticException("除数不能为0")
+            throw ArithmeticException("cannot have divisor of zero.")
         }
         val divisor = other.real * other.real + other.imaginary * other.imaginary
         return Complex(
@@ -110,28 +110,28 @@ class Complex(var real: Double, var imaginary: Double) {
 
     operator fun div(other: Int): Complex {
         if (other == 0) {
-            throw ArithmeticException("除数不能为0")
+            throw ArithmeticException("cannot have divisor of zero.")
         }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Long): Complex {
         if (other == 0L) {
-            throw ArithmeticException("除数不能为0")
+            throw ArithmeticException("cannot have divisor of zero.")
         }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Float): Complex {
         if (other == 0F) {
-            throw ArithmeticException("除数不能为0")
+            throw ArithmeticException("cannot have divisor of zero.")
         }
         return Complex(real / other, imaginary / other)
     }
 
     operator fun div(other: Double): Complex {
         if (other == 0.0) {
-            throw ArithmeticException("除数不能为0")
+            throw ArithmeticException("cannot have divisor of zero.")
         }
         return Complex(real / other, imaginary / other)
     }

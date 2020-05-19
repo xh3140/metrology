@@ -3,8 +3,6 @@ package com.xh3140.core.widgets.dialog.params
 import android.graphics.Typeface
 import android.view.Gravity
 import androidx.annotation.ColorInt
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 class SummaryParams {
     /**
@@ -21,7 +19,7 @@ class SummaryParams {
      * 副标题字体颜色 argb
      */
     @ColorInt
-    var textColor: Int = ColorUtil argb 0x9F000000
+    var textColor: Int = 0x9F000000.toInt()
 
     /**
      * 副标题字体样式
@@ -47,5 +45,5 @@ class SummaryParams {
      * 副标题背景颜色 argb
      */
     @ColorInt
-    var backgroundColor: Int = ColorUtil argb 0x00000000
+    var backgroundColor: Int = 0x00000000
 }

@@ -7,12 +7,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import com.xh3140.core.extensions.dp2px
+import com.xh3140.core.utils.DrawableUtil
 import com.xh3140.core.widgets.dialog.CircleDialog
 import com.xh3140.core.widgets.dialog.params.ButtonParams
 import com.xh3140.core.widgets.dialog.params.FooterParams
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
-import com.xh3140.core.utils.DrawableUtil
 
 class FooterView(context: Context) : LinearLayout(context) {
 
@@ -91,7 +89,7 @@ class FooterView(context: Context) : LinearLayout(context) {
     private fun addDividerView() {
         val divider = View(context)
         divider.layoutParams = LayoutParams(1, LayoutParams.MATCH_PARENT)
-        divider.setBackgroundColor(ColorUtil argb 0xFFD7D7DB)
+        divider.setBackgroundColor(0xFFD7D7DB.toInt())
         addView(divider)
     }
 }

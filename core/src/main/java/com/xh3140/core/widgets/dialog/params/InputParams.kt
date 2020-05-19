@@ -4,9 +4,6 @@ import android.graphics.Typeface
 import android.text.InputType
 import android.view.Gravity
 import androidx.annotation.ColorInt
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
-
 
 class InputParams {
     /**
@@ -28,7 +25,7 @@ class InputParams {
      * 输入框字体颜色 argb
      */
     @ColorInt
-    var textColor: Int = ColorUtil argb 0xFF000000
+    var textColor: Int = 0xFF000000.toInt()
 
     /**
      * 输入框字体字样式
@@ -48,7 +45,7 @@ class InputParams {
     /**
      * 输入框提示语颜色
      */
-    var hintColor: Int = ColorUtil argb 0xFF8F8F8F
+    var hintColor: Int = 0xFF8F8F8F.toInt()
 
     /**
      * 单行输入
@@ -88,7 +85,7 @@ class InputParams {
     /**
      * 输入框边框线条颜色
      */
-    var strokeColor: Int = ColorUtil argb 0xFF808080
+    var strokeColor: Int = 0xFF808080.toInt()
 
     /**
      * 输入框边框圆角半径 dp

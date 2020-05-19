@@ -3,6 +3,8 @@ package com.xh3140.metrology.main.fragment
 import android.text.InputType
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatTextView
+import com.xh3140.core.extensions.startActivity
+import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.core.widgets.dialog.CircleInputDialog
 import com.xh3140.core.widgets.dialog.CircleListDialog

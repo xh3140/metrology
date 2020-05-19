@@ -5,6 +5,7 @@ import android.text.InputType
 import androidx.fragment.app.viewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.core.widgets.dialog.CircleInputDialog
 import com.xh3140.metrology.R

@@ -15,14 +15,11 @@ private val BIG_TWO: BigDecimal by lazy { BigDecimal(2) }
  * @param roundingMode 舍入模式，默认四舍五入
  */
 
-fun BigDecimal.sqrt(
-    precision: Int = 100,
-    roundingMode: RoundingMode = RoundingMode.HALF_UP
-): BigDecimal {
+fun BigDecimal.sqrt(precision: Int = 100, roundingMode: RoundingMode = RoundingMode.HALF_UP): BigDecimal {
     val cmp = compareTo(BigDecimal.ZERO)
     if (cmp < 0) {
         // 负数开根号
-        throw ArithmeticException("The number you're taking the square root of is negative.")
+        throw ArithmeticException("the square root of a negative number.")
     }
     if (cmp == 0) {
         // 零开根号

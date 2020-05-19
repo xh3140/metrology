@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import com.xh3140.core.R
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 /**
  * Copyright (C), 2020-2020
@@ -28,15 +26,36 @@ class NiceButton : BaseNiceButton {
      * @property defaultColor 默认状态下的背景颜色 argb
      * @property pressedColor 按下状态下的背景颜色 argb
      */
-    enum class NiceTheme(val textColor: Int, val defaultColor: Int, val pressedColor: Int) {
-        RED(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFFDC3545, ColorUtil argb 0xFFC82333),
-        GREEN(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFF28A745, ColorUtil argb 0xFF218838),
-        BLUE(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFF007BFF, ColorUtil argb 0xFF0069A9),
-        CYAN(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFF17A2B8, ColorUtil argb 0xFF138496),
-        YELLOW(ColorUtil argb 0xFF212529, ColorUtil argb 0xFFFFC107, ColorUtil argb 0xFFE0A800),
-        GRAY(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFF6C757D, ColorUtil argb 0xFF5A6268),
-        LIGHT(ColorUtil argb 0xFF212529, ColorUtil argb 0xFFF8F9FA, ColorUtil argb 0xFFE2E6EA),
-        DARK(ColorUtil argb 0xFFFFFFFF, ColorUtil argb 0xFF343A40, ColorUtil argb 0xFF23272B)
+    enum class NiceTheme(textColor: Long, defaultColor: Long, pressedColor: Long) {
+        // 红色
+        RED(0xFFFFFFFF, 0xFFDC3545, 0xFFC82333),
+
+        // 绿色
+        GREEN(0xFFFFFFFF, 0xFF28A745, 0xFF218838),
+
+        // 蓝色
+        BLUE(0xFFFFFFFF, 0xFF007BFF, 0xFF0069A9),
+
+        // 蓝绿色
+        CYAN(0xFFFFFFFF, 0xFF17A2B8, 0xFF138496),
+
+        // 黄色
+        YELLOW(0xFF212529, 0xFFFFC107, 0xFFE0A800),
+
+        // 灰色
+        GRAY(0xFFFFFFFF, 0xFF6C757D, 0xFF5A6268),
+
+        // 亮色
+        LIGHT(0xFF212529, 0xFFF8F9FA, 0xFFE2E6EA),
+
+        // 暗色
+        DARK(0xFFFFFFFF, 0xFF343A40, 0xFF23272B);
+
+        val textColor: Int = textColor.toInt()
+
+        val defaultColor: Int = defaultColor.toInt()
+
+        val pressedColor: Int = pressedColor.toInt()
     }
 
     /**
@@ -44,12 +63,25 @@ class NiceButton : BaseNiceButton {
      * @property factory radius,inset调节因子
      */
     enum class GroupLocation(val factory: IntArray) {
+        // 空，表示不是按钮组中的按钮
         NULL(intArrayOf(1, 1, 1, 1, 1, 1, 1, 1)),
+
+        // 最左边，表示在水平按钮组的最左边
         LEFT(intArrayOf(1, 0, 0, 1, 1, 1, 0, 1)),
+
+        // 水平之间，表示在水平按钮组的最左和最右按钮之间
         HORIZONTAL_BETWEEN(intArrayOf(0, 0, 0, 0, 0, 1, 0, 1)),
+
+        // 最右边，表示在水平按钮组的最右边
         RIGHT(intArrayOf(0, 1, 1, 0, 0, 1, 1, 1)),
+
+        // 顶部，表示在竖直按钮组的顶部
         TOP(intArrayOf(1, 1, 0, 0, 1, 1, 1, 0)),
+
+        // 竖直之间，表示在竖直按钮组的顶部和底部按钮之间
         VERTICAL_BETWEEN(intArrayOf(0, 0, 0, 0, 1, 0, 1, 0)),
+
+        // 底部，表示在竖直按钮组的底部
         BOTTOM(intArrayOf(0, 0, 1, 1, 1, 0, 1, 1)),
     }
 

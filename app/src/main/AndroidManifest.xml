@@ -12,14 +12,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:replace="android:label">
+        <activity android:name=".test.TestActivity"></activity>
         <activity
-            android:name="com.xh3140.metrology.calculate.CalculateActivity"
+            android:name=".calculate.CalculateActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name="com.xh3140.metrology.jjg.JJGActivity" />
-        <activity android:name="com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity" />
-        <activity android:name="com.xh3140.metrology.jjg.JJGGZ162018Activity" />
-        <activity android:name="com.xh3140.metrology.jjg.MrHomogeneityActivity" />
-        <activity android:name="com.xh3140.metrology.main.MainActivity">
+        <activity android:name=".jjg.JJGActivity" />
+        <activity android:name=".jjg.jjg9612017.JJG9612017Activity" />
+        <activity android:name=".jjg.JJGGZ162018Activity" />
+        <activity android:name=".jjg.MrHomogeneityActivity" />
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

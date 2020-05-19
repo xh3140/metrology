@@ -1,10 +1,7 @@
 package com.xh3140.metrology.base.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -56,31 +53,5 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         if (mActionBarBackEnabled) finish()
         return super.onSupportNavigateUp()
-    }
-
-    /**
-     * 安全简便的toast
-     */
-    protected fun toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-        runOnUiThread {
-            Toast.makeText(this, message, duration).show()
-        }
-    }
-
-    protected fun toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
-        runOnUiThread {
-            Toast.makeText(this, resId, duration).show()
-        }
-    }
-
-    /**
-     * 跳转到指定Activity
-     */
-    protected inline fun <reified T : BaseActivity> startActivity() {
-        startActivity(Intent(this, T::class.java))
-    }
-
-    protected inline fun <reified T : BaseActivity> startActivity(bundle: Bundle) {
-        startActivity(Intent(this, T::class.java).apply { putExtras(bundle) })
     }
 }

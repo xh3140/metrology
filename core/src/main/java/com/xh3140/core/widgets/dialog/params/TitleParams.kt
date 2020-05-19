@@ -3,8 +3,6 @@ package com.xh3140.core.widgets.dialog.params
 import android.graphics.Typeface
 import android.view.Gravity
 import androidx.annotation.ColorInt
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 
 class TitleParams {
@@ -22,7 +20,7 @@ class TitleParams {
      * 标题字体颜色 argb
      */
     @ColorInt
-    var textColor: Int = ColorUtil argb 0xFF000000
+    var textColor: Int = 0xFF000000.toInt()
 
     /**
      * 标题字体样式
@@ -48,5 +46,5 @@ class TitleParams {
      * 标题背景颜色 argb
      */
     @ColorInt
-    var backgroundColor: Int = ColorUtil argb 0x00000000
+    var backgroundColor: Int = 0x00000000
 }

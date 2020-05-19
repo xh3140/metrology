@@ -2,8 +2,6 @@ package com.xh3140.core.widgets.dialog.params
 
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 class ButtonParams {
     /**
@@ -20,7 +18,7 @@ class ButtonParams {
      * 按钮字体颜色 argb
      */
     @ColorInt
-    var textColor: Int = ColorUtil argb 0xFF007AFF
+    var textColor: Int = 0xFF007AFF.toInt()
 
     /**
      * 按钮是否禁用
@@ -31,7 +29,7 @@ class ButtonParams {
      * 按钮禁用状态下的字体颜色 argb
      */
     @ColorInt
-    var textColorDisable: Int = ColorUtil argb 0xFF898D8B
+    var textColorDisable: Int = 0xFF898D8B.toInt()
 
     /**
      * 按钮字体样式
@@ -47,11 +45,11 @@ class ButtonParams {
      * 按钮背景颜色 argb
      */
     @ColorInt
-    var backgroundColor: Int = ColorUtil argb 0x00000000
+    var backgroundColor: Int = 0x00000000
 
     /**
      * 按钮按下状态背景颜色 argb
      */
     @ColorInt
-    var backgroundColorPressed: Int = ColorUtil argb 0x00000000
+    var backgroundColorPressed: Int = 0x00000000
 }

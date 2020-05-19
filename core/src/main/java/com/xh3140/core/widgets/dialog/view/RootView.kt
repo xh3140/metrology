@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
 import com.xh3140.core.widgets.dialog.CircleDialog
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 
 abstract class RootView(context: Context) : LinearLayout(context) {
@@ -57,7 +55,7 @@ abstract class RootView(context: Context) : LinearLayout(context) {
     private fun addDividerView() {
         val divider = View(context)
         divider.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 1)
-        divider.setBackgroundColor(ColorUtil argb 0xFFD7D7DB)
+        divider.setBackgroundColor(0xFFD7D7DB.toInt())
         addView(divider)
     }
 }

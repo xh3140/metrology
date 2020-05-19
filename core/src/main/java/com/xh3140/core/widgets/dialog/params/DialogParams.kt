@@ -4,8 +4,6 @@ import android.view.Gravity
 import androidx.annotation.AnimRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 class DialogParams {
     /**
@@ -64,13 +62,13 @@ class DialogParams {
      * 对话框的背景色 argb
      */
     @ColorInt
-    var backgroundColor: Int = ColorUtil argb 0xFFF8F8F8
+    var backgroundColor: Int = 0xFFF8F8F8.toInt()
 
     /**
      * 对话框按下状态颜色 argb
      */
     @ColorInt
-    var backgroundColorPressed: Int = ColorUtil argb 0xFFEAEAEA
+    var backgroundColorPressed: Int = 0xFFEAEAEA.toInt()
 
     /**
      * 对话框的圆角半径 dp

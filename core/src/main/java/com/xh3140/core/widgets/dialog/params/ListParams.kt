@@ -1,8 +1,6 @@
 package com.xh3140.core.widgets.dialog.params
 
 import androidx.annotation.ColorInt
-import com.xh3140.core.utils.ColorUtil
-import com.xh3140.core.utils.ColorUtil.argb
 
 class ListParams {
     /**
@@ -39,7 +37,7 @@ class ListParams {
      * 列表项目文本字体颜色 argb
      */
     @ColorInt
-    var textColor: Int = ColorUtil argb 0xFF8F8F8F
+    var textColor: Int = 0xFF8F8F8F.toInt()
 
     /**
      * 列表项目内边距 dp [left, top, right, bottom]
