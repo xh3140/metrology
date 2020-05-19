@@ -3,11 +3,9 @@ package com.xh3140.core.extensions
 import android.app.Activity
 import android.content.Context
 import android.util.DisplayMetrics
-import android.util.Size
 import android.view.View
 import androidx.annotation.DimenRes
 import androidx.fragment.app.Fragment
-import org.jetbrains.anko.px2sp
 
 /**
  * Context Dimensions Extensions
@@ -22,16 +20,6 @@ fun Context.sp2px(sp: Int): Int = (sp * resources.displayMetrics.scaledDensity).
 fun Context.sp2px(sp: Float): Int = (sp * resources.displayMetrics.scaledDensity).toInt()
 
 fun Context.dimen(@DimenRes resource: Int): Int = resources.getDimensionPixelSize(resource)
-
-/**
- * 获取屏幕大小 px
- */
-fun getScreenSize(activity: Activity): Size {
-    val metrics = DisplayMetrics()
-    activity.windowManager.defaultDisplay.getMetrics(metrics)
-    return Size(metrics.widthPixels, metrics.heightPixels)
-}
-
 
 /**
  * Fragment Dimensions Extensions

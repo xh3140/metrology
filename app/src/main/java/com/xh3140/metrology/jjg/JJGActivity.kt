@@ -1,5 +1,6 @@
 package com.xh3140.metrology.jjg
 
+import com.xh3140.core.extensions.startActivity
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.activity.BaseActivity
 import com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity

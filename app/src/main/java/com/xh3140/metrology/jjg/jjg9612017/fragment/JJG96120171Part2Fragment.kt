@@ -1,6 +1,7 @@
 package com.xh3140.metrology.jjg.jjg9612017.fragment
 
 import android.app.AlertDialog
+import com.xh3140.core.extensions.toast
 
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
