@@ -7,33 +7,31 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.xh3140.metrology.R
+import com.xh3140.metrology.calculate.ResultItem
 import kotlinx.android.synthetic.main.item_calculate_result.view.*
 
-class ListResultAdapter :
-    ListAdapter<ListResultAdapter.Item, ListResultAdapter.ViewHolder>(DiffCallBack) {
+class ListResultAdapter : ListAdapter<ResultItem, ListResultAdapter.ViewHolder>(DiffCallBack) {
 
-    data class Item(val name: String, val value: String)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
-
-    object DiffCallBack : DiffUtil.ItemCallback<Item>() {
-        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+    object DiffCallBack : DiffUtil.ItemCallback<ResultItem>() {
+        override fun areItemsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+        override fun areContentsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
             return oldItem.name == newItem.name && oldItem.value == newItem.value
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_calculate_result, parent, false)
-        return ViewHolder(view)
+        val inflater = LayoutInflater.from(parent.context)
+        val itemView = inflater.inflate(R.layout.item_calculate_result, parent, false)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.textViewName.text = getItem(position).name
-        holder.view.textViewValue.text = getItem(position).value
+        holder.itemView.textViewName.text = getItem(position).name
+        holder.itemView.textViewValue.text = getItem(position).value
     }
 }

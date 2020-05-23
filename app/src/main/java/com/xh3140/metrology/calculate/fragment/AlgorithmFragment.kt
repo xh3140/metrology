@@ -12,6 +12,7 @@ import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.AlgorithmViewModel
 import com.xh3140.metrology.calculate.CalculateActivity
+import com.xh3140.metrology.calculate.ResultItem
 import com.xh3140.metrology.calculate.adapter.ListDataAdapter
 import com.xh3140.metrology.calculate.adapter.ListResultAdapter
 import com.xh3140.metrology.calculate.math.MathFormulaRMD
@@ -46,23 +47,17 @@ class AlgorithmFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mResultAdapter
         }
-        mResultAdapter.submitList(
-            listOf(
-                ListResultAdapter.Item("总和", ""),
-                ListResultAdapter.Item("极差", ""),
-                ListResultAdapter.Item("平均值", "")
-            )
-        )
+        mResultAdapter.submitList(listOf(ResultItem("总和", ""), ResultItem("极差", ""), ResultItem("平均值", "")))
     }
 
     override fun initListener() {
         // 单击按钮添加数据
         buttonAppend.setOnClickListener {
-            mViewModel.appendEmptyItem(recyclerViewData, mDataAdapter)
+            mViewModel.appendEmptyItem()
         }
         // 单击按钮删除数据
         buttonRemove.setOnClickListener {
-            mViewModel.removeLastItem(recyclerViewData, mDataAdapter)
+            mViewModel.removeLastItem()
         }
         // 长按按钮批量添加数据
         buttonAppend.setOnLongClickListener {
@@ -86,8 +81,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.appendEmptyItems(count, recyclerViewData, mDataAdapter)
-                                2 -> mViewModel.appendToEmptyItems(count, recyclerViewData, mDataAdapter)
+                                1 -> mViewModel.appendEmptyItems(count)
+                                2 -> mViewModel.appendToEmptyItems(count)
                             }
                         }
                     }
@@ -118,16 +113,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.removeLastItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
-                                2 -> mViewModel.removeToLastItems(
-                                    count,
-                                    recyclerViewData,
-                                    mDataAdapter
-                                )
+                                1 -> mViewModel.removeLastItems(count)
+                                2 -> mViewModel.removeToLastItems(count)
                             }
                         }
                     }
@@ -142,7 +129,7 @@ class AlgorithmFragment : BaseFragment() {
                 toast("有效数据不能少于${AlgorithmViewModel.MIN_ITEM_COUNT}项")
             } else {
                 val numbers = mViewModel.numbers
-                val result = mutableListOf<ListResultAdapter.Item>()
+                val result = mutableListOf<ResultItem>()
                 val baseResult =
                     AlgorithmViewModel.calculationBase(
                         numbers
@@ -159,19 +146,11 @@ class AlgorithmFragment : BaseFragment() {
                     result.add(baseResult[4])
                 when (mActivity.formulaFragment.getMathFormula()) {
                     is MathFormulaRMD -> {
-                        result.addAll(
-                            AlgorithmViewModel.calculationRMD(
-                                numbers
-                            )
-                        )
+                        result.addAll(AlgorithmViewModel.calculationRMD(numbers))
                         mResultAdapter.submitList(result.toList())
                     }
                     is MathFormulaRSD -> {
-                        result.addAll(
-                            AlgorithmViewModel.calculationRSD(
-                                numbers
-                            )
-                        )
+                        result.addAll(AlgorithmViewModel.calculationRSD(numbers))
                         mResultAdapter.submitList(result.toList())
                     }
                     else -> return@setOnClickListener
@@ -190,11 +169,13 @@ class AlgorithmFragment : BaseFragment() {
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, i ->
                     if (i == 1) {
-                        mViewModel.emptyAllDataItems(recyclerViewData, mDataAdapter)
-                        val list: MutableList<ListResultAdapter.Item> = ArrayList()
-                        list.add(ListResultAdapter.Item("总和", ""))
-                        list.add(ListResultAdapter.Item("极差", ""))
-                        list.add(ListResultAdapter.Item("平均值", ""))
+                        mViewModel.emptyAllDataItems()
+                        mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.itemCount)
+                        recyclerViewData.scrollToPosition(0)
+                        val list: MutableList<ResultItem> = ArrayList()
+                        list.add(ResultItem("总和", ""))
+                        list.add(ResultItem("极差", ""))
+                        list.add(ResultItem("平均值", ""))
                         mResultAdapter.submitList(list)
                     }
                     dialog.dismiss()

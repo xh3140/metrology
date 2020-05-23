@@ -3,69 +3,99 @@ package com.xh3140.metrology.calculate.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.RecyclerView
 import com.xh3140.metrology.R
 import com.xh3140.metrology.calculate.AlgorithmViewModel
-import java.util.regex.Pattern
+import kotlinx.android.synthetic.main.item_calculate_data.view.*
 
 
-class ListDataAdapter(private val mViewModel: AlgorithmViewModel) :
-    RecyclerView.Adapter<ListDataAdapter.ViewHolder>() {
+class ListDataAdapter(viewModel: AlgorithmViewModel) : RecyclerView.Adapter<ListDataAdapter.ViewHolder>() {
 
-    private val mPatternSub: Pattern = Pattern.compile("""^9+$""")
-    private val mPatternAdd: Pattern = Pattern.compile("""^10+$""")
+    private var mIsUpdateValue: Boolean = false
 
-    fun checkSizeMutation(direction: Boolean) {
-        val count = itemCount
-        val countText = count.toString()
-        if (direction) {
-            if (mPatternAdd.matcher(countText).matches()) {
-                notifyItemRangeChanged(0, count)
-            }
-        } else {
-            if (mPatternSub.matcher(countText).matches()) {
-                notifyItemRangeChanged(0, count)
-            }
-        }
+    private var mRecyclerView: RecyclerView? = null
+
+    private val mItems: ObservableArrayList<String> = viewModel.mItems.value ?: ObservableArrayList()
+
+    private val mOnListChangedCallback: OnListChangedCallback by lazy { OnListChangedCallback() }
+
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        mRecyclerView = recyclerView
+        mItems.addOnListChangedCallback(mOnListChangedCallback)
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        mRecyclerView = null
+        mItems.removeOnListChangedCallback(mOnListChangedCallback)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_calculate_data, parent, false)
-        return ViewHolder(view, this)
+        val inflater = LayoutInflater.from(parent.context)
+        val itemView = inflater.inflate(R.layout.item_calculate_data, parent, false)
+        return ViewHolder(itemView).apply {
+            itemView.editTextValue.addTextChangedListener {
+                mIsUpdateValue = true
+                mItems[adapterPosition] = it.toString()
+                mIsUpdateValue = false
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val padding = itemCount.toString().length
-        holder.textViewName.text = String.format("数据%0${padding}d", position + 1)
-        holder.editTextValue.setText(mViewModel.items[position])
+        holder.itemView.textViewIndex.text = String.format("数据%0${padding}d", position + 1)
+        holder.itemView.editTextValue.setText(mItems[position].toString())
     }
 
-    override fun getItemCount(): Int {
-        return mViewModel.items.size
-    }
+    override fun getItemCount(): Int = mItems.size
 
-    inner class ViewHolder(itemView: View, adapter: ListDataAdapter) :
-        RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-        val textViewName: TextView = itemView.findViewById(R.id.textViewName)
-        val editTextValue: EditText = itemView.findViewById(R.id.editTextValue)
+    private inner class OnListChangedCallback : ObservableList.OnListChangedCallback<ObservableArrayList<String>>() {
 
-        init {
-            editTextValue.addTextChangedListener {
-                val value = it.toString()
-                val position = adapterPosition
-                if (position >= 0 && position < adapter.itemCount) {
-                    if (value != adapter.mViewModel.items[position]) {
-                        adapter.mViewModel.setItemValue(position, value)
-                    }
-                }
+        private val mRegexSub: Regex = Regex("""^9+$""")
+
+        private val mRegexAdd: Regex = Regex("""^10+$""")
+
+        override fun onChanged(sender: ObservableArrayList<String>) {
+            if (!mIsUpdateValue) {
+                notifyItemRangeChanged(0, mItems.size)
             }
         }
-    }
 
+        override fun onItemRangeChanged(sender: ObservableArrayList<String>, positionStart: Int, itemCount: Int) {
+            if (!mIsUpdateValue) {
+                notifyItemRangeChanged(positionStart, itemCount)
+            }
+        }
+
+        override fun onItemRangeInserted(sender: ObservableArrayList<String>, positionStart: Int, itemCount: Int) {
+            notifyItemRangeInserted(positionStart, itemCount)
+            if (mRegexAdd.matches(sender.size.toString())) {
+                notifyItemRangeChanged(0, sender.size)
+            }
+            mRecyclerView?.scrollToPosition(sender.size - 1)
+        }
+
+        override fun onItemRangeMoved(sender: ObservableArrayList<String>, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            for (i in 0 until itemCount) {
+                notifyItemMoved(fromPosition + i, toPosition + i)
+            }
+        }
+
+        override fun onItemRangeRemoved(sender: ObservableArrayList<String>, positionStart: Int, itemCount: Int) {
+            notifyItemRangeRemoved(positionStart, itemCount)
+            if (mRegexSub.matches(sender.size.toString())) {
+                notifyItemRangeChanged(0, sender.size)
+            }
+            mRecyclerView?.scrollToPosition(sender.size - 1)
+        }
+    }
 }
 
