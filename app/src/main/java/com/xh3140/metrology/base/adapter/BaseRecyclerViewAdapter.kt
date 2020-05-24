@@ -12,6 +12,8 @@ abstract class BaseRecyclerViewAdapter<M, H : RecyclerView.ViewHolder>(items: Ob
 
     fun getItems(): ObservableArrayList<M> = mItems
 
+    override fun getItemCount(): Int = mItems.size
+
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         mRecyclerView = recyclerView

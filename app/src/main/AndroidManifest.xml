@@ -12,7 +12,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:replace="android:label">
-        <activity android:name=".test.TestActivity"></activity>
         <activity
             android:name=".calculate.CalculateActivity"
             android:windowSoftInputMode="adjustNothing" />

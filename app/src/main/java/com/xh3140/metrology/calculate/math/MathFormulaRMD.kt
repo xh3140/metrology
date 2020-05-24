@@ -4,6 +4,7 @@ import java.math.BigDecimal
 
 object MathFormulaRMD : MathFormula() {
 
+    override fun getDimension(): Int = 1
 
     override fun getChineseName(): String = "相对平均偏差"
 

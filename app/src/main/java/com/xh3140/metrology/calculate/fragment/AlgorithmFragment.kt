@@ -2,33 +2,31 @@ package com.xh3140.metrology.calculate.fragment
 
 import android.content.SharedPreferences
 import android.text.InputType
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.xh3140.core.base.CD2D
 import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.core.widgets.dialog.CircleInputDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
-import com.xh3140.metrology.calculate.AlgorithmViewModel
-import com.xh3140.metrology.calculate.CalculateActivity
-import com.xh3140.metrology.calculate.ResultItem
-import com.xh3140.metrology.calculate.adapter.ListDataAdapter
-import com.xh3140.metrology.calculate.adapter.ListResultAdapter
-import com.xh3140.metrology.calculate.math.MathFormulaRMD
-import com.xh3140.metrology.calculate.math.MathFormulaRSD
+import com.xh3140.metrology.calculate.CalculateViewModel
+import com.xh3140.metrology.calculate.adapter.D1DataAdapter
+import com.xh3140.metrology.calculate.adapter.D2DataAdapter
+import com.xh3140.metrology.calculate.adapter.ResultAdapter
 import kotlinx.android.synthetic.main.fragment_calculate_algorithm.*
 
 
-class AlgorithmFragment : BaseFragment() {
+class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
 
-    private val mViewModel: AlgorithmViewModel by viewModels()
+    private val mViewModel: CalculateViewModel = viewModel
 
-    private val mActivity: CalculateActivity by lazy { requireActivity() as CalculateActivity }
+    private val mData1DAdapter: D1DataAdapter by lazy { D1DataAdapter(mViewModel.items1d) }
 
-    private val mDataAdapter: ListDataAdapter by lazy { ListDataAdapter(mViewModel.items) }
+    private val mData2DAdapter: D2DataAdapter by lazy { D2DataAdapter(mViewModel.items2d) }
 
-    private val mResultAdapter: ListResultAdapter by lazy { ListResultAdapter() }
+    private val mResultAdapter: ResultAdapter by lazy { ResultAdapter() }
 
     private val mPreferences: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(requireActivity())
@@ -40,24 +38,31 @@ class AlgorithmFragment : BaseFragment() {
         recyclerViewData.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = mDataAdapter
+            adapter = mData1DAdapter
         }
         recyclerViewResult.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mResultAdapter
         }
-        mResultAdapter.submitList(listOf(ResultItem("总和", ""), ResultItem("极差", ""), ResultItem("平均值", "")))
+        mViewModel.formula.observe(this, Observer {
+            mViewModel.initItems()
+            when (mViewModel.dimension) {
+                1 -> recyclerViewData.adapter = mData1DAdapter
+                2 -> recyclerViewData.adapter = mData2DAdapter
+            }
+        })
+        mResultAdapter.submitList(listOf(CD2D("总和", ""), CD2D("极差", ""), CD2D("平均值", "")))
     }
 
     override fun initListener() {
         // 单击按钮添加数据
         buttonAppend.setOnClickListener {
-            mViewModel.appendEmptyItem()
+            mViewModel.appendEmptyItem()?.also { toast(it) }
         }
         // 单击按钮删除数据
         buttonRemove.setOnClickListener {
-            mViewModel.removeLastItem()
+            mViewModel.removeLastItem()?.also { toast(it) }
         }
         // 长按按钮批量添加数据
         buttonAppend.setOnLongClickListener {
@@ -66,7 +71,7 @@ class AlgorithmFragment : BaseFragment() {
             }
             val builder = CircleInputDialog.Builder(3)
                 .setTitleText("批量添加数据")
-                .setSummaryText("数据量只能在${AlgorithmViewModel.MIN_ITEM_COUNT}~${AlgorithmViewModel.MAX_ITEM_COUNT}之间")
+                .setSummaryText("数据量只能在${CalculateViewModel.MIN_ITEM_COUNT}~${CalculateViewModel.MAX_ITEM_COUNT}之间")
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
                 .setInputMaxLength(5)
@@ -82,8 +87,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.appendEmptyItems(count)
-                                2 -> mViewModel.appendToEmptyItems(count)
+                                1 -> mViewModel.appendEmptyItems(count)?.also { toast(it) }
+                                2 -> mViewModel.appendToEmptyItems(count)?.also { toast(it) }
                             }
                         }
                     }
@@ -99,7 +104,7 @@ class AlgorithmFragment : BaseFragment() {
             }
             val builder = CircleInputDialog.Builder(3)
                 .setTitleText("批量删除数据")
-                .setSummaryText("数据量只能在${AlgorithmViewModel.MIN_ITEM_COUNT}~${AlgorithmViewModel.MAX_ITEM_COUNT}之间")
+                .setSummaryText("数据量只能在${CalculateViewModel.MIN_ITEM_COUNT}~${CalculateViewModel.MAX_ITEM_COUNT}之间")
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
                 .setInputMaxLength(5)
@@ -115,8 +120,8 @@ class AlgorithmFragment : BaseFragment() {
                         } else {
                             val count = countText.toInt()
                             when (index) {
-                                1 -> mViewModel.removeLastItems(count)
-                                2 -> mViewModel.removeToLastItems(count)
+                                1 -> mViewModel.removeLastItems(count)?.also { toast(it) }
+                                2 -> mViewModel.removeToLastItems(count)?.also { toast(it) }
                             }
                         }
                     }
@@ -127,37 +132,67 @@ class AlgorithmFragment : BaseFragment() {
         }
         // 计算数据
         buttonCalculate.setOnClickListener {
-            if (mViewModel.numbers.size < AlgorithmViewModel.MIN_ITEM_COUNT) {
-                toast("有效数据不能少于${AlgorithmViewModel.MIN_ITEM_COUNT}项")
-            } else {
-                val numbers = mViewModel.numbers
-                val result: MutableList<ResultItem> = ArrayList()
-                val baseResult = mViewModel.calculationBase()
-                if (mPreferences.getBoolean("check_boolean_formula_maximum", false))
-                    result.add(baseResult[0])
-                if (mPreferences.getBoolean("check_boolean_formula_minimum", false))
-                    result.add(baseResult[1])
-                if (mPreferences.getBoolean("check_boolean_formula_range", true))
-                    result.add(baseResult[2])
-                if (mPreferences.getBoolean("check_boolean_formula_summation", true))
-                    result.add(baseResult[3])
-                if (mPreferences.getBoolean("check_boolean_formula_average", true))
-                    result.add(baseResult[4])
-                when (mActivity.formulaFragment.getMathFormula()) {
-                    is MathFormulaRMD -> {
-                        result.addAll(mViewModel.calculationRMD())
-                        mResultAdapter.submitList(result.toList())
+            when (mViewModel.dimension) {
+                1 -> {
+                    if (!mViewModel.isEnoughData()) {
+                        toast("有效数据不能少于${CalculateViewModel.MIN_ITEM_COUNT}项")
+                    } else {
+                        val result: MutableList<CD2D<String>> = ArrayList()
+                        val baseResult = mViewModel.calculationBase()
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MAX, false)) {
+                            result.add(baseResult[0])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MIN, false)) {
+                            result.add(baseResult[1])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_RNG, true)) {
+                            result.add(baseResult[2])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_SUM, true)) {
+                            result.add(baseResult[3])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_AVG, true)) {
+                            result.add(baseResult[4])
+                        }
+                        result.addAll(mViewModel.calculationFormula())
+                        mResultAdapter.submitList(result)
                     }
-                    is MathFormulaRSD -> {
-                        result.addAll(mViewModel.calculationRSD())
-                        mResultAdapter.submitList(result.toList())
+                }
+                2 -> {
+                    if (!mViewModel.isEnoughData()) {
+                        toast("有效数据不能少于${CalculateViewModel.MIN_ITEM_COUNT}项")
+                    } else {
+                        val result: MutableList<CD2D<String>> = ArrayList()
+                        val baseResult = mViewModel.calculationBase()
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MAX, false)) {
+                            result.add(baseResult[0])
+                            result.add(baseResult[1])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MIN, false)) {
+                            result.add(baseResult[2])
+                            result.add(baseResult[3])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_RNG, true)) {
+                            result.add(baseResult[4])
+                            result.add(baseResult[5])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_SUM, true)) {
+                            result.add(baseResult[6])
+                            result.add(baseResult[7])
+                        }
+                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_AVG, true)) {
+                            result.add(baseResult[8])
+                            result.add(baseResult[9])
+                        }
+                        result.addAll(mViewModel.calculationFormula())
+                        mResultAdapter.submitList(result)
                     }
                 }
             }
         }
         // 清除数据
         buttonClear.setOnClickListener {
-            if (mViewModel.numbers.isEmpty()) {
+            if (!mViewModel.isExistData()) {
                 return@setOnClickListener
             }
             val builder = CircleContentDialog.Builder(2)
@@ -167,13 +202,16 @@ class AlgorithmFragment : BaseFragment() {
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, i ->
                     if (i == 1) {
-                        mViewModel.emptyAllDataItems()
-                        mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.itemCount)
+                        mViewModel.clearValueItems()?.also { toast(it) }
+                        when (mViewModel.dimension) {
+                            1 -> mData1DAdapter.notifyItemRangeChanged(0, mData1DAdapter.itemCount)
+                            2 -> mData2DAdapter.notifyItemRangeChanged(0, mData2DAdapter.itemCount)
+                        }
                         recyclerViewData.scrollToPosition(0)
-                        val list: MutableList<ResultItem> = ArrayList()
-                        list.add(ResultItem("总和", ""))
-                        list.add(ResultItem("极差", ""))
-                        list.add(ResultItem("平均值", ""))
+                        val list: MutableList<CD2D<String>> = ArrayList()
+                        list.add(CD2D("总和", ""))
+                        list.add(CD2D("极差", ""))
+                        list.add(CD2D("平均值", ""))
                         mResultAdapter.submitList(list)
                     }
                     dialog.dismiss()

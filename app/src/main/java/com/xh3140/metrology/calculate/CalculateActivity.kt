@@ -1,5 +1,6 @@
 package com.xh3140.metrology.calculate
 
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -14,11 +15,7 @@ import kotlinx.android.synthetic.main.activity_calculate.*
 
 class CalculateActivity : BaseActivity() {
 
-    internal val formulaFragment: FormulaFragment by lazy { FormulaFragment() }
-
-    internal val algorithmFragment: AlgorithmFragment by lazy { AlgorithmFragment() }
-
-    internal val settingFragment: SettingFragment by lazy { SettingFragment() }
+    private val mViewModel: CalculateViewModel by viewModels()
 
     override fun getLayoutResID(): Int = R.layout.activity_calculate
 
@@ -29,9 +26,9 @@ class CalculateActivity : BaseActivity() {
         viewPager2.adapter = object : FragmentStateAdapter(this) {
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> formulaFragment
-                    1 -> algorithmFragment
-                    2 -> settingFragment
+                    0 -> FormulaFragment(mViewModel)
+                    1 -> AlgorithmFragment(mViewModel)
+                    2 -> SettingFragment(mViewModel)
                     else -> Fragment()
                 }
             }
