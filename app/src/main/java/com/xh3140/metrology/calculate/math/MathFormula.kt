@@ -3,6 +3,12 @@ package com.xh3140.metrology.calculate.math
 import java.math.BigDecimal
 
 abstract class MathFormula {
+
+    /**
+     * 公式维度
+     */
+    abstract fun getDimension(): Int
+
     /**
      * 公式名称
      */
@@ -22,6 +28,7 @@ abstract class MathFormula {
      * 公式LaTeX
      */
     abstract fun getLatexString(): String
+
 
     /**
      * @property max 最大值

@@ -6,21 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.xh3140.core.base.CD2D
 import com.xh3140.metrology.R
-import com.xh3140.metrology.calculate.ResultItem
 import kotlinx.android.synthetic.main.item_calculate_result.view.*
 
-class ListResultAdapter : ListAdapter<ResultItem, ListResultAdapter.ViewHolder>(DiffCallBack) {
+class ResultAdapter : ListAdapter<CD2D<String>, ResultAdapter.ViewHolder>(DiffCallBack) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    object DiffCallBack : DiffUtil.ItemCallback<ResultItem>() {
-        override fun areItemsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
-            return oldItem == newItem
+    object DiffCallBack : DiffUtil.ItemCallback<CD2D<String>>() {
+        override fun areItemsTheSame(oldItem: CD2D<String>, newItem: CD2D<String>): Boolean {
+            return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
-            return oldItem.name == newItem.name && oldItem.value == newItem.value
+        override fun areContentsTheSame(oldItem: CD2D<String>, newItem: CD2D<String>): Boolean {
+            return oldItem == newItem
         }
     }
 
@@ -31,7 +31,7 @@ class ListResultAdapter : ListAdapter<ResultItem, ListResultAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.textViewName.text = getItem(position).name
-        holder.itemView.textViewValue.text = getItem(position).value
+        holder.itemView.textViewName.text = getItem(position).value1
+        holder.itemView.textViewValue.text = getItem(position).value2
     }
 }

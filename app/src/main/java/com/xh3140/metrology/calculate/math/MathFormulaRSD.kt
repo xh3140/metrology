@@ -4,6 +4,9 @@ import com.xh3140.core.extensions.sqrt
 import java.math.BigDecimal
 
 object MathFormulaRSD : MathFormula() {
+
+    override fun getDimension(): Int = 1
+
     override fun getChineseName(): String = "相对标准偏差"
 
     override fun getEnglishName(): String = "RSD,Relative Standard Deviation"

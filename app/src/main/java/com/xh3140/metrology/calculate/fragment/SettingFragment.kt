@@ -4,18 +4,16 @@ import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
+import com.xh3140.metrology.calculate.CalculateViewModel
 
 
-class SettingFragment : BaseFragment() {
+class SettingFragment(viewModel: CalculateViewModel) : BaseFragment() {
 
     override fun getLayoutResID(): Int = R.layout.fragment_calculate_setting
 
     override fun initData() {
         parentFragmentManager.beginTransaction()
-            .replace(
-                R.id.frameLayoutContainer,
-                SettingPreferenceFragment()
-            )
+            .replace(R.id.frameLayoutContainer, SettingPreferenceFragment())
             .commit()
     }
 
