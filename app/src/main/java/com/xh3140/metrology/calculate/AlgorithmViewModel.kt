@@ -1,7 +1,6 @@
 package com.xh3140.metrology.calculate
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.AndroidViewModel
@@ -15,36 +14,75 @@ import java.math.BigDecimal
 
 class AlgorithmViewModel(application: Application) : AndroidViewModel(application) {
 
-    val mItems: LiveData<ObservableArrayList<String>> =
+    private val mLiveItems: LiveData<ObservableArrayList<String>> =
         MutableLiveData(ObservableArrayList<String>().apply { addAll(Array(MIN_ITEM_COUNT) { "" }) })
 
-    val numbers: List<Double>
+    val items: ObservableArrayList<String> get() = mLiveItems.value ?: ObservableArrayList()
+
+    val numbers: List<BigDecimal>
         get() {
-            val list = mItems.value ?: ObservableArrayList()
-            val numberList: MutableList<Double> = ArrayList()
-            for (i in list.indices) {
-                if (list[i] != "") {
-                    val number = list[i].toDouble()
-                    if (!number.isNaN()) {
-                        numberList.add(number)
-                    }
+            val currentItems = items
+            val numberList: MutableList<BigDecimal> = ArrayList()
+            for (i in currentItems.indices) {
+                if (currentItems[i].isNotEmpty()) {
+                    numberList.add(BigDecimal(currentItems[i]))
                 }
             }
             return numberList
         }
+
+    companion object {
+        const val NUMBER_SCALE: Int = 6
+        const val MIN_ITEM_COUNT: Int = 3
+        const val MAX_ITEM_COUNT: Int = 100
+    }
+
+    fun calculationBase(): List<ResultItem> {
+        val result = MathFormula.calculateBase(numbers)
+        val max = result.max.toDouble(NUMBER_SCALE)
+        val min = result.min.toDouble(NUMBER_SCALE)
+        val rng = result.rng.toDouble(NUMBER_SCALE)
+        val sum = result.sum.toDouble(NUMBER_SCALE)
+        val avg = result.avg.toDouble(NUMBER_SCALE)
+        return listOf(
+            ResultItem("最大值", max.toString()),
+            ResultItem("最小值", min.toString()),
+            ResultItem("极差", rng.toString()),
+            ResultItem("总和", sum.toString()),
+            ResultItem("平均值", avg.toString())
+        )
+    }
+
+    fun calculationRMD(): List<ResultItem> {
+        val result = MathFormulaRMD.calculate(numbers)
+        val md = result.md.toDouble(NUMBER_SCALE)
+        val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE)
+        return listOf(
+            ResultItem("平均偏差", md.toString()),
+            ResultItem("相对平均偏差", rmd.toString().plus("%"))
+        )
+    }
+
+    fun calculationRSD(): List<ResultItem> {
+        val result = MathFormulaRSD.calculate(numbers)
+        val sd = result.sd.toDouble(NUMBER_SCALE)
+        val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE)
+        return listOf(
+            ResultItem("标准偏差", sd.toString()),
+            ResultItem("相对标准偏差", rsd.toString().plus("%"))
+        )
+    }
 
     private fun toast(message: String) {
         Toast.makeText(getApplication(), message, Toast.LENGTH_SHORT).show()
     }
 
     fun appendEmptyItem() {
-        val count = mItems.value?.size ?: 0
-        if (count < MAX_ITEM_COUNT) {
-            mItems.value?.add("")
+        if (items.size < MAX_ITEM_COUNT) {
+            items.add("")
         } else {
             toast("最多不能超过${MAX_ITEM_COUNT}项数据")
         }
-        Log.d("xh3140", mItems.value.toString())
     }
 
     fun appendEmptyItems(count: Int) {
@@ -52,27 +90,25 @@ class AlgorithmViewModel(application: Application) : AndroidViewModel(applicatio
             toast("添加失败")
             return
         }
-        val currentCount = mItems.value?.size ?: 0
+        val currentCount = items.size
         if (currentCount + count <= MAX_ITEM_COUNT) {
-            mItems.value?.addAll(List(count) { "" })
+            items.addAll(List(count) { "" })
         } else {
             val appendCount = MAX_ITEM_COUNT - currentCount
             if (appendCount > 0) {
-                mItems.value?.addAll(List(appendCount) { "" })
+                items.addAll(List(appendCount) { "" })
             }
             toast("最多不能超过${MAX_ITEM_COUNT}项数据")
         }
     }
 
     fun appendToEmptyItems(appendCount: Int) {
-        val count = mItems.value?.size ?: 0
-        appendEmptyItems(appendCount - count)
+        appendEmptyItems(appendCount - items.size)
     }
 
     fun removeLastItem() {
-        val count = mItems.value?.size ?: 0
-        if (count > MIN_ITEM_COUNT) {
-            mItems.value?.removeAt(count - 1)
+        if (items.size > MIN_ITEM_COUNT) {
+            items.removeAt(items.size - 1)
         } else {
             toast("最少需要保留${MIN_ITEM_COUNT}项数据")
         }
@@ -83,76 +119,27 @@ class AlgorithmViewModel(application: Application) : AndroidViewModel(applicatio
             toast("删除失败")
             return
         }
-        val currentCount = mItems.value?.size ?: 0
+        val currentCount = items.size
         if (currentCount - count >= MIN_ITEM_COUNT) {
             for (i in 0 until count) {
-                mItems.value?.removeAt(currentCount - i - 1)
+                items.removeAt(currentCount - i - 1)
             }
         } else {
             val removeCount = currentCount - MIN_ITEM_COUNT
             for (i in 0 until removeCount) {
-                mItems.value?.removeAt(currentCount - i - 1)
+                items.removeAt(currentCount - i - 1)
             }
             toast("最少需要保留${MIN_ITEM_COUNT}项数据")
         }
     }
 
     fun removeToLastItems(removeCount: Int) {
-        val count = mItems.value?.size ?: 0
-        removeLastItems(count - removeCount)
+        removeLastItems(items.size - removeCount)
     }
 
     fun emptyAllDataItems() {
-        val count = mItems.value?.size ?: 0
-        for (i in 0 until count) {
-            mItems.value?.set(i, "")
-        }
-    }
-
-    companion object {
-        const val MIN_ITEM_COUNT = 3
-        const val MAX_ITEM_COUNT = 100
-
-        fun calculationBase(numbers: List<Double>): List<ResultItem> {
-            val scale = 6
-            val list = List(numbers.size) { BigDecimal(numbers[it]) }
-            val result = MathFormula.calculateBase(list)
-            val max = result.max.toDouble(scale)
-            val min = result.min.toDouble(scale)
-            val rng = result.rng.toDouble(scale)
-            val sum = result.sum.toDouble(scale)
-            val avg = result.avg.toDouble(scale)
-            return listOf(
-                ResultItem("最大值", max.toString()),
-                ResultItem("最小值", min.toString()),
-                ResultItem("极差", rng.toString()),
-                ResultItem("总和", sum.toString()),
-                ResultItem("平均值", avg.toString())
-            )
-        }
-
-        fun calculationRMD(numbers: List<Double>): List<ResultItem> {
-            val scale = 6
-            val list = List(numbers.size) { BigDecimal(numbers[it]) }
-            val result = MathFormulaRMD.calculate(list)
-            val md = result.md.toDouble(scale)
-            val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(scale)
-            return listOf(
-                ResultItem("平均偏差", md.toString()),
-                ResultItem("相对平均偏差", rmd.toString().plus("%"))
-            )
-        }
-
-        fun calculationRSD(numbers: List<Double>): List<ResultItem> {
-            val scale = 6
-            val list = List(numbers.size) { BigDecimal(numbers[it]) }
-            val result = MathFormulaRSD.calculate(list)
-            val sd = result.sd.toDouble(scale)
-            val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(scale)
-            return listOf(
-                ResultItem("标准偏差", sd.toString()),
-                ResultItem("相对标准偏差", rsd.toString().plus("%"))
-            )
+        for (i in 0 until items.size) {
+            items[i] = ""
         }
     }
 }

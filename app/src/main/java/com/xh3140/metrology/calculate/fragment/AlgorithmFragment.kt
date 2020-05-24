@@ -26,7 +26,7 @@ class AlgorithmFragment : BaseFragment() {
 
     private val mActivity: CalculateActivity by lazy { requireActivity() as CalculateActivity }
 
-    private val mDataAdapter: ListDataAdapter by lazy { ListDataAdapter(mViewModel) }
+    private val mDataAdapter: ListDataAdapter by lazy { ListDataAdapter(mViewModel.items) }
 
     private val mResultAdapter: ListResultAdapter by lazy { ListResultAdapter() }
 
@@ -66,6 +66,7 @@ class AlgorithmFragment : BaseFragment() {
             }
             val builder = CircleInputDialog.Builder(3)
                 .setTitleText("批量添加数据")
+                .setSummaryText("数据量只能在${AlgorithmViewModel.MIN_ITEM_COUNT}~${AlgorithmViewModel.MAX_ITEM_COUNT}之间")
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
                 .setInputMaxLength(5)
@@ -98,6 +99,7 @@ class AlgorithmFragment : BaseFragment() {
             }
             val builder = CircleInputDialog.Builder(3)
                 .setTitleText("批量删除数据")
+                .setSummaryText("数据量只能在${AlgorithmViewModel.MIN_ITEM_COUNT}~${AlgorithmViewModel.MAX_ITEM_COUNT}之间")
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
                 .setInputMaxLength(5)
@@ -129,11 +131,8 @@ class AlgorithmFragment : BaseFragment() {
                 toast("有效数据不能少于${AlgorithmViewModel.MIN_ITEM_COUNT}项")
             } else {
                 val numbers = mViewModel.numbers
-                val result = mutableListOf<ResultItem>()
-                val baseResult =
-                    AlgorithmViewModel.calculationBase(
-                        numbers
-                    )
+                val result: MutableList<ResultItem> = ArrayList()
+                val baseResult = mViewModel.calculationBase()
                 if (mPreferences.getBoolean("check_boolean_formula_maximum", false))
                     result.add(baseResult[0])
                 if (mPreferences.getBoolean("check_boolean_formula_minimum", false))
@@ -146,14 +145,13 @@ class AlgorithmFragment : BaseFragment() {
                     result.add(baseResult[4])
                 when (mActivity.formulaFragment.getMathFormula()) {
                     is MathFormulaRMD -> {
-                        result.addAll(AlgorithmViewModel.calculationRMD(numbers))
+                        result.addAll(mViewModel.calculationRMD())
                         mResultAdapter.submitList(result.toList())
                     }
                     is MathFormulaRSD -> {
-                        result.addAll(AlgorithmViewModel.calculationRSD(numbers))
+                        result.addAll(mViewModel.calculationRSD())
                         mResultAdapter.submitList(result.toList())
                     }
-                    else -> return@setOnClickListener
                 }
             }
         }
