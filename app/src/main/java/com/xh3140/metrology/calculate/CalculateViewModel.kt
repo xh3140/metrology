@@ -9,9 +9,9 @@ import com.xh3140.core.base.VD1D
 import com.xh3140.core.base.VD2D
 import com.xh3140.core.extensions.toDouble
 import com.xh3140.metrology.calculate.math.MathFormula
+import com.xh3140.metrology.calculate.math.MathFormulaLSM
 import com.xh3140.metrology.calculate.math.MathFormulaRMD
 import com.xh3140.metrology.calculate.math.MathFormulaRSD
-import com.xh3140.metrology.calculate.math.MathFormulaZXECF
 import java.math.BigDecimal
 
 class CalculateViewModel : ViewModel() {
@@ -304,7 +304,7 @@ class CalculateViewModel : ViewModel() {
         when (formula.value) {
             is MathFormulaRMD -> result.addAll(calculationRMD())
             is MathFormulaRSD -> result.addAll(calculationRSD())
-            is MathFormulaZXECF -> result.addAll(calculationZXECF())
+            is MathFormulaLSM -> result.addAll(calculationZXECF())
         }
         return result
     }
@@ -330,7 +330,7 @@ class CalculateViewModel : ViewModel() {
     }
 
     private fun calculationZXECF(): List<CD2D<String>> {
-        val result = MathFormulaZXECF.calculate(mData2D)
+        val result = MathFormulaLSM.calculate(mData2D)
         val a = result.a.toDouble(NUMBER_SCALE)
         val b = result.b.toDouble(NUMBER_SCALE)
         return listOf(

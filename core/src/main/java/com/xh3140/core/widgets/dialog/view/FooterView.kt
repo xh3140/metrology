@@ -69,10 +69,7 @@ class FooterView(context: Context) : LinearLayout(context) {
         if (params.text == null) {
             buttonView.visibility = View.GONE
         } else {
-            buttonView.layoutParams = LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT, 1f
-            )
+            buttonView.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
             buttonView.gravity = Gravity.CENTER
             buttonView.text = params.text
             buttonView.isEnabled = !params.disable

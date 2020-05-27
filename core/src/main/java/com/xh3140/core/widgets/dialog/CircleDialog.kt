@@ -19,11 +19,7 @@ abstract class CircleDialog(params: BuilderParams) : BaseCircleDialog(params.dia
 
     protected abstract fun initRootView(context: Context, dialog: CircleDialog?): RootView
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val context = context ?: return null
         return initRootView(context, this)
     }

@@ -5,9 +5,9 @@ import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateViewModel
 import com.xh3140.metrology.calculate.math.MathFormula
+import com.xh3140.metrology.calculate.math.MathFormulaLSM
 import com.xh3140.metrology.calculate.math.MathFormulaRMD
 import com.xh3140.metrology.calculate.math.MathFormulaRSD
-import com.xh3140.metrology.calculate.math.MathFormulaZXECF
 import kotlinx.android.synthetic.main.fragment_calculate_formula.*
 
 class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
@@ -32,7 +32,7 @@ class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
                         when ((dialog as CircleListDialog).getCheckedIndex()) {
                             0 -> setMathFormula(MathFormulaRMD)
                             1 -> setMathFormula(MathFormulaRSD)
-                            2 -> setMathFormula(MathFormulaZXECF)
+                            2 -> setMathFormula(MathFormulaLSM)
                         }
                     }
                     dialog.dismiss()

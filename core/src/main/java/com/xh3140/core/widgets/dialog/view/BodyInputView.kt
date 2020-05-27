@@ -39,7 +39,7 @@ class BodyInputView(context: Context) : AppCompatEditText(context) {
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
                 if (params.height > measuredHeight) {
-                    height = dp2px( params.height)
+                    height = dp2px(params.height)
                 }
             }
         })
@@ -58,23 +58,20 @@ class BodyInputView(context: Context) : AppCompatEditText(context) {
         if (params.backgroundResourceId != 0) {
             setBackgroundResource(params.backgroundResourceId)
         } else {
-            val strokeWidth: Int = dp2px( params.strokeWidth)
+            val strokeWidth: Int = dp2px(params.strokeWidth)
             val inputDrawable = GradientDrawable()
             inputDrawable.setColor(params.backgroundColor)
             inputDrawable.setStroke(strokeWidth, params.strokeColor)
             inputDrawable.cornerRadius = params.cornerRadius
             background = inputDrawable
         }
-        layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply {
+        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
             params.margins?.also { margins ->
-                setMargins(dp2px( margins[0]), dp2px( margins[1]), dp2px( margins[2]), dp2px( margins[3]))
+                setMargins(dp2px(margins[0]), dp2px(margins[1]), dp2px(margins[2]), dp2px(margins[3]))
             }
         }
         params.padding?.also { padding ->
-            setPadding(dp2px( padding[0]), dp2px( padding[1]), dp2px( padding[2]), dp2px( padding[3]))
+            setPadding(dp2px(padding[0]), dp2px(padding[1]), dp2px(padding[2]), dp2px(padding[3]))
         }
         setTypeface(typeface, params.textStyle)
     }

@@ -47,10 +47,7 @@ class HeadView(context: Context) : LinearLayout(context) {
 
     private fun configLayout(layout: LinearLayout) {
         layout.orientation = HORIZONTAL
-        layout.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        ).apply {
+        layout.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
             gravity = Gravity.CENTER_HORIZONTAL
         }
         layout.setPadding(50, 0, 50, 0)
@@ -58,10 +55,9 @@ class HeadView(context: Context) : LinearLayout(context) {
     }
 
     private fun configIconView(icon: Int) {
-        mIconView.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        ).apply { gravity = Gravity.CENTER_VERTICAL }
+        mIconView.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.CENTER_VERTICAL
+        }
         if (icon == 0) {
             mIconView.visibility = View.GONE
         } else {
@@ -73,10 +69,9 @@ class HeadView(context: Context) : LinearLayout(context) {
     }
 
     private fun configTitleView(params: TitleParams) {
-        mTitleView.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        ).apply { gravity = Gravity.CENTER_VERTICAL }
+        mTitleView.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.CENTER_VERTICAL
+        }
         mTitleView.id = android.R.id.title
         if (params.text == null) {
             mTitleView.visibility = View.GONE
@@ -99,10 +94,9 @@ class HeadView(context: Context) : LinearLayout(context) {
     }
 
     private fun configSummaryView(params: SummaryParams) {
-        mSummaryView.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        ).apply { gravity = Gravity.CENTER_HORIZONTAL }
+        mSummaryView.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+            gravity = Gravity.CENTER_HORIZONTAL
+        }
         if (params.text == null) {
             mSummaryView.visibility = View.GONE
         } else {

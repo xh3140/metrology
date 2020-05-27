@@ -28,10 +28,7 @@ class BodyContentView(context: Context) : AppCompatTextView(context) {
         if (params.text == null) {
             visibility = View.GONE
         } else {
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, 1F
-            )
+            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1F)
             movementMethod = ScrollingMovementMethod.getInstance()
             gravity = params.gravity
             text = params.text

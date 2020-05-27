@@ -13,8 +13,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.xh3140.core.extensions.dp2px
 import com.xh3140.core.extensions.getScreenHeight
 import com.xh3140.core.extensions.getScreenWidth
-import com.xh3140.core.widgets.dialog.params.DialogParams
 import com.xh3140.core.utils.DrawableUtil
+import com.xh3140.core.widgets.dialog.params.DialogParams
 
 
 abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
@@ -31,9 +31,8 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         // 设置对话框背景
         val radius = dp2px(mDialogParams.radius)
-        view.background = DrawableUtil.getGradientDrawable(
-            mDialogParams.backgroundColor, intArrayOf(radius, radius, radius, radius)
-        )
+        val radiusArray = intArrayOf(radius, radius, radius, radius)
+        view.background = DrawableUtil.getGradientDrawable(mDialogParams.backgroundColor, radiusArray)
         // 设置对话框透明度
         view.alpha = mDialogParams.alpha
     }
@@ -68,10 +67,10 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
             view.viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
                     val screenHeight: Int = getScreenHeight()
-                    val maximumHeight = (screenHeight * mDialogParams.maxHeight).toInt()
-                    if (view.height > maximumHeight) {
+                    val maxHeight = (screenHeight * mDialogParams.maxHeight).toInt()
+                    if (view.height > maxHeight) {
                         view.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        view.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, maximumHeight)
+                        view.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, maxHeight)
                     }
                 }
             })

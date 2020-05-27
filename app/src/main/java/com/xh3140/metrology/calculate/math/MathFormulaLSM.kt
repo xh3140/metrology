@@ -3,7 +3,7 @@ package com.xh3140.metrology.calculate.math
 import com.xh3140.core.base.CD2D
 import java.math.BigDecimal
 
-object MathFormulaZXECF : MathFormula() {
+object MathFormulaLSM : MathFormula() {
 
     override fun getDimension(): Int = 2
 

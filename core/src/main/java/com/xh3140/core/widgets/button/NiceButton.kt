@@ -3,7 +3,10 @@ package com.xh3140.core.widgets.button
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatButton
 import com.xh3140.core.R
+import com.xh3140.core.extensions.dp2px
+import com.xh3140.core.utils.DrawableUtil
 
 /**
  * Copyright (C), 2020-2020
@@ -15,18 +18,33 @@ import com.xh3140.core.R
  * @version 1.00
  */
 
-class NiceButton : BaseNiceButton {
+class NiceButton : AppCompatButton {
+    // 颜色主题
+    private var mColorStyle: ColorStyle = ColorStyle.GRAY
+
+    // 是否是波纹背景
+    private var mIsRippleDrawable: Boolean = true
+
+    // 是否是内嵌背景
+    private var mIsInsetDrawable: Boolean = true
+
+    // 圆角半径，左上、右上、右下、左下 px
+    private val mRadius: IntArray = intArrayOf(dp2px(5), dp2px(5), dp2px(5), dp2px(5))
+
+    // 内嵌距离，左、上、右、下 px
+    private val mInset: IntArray = intArrayOf(dp2px(3), dp2px(5), dp2px(3), dp2px(5))
+
     // 在按钮组中的位置
-    private var mGroupLocation: GroupLocation = GroupLocation.NULL
+    private var mLocation: Location = Location.NULL
 
     /**
-     * 颜色主题枚举类
+     * 颜色风格枚举类
      * 可以添加更多好看的主题
      * @property textColor 字体颜色 argb
      * @property defaultColor 默认状态下的背景颜色 argb
      * @property pressedColor 按下状态下的背景颜色 argb
      */
-    enum class NiceTheme(textColor: Long, defaultColor: Long, pressedColor: Long) {
+    enum class ColorStyle(textColor: Long, defaultColor: Long, pressedColor: Long) {
         // 红色
         RED(0xFFFFFFFF, 0xFFDC3545, 0xFFC82333),
 
@@ -62,7 +80,7 @@ class NiceButton : BaseNiceButton {
      * 在按钮组中的位置枚举类
      * @property factory radius,inset调节因子
      */
-    enum class GroupLocation(val factory: IntArray) {
+    enum class Location(val factory: IntArray) {
         // 空，表示不是按钮组中的按钮
         NULL(intArrayOf(1, 1, 1, 1, 1, 1, 1, 1)),
 
@@ -85,39 +103,19 @@ class NiceButton : BaseNiceButton {
         BOTTOM(intArrayOf(0, 0, 1, 1, 1, 0, 1, 1)),
     }
 
-    init {
-        mTextColor = NiceTheme.GRAY.textColor
-        mBackgroundColor = NiceTheme.GRAY.defaultColor
-        mPressedBackgroundColor = NiceTheme.GRAY.pressedColor
-    }
-
     /**
      * 构造函数
      */
     constructor(context: Context) : super(context) {
-        configViewByXML(context, null)
+        configView(context, null)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        configViewByXML(context, attrs)
+        configView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
-            : super(context, attrs, defStyleAttr) {
-        configViewByXML(context, attrs)
-    }
-
-    /**
-     * 由XML初始化视图
-     */
-    private fun configViewByXML(context: Context, attrs: AttributeSet?) {
-        if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
-            configBackgroundByXML(typedArray)
-            typedArray.recycle()
-        }
-        adjustDimension()
-        done()
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        configView(context, attrs)
     }
 
     /**
@@ -140,27 +138,17 @@ class NiceButton : BaseNiceButton {
         getDimensionPixelSize(R.styleable.NiceButton_inset_bottom, mInset[3])
     )
 
-
     /**
-     * 由XML设置主题背景
+     * 由XML初始化视图
      */
-    private fun configBackgroundByXML(typedArray: TypedArray) {
-        // 设置主题颜色
-        val themeIndex = typedArray.getInt(R.styleable.NiceButton_niceTheme, -1)
-        if (themeIndex >= 0) {
-            setNiceColorTheme(NiceTheme.values()[themeIndex])
-        }
-        // 设置按钮位置
-        val locationIndex = typedArray.getInt(R.styleable.NiceButton_groupLocation, -1)
-        if (locationIndex >= 0) {
-            setGroupLocation(GroupLocation.values()[locationIndex])
-        }
+    private fun configView(context: Context, attrs: AttributeSet?) {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
         // 设置是否是波纹背景
         val isRipple = typedArray.getBoolean(R.styleable.NiceButton_isRipple, true)
-        setIsRippleBackground(isRipple)
+        setIsRippleDrawable(isRipple)
         // 设置是否是内嵌背景
         val isInset = typedArray.getBoolean(R.styleable.NiceButton_isInset, true)
-        setIsInsetBackground(isInset)
+        setIsInsetDrawable(isInset)
         // 设置圆角半径
         val radius = typedArray.getDimensionPixelSize(R.styleable.NiceButton_radius, -1)
         if (radius >= 0) {
@@ -175,34 +163,113 @@ class NiceButton : BaseNiceButton {
         } else {
             setInset(typedArray.getInsetArray())
         }
+        // 设置主题颜色
+        val themeIndex = typedArray.getInt(R.styleable.NiceButton_niceTheme, -1)
+        if (themeIndex >= 0) {
+            setColorStyle(ColorStyle.values()[themeIndex])
+        }
+        // 设置按钮位置
+        val locationIndex = typedArray.getInt(R.styleable.NiceButton_groupLocation, -1)
+        if (locationIndex >= 0) {
+            setLocation(Location.values()[locationIndex])
+        }
+        done()
+        typedArray.recycle()
     }
 
     /**
      * 设置主题颜色 enum
      */
-    fun setNiceColorTheme(theme: NiceTheme) {
-        mTextColor = theme.textColor
-        mBackgroundColor = theme.defaultColor
-        mPressedBackgroundColor = theme.pressedColor
+    fun setColorStyle(style: ColorStyle) {
+        mColorStyle = style
+    }
+
+    /**
+     * 设置是否是波纹背景
+     * true RippleDrawable
+     * false StateListDrawable
+     */
+    fun setIsRippleDrawable(flag: Boolean = true) {
+        mIsRippleDrawable = flag
+    }
+
+    /**
+     * 设置是否是内嵌背景
+     * true InsetDrawable
+     * false GradientDrawable
+     */
+    fun setIsInsetDrawable(flag: Boolean = true) {
+        mIsInsetDrawable = flag
+    }
+
+    /**
+     * 设置圆角半径，左上、右上、右下、左下 px
+     */
+    fun setRadius(radius: IntArray) {
+        mRadius[0] = maxOf(0, radius[0])
+        mRadius[1] = maxOf(0, radius[1])
+        mRadius[2] = maxOf(0, radius[2])
+        mRadius[3] = maxOf(0, radius[3])
+    }
+
+    /**
+     * 设置圆角半径 px
+     */
+    fun setRadius(radius: Int) {
+        setRadius(intArrayOf(radius, radius, radius, radius))
+    }
+
+    /**
+     * 设置内嵌距离，左、上、右、下 px
+     */
+    fun setInset(inset: IntArray) {
+        mInset[0] = maxOf(0, inset[0])
+        mInset[1] = maxOf(0, inset[1])
+        mInset[2] = maxOf(0, inset[2])
+        mInset[3] = maxOf(0, inset[3])
+    }
+
+    /**
+     * 设置内嵌距离 px
+     */
+    fun setInset(inset: Int) {
+        setInset(intArrayOf(inset, inset, inset, inset))
     }
 
     /**
      * 设置在按钮组中的位置 enum
      */
-    fun setGroupLocation(location: GroupLocation) {
-        mGroupLocation = location
+    fun setLocation(location: Location) {
+        mLocation = location
     }
 
-    fun adjustDimension() {
+    /**
+     * 完成主题设置并更新背景
+     */
+    fun done() {
+        // 调整
+        adjustDimension()
+        // 设置字体颜色
+        setTextColor(mColorStyle.textColor)
+        // 设置背景
+        background = if (mIsRippleDrawable) {
+            DrawableUtil.getRippleDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
+        } else {
+            DrawableUtil.getStateListDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
+        }
+    }
+
+
+    private fun adjustDimension() {
         // 调节圆角半径
-        mRadius[0] *= mGroupLocation.factory[0]
-        mRadius[1] *= mGroupLocation.factory[1]
-        mRadius[2] *= mGroupLocation.factory[2]
-        mRadius[3] *= mGroupLocation.factory[3]
+        mRadius[0] *= mLocation.factory[0]
+        mRadius[1] *= mLocation.factory[1]
+        mRadius[2] *= mLocation.factory[2]
+        mRadius[3] *= mLocation.factory[3]
         // 调节内嵌距离
-        mInset[0] *= mGroupLocation.factory[4]
-        mInset[1] *= mGroupLocation.factory[5]
-        mInset[2] *= mGroupLocation.factory[6]
-        mInset[3] *= mGroupLocation.factory[7]
+        mInset[0] *= mLocation.factory[4]
+        mInset[1] *= mLocation.factory[5]
+        mInset[2] *= mLocation.factory[6]
+        mInset[3] *= mLocation.factory[7]
     }
 }
