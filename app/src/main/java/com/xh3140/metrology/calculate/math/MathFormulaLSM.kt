@@ -26,6 +26,7 @@ object MathFormulaLSM : MathFormula() {
         return builder.toString()
     }
 
+
     /**
      * @property a 截距
      * @property b 斜率
@@ -36,7 +37,7 @@ object MathFormulaLSM : MathFormula() {
         if (data.isEmpty()) {
             throw IllegalArgumentException("data list is empty")
         }
-        val n = BigDecimal(data.size)
+        val size = BigDecimal(data.size)
         var sumA = BigDecimal.ZERO
         var sumB = BigDecimal.ZERO
         var sumPow2A = BigDecimal.ZERO
@@ -47,12 +48,12 @@ object MathFormulaLSM : MathFormula() {
             sumPow2A = sumPow2A.add(big.value1.multiply(big.value1))
             sumMulAB = sumMulAB.add(big.value1.multiply(big.value2))
         }
-        val avgA = sumA.divide(n, 16, BigDecimal.ROUND_HALF_UP)
-        val avgB = sumB.divide(n, 16, BigDecimal.ROUND_HALF_UP)
-        val numeratorB = sumMulAB.subtract(n.multiply(avgA).multiply(avgB))
-        val denominatorB = sumPow2A.subtract(n.multiply(avgA.pow(2)))
-        val barB = numeratorB.divide(denominatorB, 16, BigDecimal.ROUND_HALF_UP)
-        val barA = avgB.subtract(barB.multiply(avgA))
-        return Result(barA, barB)
+        val avgA = sumA.divide(size, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
+        val avgB = sumB.divide(size, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
+        val numeratorB = sumMulAB.subtract(size.multiply(avgA).multiply(avgB))
+        val denominatorB = sumPow2A.subtract(size.multiply(avgA.pow(2)))
+        val hatB = numeratorB.divide(denominatorB, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
+        val hatA = avgB.subtract(hatB.multiply(avgA))
+        return Result(hatA, hatB)
     }
 }

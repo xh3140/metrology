@@ -42,18 +42,19 @@ object MathFormulaRSD : MathFormula() {
         if (data.isEmpty()) {
             throw IllegalArgumentException("data list is empty")
         }
-        val n = BigDecimal(data.size)
+        val size = BigDecimal(data.size)
         var sum = BigDecimal.ZERO
         for (big in data) {
             sum = sum.add(big)
         }
-        val avg = sum.divide(n, 16, BigDecimal.ROUND_HALF_UP)
+        val avg = sum.divide(size, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
         var temp = BigDecimal.ZERO
         for (big in data) {
             temp = temp.add(big.subtract(avg).pow(2))
         }
-        val sd = (temp.divide(n.subtract(BigDecimal.ONE), 16, BigDecimal.ROUND_HALF_UP)).sqrt()
-        val rsd = sd.divide(avg, 16, BigDecimal.ROUND_HALF_UP)
+        val dx = temp.divide(size.subtract(BigDecimal.ONE), DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
+        val sd = dx.sqrt()
+        val rsd = sd.divide(avg, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
         return Result(sd, rsd)
     }
 }

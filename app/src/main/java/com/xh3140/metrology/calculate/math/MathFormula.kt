@@ -29,7 +29,6 @@ abstract class MathFormula {
      */
     abstract fun getLatexString(): String
 
-
     /**
      * @property max 最大值
      * @property min 最小值
@@ -46,6 +45,9 @@ abstract class MathFormula {
     )
 
     companion object {
+        const val DIVIDE_SCALE: Int = 16
+        const val DIVIDE_ROUNDING_MODE: Int = BigDecimal.ROUND_HALF_UP
+
         fun calculateBase(data: List<BigDecimal>): BaseResult {
             if (data.isEmpty()) {
                 throw IllegalArgumentException("data list is empty")
@@ -60,7 +62,7 @@ abstract class MathFormula {
                 sum = sum.add(big)
             }
             val rng = max.subtract(min)
-            val avg = sum.divide(n, 16, BigDecimal.ROUND_HALF_UP)
+            val avg = sum.divide(n, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
             return BaseResult(max, min, rng, sum, avg)
         }
     }

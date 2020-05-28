@@ -265,15 +265,15 @@ class CalculateViewModel : ViewModel() {
     }
 
     fun calculationBase(): List<CD2D<String>> {
-        val resultList: MutableList<CD2D<String>> = ArrayList()
+        val result: MutableList<CD2D<String>> = ArrayList()
         when (dimension) {
             1 -> {
-                val result = MathFormula.calculateBase(mData1D)
-                resultList.add(CD2D("最大值", result.max.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("最小值", result.min.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("极差", result.rng.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("总和", result.sum.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("平均值", result.avg.toDouble(NUMBER_SCALE).toString()))
+                val resultX = MathFormula.calculateBase(mData1D)
+                result.add(CD2D("最大值", resultX.max.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("最小值", resultX.min.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("极差", resultX.rng.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("总和", resultX.sum.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("平均值", resultX.avg.toDouble(NUMBER_SCALE).toString()))
             }
             2 -> {
                 val numbersX: MutableList<BigDecimal> = ArrayList()
@@ -284,19 +284,19 @@ class CalculateViewModel : ViewModel() {
                 }
                 val resultX = MathFormula.calculateBase(numbersX)
                 val resultY = MathFormula.calculateBase(numbersY)
-                resultList.add(CD2D("最大值X", resultX.max.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("最大值Y", resultY.max.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("最小值X", resultX.min.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("最小值Y", resultY.min.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("极差X", resultX.rng.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("极差Y", resultY.rng.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("总和X", resultX.sum.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("总和Y", resultY.sum.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("平均值X", resultX.avg.toDouble(NUMBER_SCALE).toString()))
-                resultList.add(CD2D("平均值Y", resultY.avg.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("最大值X", resultX.max.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("最大值Y", resultY.max.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("最小值X", resultX.min.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("最小值Y", resultY.min.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("极差X", resultX.rng.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("极差Y", resultY.rng.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("总和X", resultX.sum.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("总和Y", resultY.sum.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("平均值X", resultX.avg.toDouble(NUMBER_SCALE).toString()))
+                result.add(CD2D("平均值Y", resultY.avg.toDouble(NUMBER_SCALE).toString()))
             }
         }
-        return resultList
+        return result
     }
 
     fun calculationFormula(): List<CD2D<String>> {
@@ -304,38 +304,29 @@ class CalculateViewModel : ViewModel() {
         when (formula.value) {
             is MathFormulaRMD -> result.addAll(calculationRMD())
             is MathFormulaRSD -> result.addAll(calculationRSD())
-            is MathFormulaLSM -> result.addAll(calculationZXECF())
+            is MathFormulaLSM -> result.addAll(calculationLSM())
         }
         return result
     }
 
     private fun calculationRMD(): List<CD2D<String>> {
         val result = MathFormulaRMD.calculate(mData1D)
-        val md = result.md.toDouble(NUMBER_SCALE)
-        val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE)
-        return listOf(
-            CD2D("平均偏差", md.toString()),
-            CD2D("相对平均偏差", rmd.toString().plus("%"))
-        )
+        val md = result.md.toDouble(NUMBER_SCALE).toString()
+        val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
+        return listOf(CD2D("平均偏差", md), CD2D("相对平均偏差", rmd))
     }
 
     private fun calculationRSD(): List<CD2D<String>> {
         val result = MathFormulaRSD.calculate(mData1D)
-        val sd = result.sd.toDouble(NUMBER_SCALE)
-        val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE)
-        return listOf(
-            CD2D("标准偏差", sd.toString()),
-            CD2D("相对标准偏差", rsd.toString().plus("%"))
-        )
+        val sd = result.sd.toDouble(NUMBER_SCALE).toString()
+        val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
+        return listOf(CD2D("标准偏差", sd), CD2D("相对标准偏差", rsd))
     }
 
-    private fun calculationZXECF(): List<CD2D<String>> {
+    private fun calculationLSM(): List<CD2D<String>> {
         val result = MathFormulaLSM.calculate(mData2D)
         val a = result.a.toDouble(NUMBER_SCALE)
         val b = result.b.toDouble(NUMBER_SCALE)
-        return listOf(
-            CD2D("斜率", b.toString()),
-            CD2D("截距", a.toString())
-        )
+        return listOf(CD2D("斜率", b.toString()), CD2D("截距", a.toString()))
     }
 }

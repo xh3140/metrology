@@ -17,12 +17,12 @@ private val BIG_TWO: BigDecimal by lazy { BigDecimal(2) }
 
 fun BigDecimal.sqrt(precision: Int = 100, roundingMode: RoundingMode = RoundingMode.HALF_UP): BigDecimal {
     val cmp = compareTo(BigDecimal.ZERO)
+    // 负数开根号
     if (cmp < 0) {
-        // 负数开根号
         throw ArithmeticException("the square root of a negative number.")
     }
+    // 零开根号
     if (cmp == 0) {
-        // 零开根号
         return BigDecimal.ZERO
     }
     var result = this

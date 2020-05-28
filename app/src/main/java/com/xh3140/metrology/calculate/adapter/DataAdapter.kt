@@ -8,6 +8,8 @@ import com.xh3140.metrology.base.adapter.BaseRecyclerViewAdapter
 abstract class DataAdapter<M>(items: ObservableArrayList<M>) : BaseRecyclerViewAdapter<M, DataAdapter.ViewHolder>(items) {
 
     protected var mIsUpdateValue: Boolean = false
+    private val mRegexSub: Regex = Regex("""^9+$""")
+    private val mRegexAdd: Regex = Regex("""^10+$""")
 
     override fun onChanged(sender: ObservableArrayList<M>) {
         if (!mIsUpdateValue) {
@@ -23,7 +25,7 @@ abstract class DataAdapter<M>(items: ObservableArrayList<M>) : BaseRecyclerViewA
 
     override fun onItemRangeInserted(sender: ObservableArrayList<M>, positionStart: Int, itemCount: Int) {
         super.onItemRangeInserted(sender, positionStart, itemCount)
-        if (Regex("""^10+$""").matches(sender.size.toString())) {
+        if (mRegexAdd.matches(sender.size.toString())) {
             notifyItemRangeChanged(0, sender.size)
         }
         mRecyclerView?.scrollToPosition(sender.size - 1)
@@ -31,7 +33,7 @@ abstract class DataAdapter<M>(items: ObservableArrayList<M>) : BaseRecyclerViewA
 
     override fun onItemRangeRemoved(sender: ObservableArrayList<M>, positionStart: Int, itemCount: Int) {
         super.onItemRangeRemoved(sender, positionStart, itemCount)
-        if (Regex("""^9+$""").matches(sender.size.toString())) {
+        if (mRegexSub.matches(sender.size.toString())) {
             notifyItemRangeChanged(0, sender.size)
         }
         mRecyclerView?.scrollToPosition(sender.size - 1)

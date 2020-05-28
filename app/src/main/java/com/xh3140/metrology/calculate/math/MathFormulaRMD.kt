@@ -34,18 +34,18 @@ object MathFormulaRMD : MathFormula() {
         if (data.isEmpty()) {
             throw IllegalArgumentException("data list is empty")
         }
-        val n = BigDecimal(data.size)
+        val size = BigDecimal(data.size)
         var sum = BigDecimal.ZERO
         for (big in data) {
             sum = sum.add(big)
         }
-        val avg = sum.divide(n, 16, BigDecimal.ROUND_HALF_UP)
+        val avg = sum.divide(size, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
         var temp = BigDecimal.ZERO
         for (big in data) {
             temp = temp.add(big.subtract(avg).abs())
         }
-        val md = temp.divide(n, 16, BigDecimal.ROUND_HALF_UP)
-        val rmd = md.divide(avg, 16, BigDecimal.ROUND_HALF_UP)
+        val md = temp.divide(size, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
+        val rmd = md.divide(avg, DIVIDE_SCALE, DIVIDE_ROUNDING_MODE)
         return Result(md, rmd)
     }
 }
