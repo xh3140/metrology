@@ -27,14 +27,14 @@ class BodyListView(context: Context) : RecyclerView(context) {
     data class Item(val text: String, var checked: Boolean = false)
 
     fun getCheckedIndex(): Int {
-        if (mListParams.isMultiChoice) {
+        if (mListParams.isMultipleChoice) {
             return -1
         }
         return mCheckedIndex
     }
 
     fun getCheckedIndexList(): List<Int> {
-        if (mListParams.isMultiChoice) {
+        if (mListParams.isMultipleChoice) {
             val list: MutableList<Int> = ArrayList()
             for (i in mItemList.indices) {
                 if (mItemList[i].checked) {
@@ -65,7 +65,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         adapter = ListItemAdapter()
         if (params.isDividerList) {
-            addItemDecoration(VerticalItemDecoration(context))
+            addItemDecoration(ItemDivider(context))
         }
         params.padding?.also { padding ->
             setPadding(dp2px(padding[0]), dp2px(padding[1]), dp2px(padding[2]), dp2px(padding[3]))
@@ -89,7 +89,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
         override fun getItemCount(): Int = mListParams.items.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val button: CompoundButton = if (mListParams.isMultiChoice) {
+            val button: CompoundButton = if (mListParams.isMultipleChoice) {
                 AppCompatCheckBox(parent.context)
             } else {
                 AppCompatRadioButton(parent.context)
@@ -144,7 +144,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
     /**
      * 分割线
      */
-    class VerticalItemDecoration(context: Context) : ItemDecoration() {
+    class ItemDivider(context: Context) : ItemDecoration() {
 
         private val mBounds = Rect()
 

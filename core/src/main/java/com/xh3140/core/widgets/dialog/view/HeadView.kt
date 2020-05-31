@@ -39,7 +39,7 @@ class HeadView(context: Context) : LinearLayout(context) {
         orientation = VERTICAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         configLayout(mLinearLayout)
-        configIconView(mHeaderParams.icon)
+        configIconView(mHeaderParams.mTitleParams.icon)
         configTitleView(mHeaderParams.mTitleParams)
         configSummaryView(mHeaderParams.mSummaryParams)
         return this

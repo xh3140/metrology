@@ -360,8 +360,8 @@ abstract class CircleDialog(params: DialogParams) : BaseCircleDialog(params) {
             return this
         }
 
-        fun setListItemIsMultiChoice(flag: Boolean): Builder<D> {
-            mParams.mBodyParams.mListParams.isMultiChoice = flag
+        fun setListItemIsMultipleChoice(flag: Boolean): Builder<D> {
+            mParams.mBodyParams.mListParams.isMultipleChoice = flag
             return this
         }
 

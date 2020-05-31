@@ -11,7 +11,7 @@ class ListParams {
     /**
      * 是否是多选列表
      */
-    var isMultiChoice: Boolean = false
+    var isMultipleChoice: Boolean = false
 
     /**
      * 单选列表默认的选取索引

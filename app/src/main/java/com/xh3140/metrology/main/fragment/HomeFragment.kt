@@ -110,7 +110,7 @@ class HomeFragment : BaseFragment() {
             val builder = CircleListDialog.Builder(2)
                 .setTitleText("测试 多选列表对话框")
                 .setListItems(List(30) { "item ${it + 1}" })
-                .setListItemIsMultiChoice(true)
+                .setListItemIsMultipleChoice(true)
                 .setButtonText(0, "取消")
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, _ ->
