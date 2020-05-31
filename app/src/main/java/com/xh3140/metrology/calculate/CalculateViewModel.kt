@@ -1,22 +1,27 @@
 package com.xh3140.metrology.calculate
 
+import android.app.Application
+import android.content.SharedPreferences
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 import com.xh3140.core.base.CD2D
 import com.xh3140.core.base.VD1D
 import com.xh3140.core.base.VD2D
 import com.xh3140.core.extensions.toDouble
 import com.xh3140.metrology.calculate.math.MathFormula
 import com.xh3140.metrology.calculate.math.MathFormulaLSM
-import com.xh3140.metrology.calculate.math.MathFormulaRMD
-import com.xh3140.metrology.calculate.math.MathFormulaRSD
+import com.xh3140.metrology.calculate.math.MathFormulaMD
+import com.xh3140.metrology.calculate.math.MathFormulaSD
 import java.math.BigDecimal
 
-class CalculateViewModel : ViewModel() {
+class CalculateViewModel(application: Application) : AndroidViewModel(application) {
 
     val formula: MutableLiveData<MathFormula> = MutableLiveData()
+
+    val preferences: SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(application) }
 
     private val mLiveItems1D: LiveData<ObservableArrayList<VD1D<String>>> =
         MutableLiveData(ObservableArrayList<VD1D<String>>().apply { addAll(Array(MIN_ITEM_COUNT) { VD1D("") }) })
@@ -56,6 +61,7 @@ class CalculateViewModel : ViewModel() {
         const val NUMBER_SCALE: Int = 6
         const val MIN_ITEM_COUNT: Int = 3
         const val MAX_ITEM_COUNT: Int = 100
+        const val KEY_ACTION_OPTION_BATCH: String = "switch_boolean_formula_batch"
         const val KEY_RESULT_OPTION_MAX: String = "check_boolean_formula_maximum"
         const val KEY_RESULT_OPTION_MIN: String = "check_boolean_formula_minimum"
         const val KEY_RESULT_OPTION_RNG: String = "check_boolean_formula_range"
@@ -269,11 +275,21 @@ class CalculateViewModel : ViewModel() {
         when (dimension) {
             1 -> {
                 val resultX = MathFormula.calculateBase(mData1D)
-                result.add(CD2D("最大值", resultX.max.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("最小值", resultX.min.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("极差", resultX.rng.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("总和", resultX.sum.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("平均值", resultX.avg.toDouble(NUMBER_SCALE).toString()))
+                if (preferences.getBoolean(KEY_RESULT_OPTION_MAX, false)) {
+                    result.add(CD2D("最大值", resultX.max.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_MIN, false)) {
+                    result.add(CD2D("最小值", resultX.min.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_RNG, true)) {
+                    result.add(CD2D("极差", resultX.rng.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_SUM, true)) {
+                    result.add(CD2D("总和", resultX.sum.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_AVG, true)) {
+                    result.add(CD2D("平均值", resultX.avg.toDouble(NUMBER_SCALE).toString()))
+                }
             }
             2 -> {
                 val numbersX: MutableList<BigDecimal> = ArrayList()
@@ -284,16 +300,26 @@ class CalculateViewModel : ViewModel() {
                 }
                 val resultX = MathFormula.calculateBase(numbersX)
                 val resultY = MathFormula.calculateBase(numbersY)
-                result.add(CD2D("最大值X", resultX.max.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("最大值Y", resultY.max.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("最小值X", resultX.min.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("最小值Y", resultY.min.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("极差X", resultX.rng.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("极差Y", resultY.rng.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("总和X", resultX.sum.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("总和Y", resultY.sum.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("平均值X", resultX.avg.toDouble(NUMBER_SCALE).toString()))
-                result.add(CD2D("平均值Y", resultY.avg.toDouble(NUMBER_SCALE).toString()))
+                if (preferences.getBoolean(KEY_RESULT_OPTION_MAX, false)) {
+                    result.add(CD2D("最大值X", resultX.max.toDouble(NUMBER_SCALE).toString()))
+                    result.add(CD2D("最大值Y", resultY.max.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_MIN, false)) {
+                    result.add(CD2D("最小值X", resultX.min.toDouble(NUMBER_SCALE).toString()))
+                    result.add(CD2D("最小值Y", resultY.min.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_RNG, true)) {
+                    result.add(CD2D("极差X", resultX.rng.toDouble(NUMBER_SCALE).toString()))
+                    result.add(CD2D("极差Y", resultY.rng.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_SUM, true)) {
+                    result.add(CD2D("总和X", resultX.sum.toDouble(NUMBER_SCALE).toString()))
+                    result.add(CD2D("总和Y", resultY.sum.toDouble(NUMBER_SCALE).toString()))
+                }
+                if (preferences.getBoolean(KEY_RESULT_OPTION_AVG, true)) {
+                    result.add(CD2D("平均值X", resultX.avg.toDouble(NUMBER_SCALE).toString()))
+                    result.add(CD2D("平均值Y", resultY.avg.toDouble(NUMBER_SCALE).toString()))
+                }
             }
         }
         return result
@@ -302,22 +328,22 @@ class CalculateViewModel : ViewModel() {
     fun calculationFormula(): List<CD2D<String>> {
         val result: MutableList<CD2D<String>> = ArrayList()
         when (formula.value) {
-            is MathFormulaRMD -> result.addAll(calculationRMD())
-            is MathFormulaRSD -> result.addAll(calculationRSD())
+            is MathFormulaMD -> result.addAll(calculationRMD())
+            is MathFormulaSD -> result.addAll(calculationRSD())
             is MathFormulaLSM -> result.addAll(calculationLSM())
         }
         return result
     }
 
     private fun calculationRMD(): List<CD2D<String>> {
-        val result = MathFormulaRMD.calculate(mData1D)
+        val result = MathFormulaMD.calculate(mData1D)
         val md = result.md.toDouble(NUMBER_SCALE).toString()
         val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
         return listOf(CD2D("平均偏差", md), CD2D("相对平均偏差", rmd))
     }
 
     private fun calculationRSD(): List<CD2D<String>> {
-        val result = MathFormulaRSD.calculate(mData1D)
+        val result = MathFormulaSD.calculate(mData1D)
         val sd = result.sd.toDouble(NUMBER_SCALE).toString()
         val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
         return listOf(CD2D("标准偏差", sd), CD2D("相对标准偏差", rsd))

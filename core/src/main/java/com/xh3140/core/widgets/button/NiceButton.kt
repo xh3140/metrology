@@ -44,36 +44,30 @@ class NiceButton : AppCompatButton {
      * @property defaultColor 默认状态下的背景颜色 argb
      * @property pressedColor 按下状态下的背景颜色 argb
      */
-    enum class ColorStyle(textColor: Long, defaultColor: Long, pressedColor: Long) {
+    enum class ColorStyle(val textColor: Int, val defaultColor: Int, val pressedColor: Int) {
         // 红色
-        RED(0xFFFFFFFF, 0xFFDC3545, 0xFFC82333),
+        RED(0xFFFFFFFF.toInt(), 0xFFDC3545.toInt(), 0xFFC82333.toInt()),
 
         // 绿色
-        GREEN(0xFFFFFFFF, 0xFF28A745, 0xFF218838),
+        GREEN(0xFFFFFFFF.toInt(), 0xFF28A745.toInt(), 0xFF218838.toInt()),
 
         // 蓝色
-        BLUE(0xFFFFFFFF, 0xFF007BFF, 0xFF0069A9),
+        BLUE(0xFFFFFFFF.toInt(), 0xFF007BFF.toInt(), 0xFF0069A9.toInt()),
 
         // 蓝绿色
-        CYAN(0xFFFFFFFF, 0xFF17A2B8, 0xFF138496),
+        CYAN(0xFFFFFFFF.toInt(), 0xFF17A2B8.toInt(), 0xFF138496.toInt()),
 
         // 黄色
-        YELLOW(0xFF212529, 0xFFFFC107, 0xFFE0A800),
+        YELLOW(0xFF212529.toInt(), 0xFFFFC107.toInt(), 0xFFE0A800.toInt()),
 
         // 灰色
-        GRAY(0xFFFFFFFF, 0xFF6C757D, 0xFF5A6268),
+        GRAY(0xFFFFFFFF.toInt(), 0xFF6C757D.toInt(), 0xFF5A6268.toInt()),
 
         // 亮色
-        LIGHT(0xFF212529, 0xFFF8F9FA, 0xFFE2E6EA),
+        LIGHT(0xFF212529.toInt(), 0xFFF8F9FA.toInt(), 0xFFE2E6EA.toInt()),
 
         // 暗色
-        DARK(0xFFFFFFFF, 0xFF343A40, 0xFF23272B);
-
-        val textColor: Int = textColor.toInt()
-
-        val defaultColor: Int = defaultColor.toInt()
-
-        val pressedColor: Int = pressedColor.toInt()
+        DARK(0xFFFFFFFF.toInt(), 0xFF343A40.toInt(), 0xFF23272B.toInt());
     }
 
     /**
@@ -164,12 +158,12 @@ class NiceButton : AppCompatButton {
             setInset(typedArray.getInsetArray())
         }
         // 设置主题颜色
-        val themeIndex = typedArray.getInt(R.styleable.NiceButton_niceTheme, -1)
+        val themeIndex = typedArray.getInt(R.styleable.NiceButton_colorStyle, -1)
         if (themeIndex >= 0) {
             setColorStyle(ColorStyle.values()[themeIndex])
         }
         // 设置按钮位置
-        val locationIndex = typedArray.getInt(R.styleable.NiceButton_groupLocation, -1)
+        val locationIndex = typedArray.getInt(R.styleable.NiceButton_location, -1)
         if (locationIndex >= 0) {
             setLocation(Location.values()[locationIndex])
         }

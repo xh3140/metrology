@@ -40,8 +40,8 @@ class HeadView(context: Context) : LinearLayout(context) {
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         configLayout(mLinearLayout)
         configIconView(mHeaderParams.icon)
-        configTitleView(mHeaderParams.titleParams)
-        configSummaryView(mHeaderParams.summaryParams)
+        configTitleView(mHeaderParams.mTitleParams)
+        configSummaryView(mHeaderParams.mSummaryParams)
         return this
     }
 

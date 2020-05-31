@@ -11,30 +11,32 @@ import com.xh3140.core.widgets.dialog.view.RootView
 /**
  * 内容对话框
  */
-class CircleContentDialog(params: BuilderParams) : CircleDialog(params) {
+class CircleContentDialog(params: BuilderParams<CircleContentDialog>) : CircleDialog(params.mDialogParams) {
 
-    override fun initRootView(context: Context, dialog: CircleDialog?): RootView {
-        val rootView = object : RootView(context) {
+    private val mParams: BuilderParams<CircleContentDialog> = params
+
+    override fun initRootView(context: Context): View {
+        val rootView = object : RootView<CircleContentDialog>(context) {
             override fun initHeadView(context: Context): HeadView? {
                 return HeadView(context)
-                    .setHeaderParams(mParams.headerParams)
+                    .setHeaderParams(mParams.mHeaderParams)
                     .configView()
             }
 
             override fun initBodyView(context: Context): View? {
                 return BodyContentView(context)
-                    .setContentParams(mParams.bodyParams.contentParams)
+                    .setContentParams(mParams.mBodyParams.mContentParams)
                     .configView()
             }
 
-            override fun initFooterView(context: Context, dialog: CircleDialog?): FooterView? {
-                return FooterView(context)
+            override fun initFooterView(context: Context, dialog: CircleContentDialog?): FooterView<CircleContentDialog>? {
+                return FooterView<CircleContentDialog>(context)
                     .setCircleDialog(dialog)
-                    .setFooterParams(mParams.footerParams)
+                    .setFooterParams(mParams.mFooterParams)
                     .configView()
             }
         }
-        rootView.setCircleDialog(dialog).configView()
+        rootView.setCircleDialog(this).configView()
         return rootView
     }
 

@@ -16,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/jjg_639_1998"
-            app:niceTheme="THEME_RED" />
+            app:colorStyle="THEME_RED" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonJJG9612017"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/jjg_961_2017"
-            app:niceTheme="THEME_BLUE" />
+            app:colorStyle="THEME_BLUE" />
     </LinearLayout>
 </ScrollView>

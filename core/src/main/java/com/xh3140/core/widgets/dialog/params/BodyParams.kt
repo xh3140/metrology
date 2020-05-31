@@ -4,15 +4,15 @@ class BodyParams {
     /**
      * 内容对话框属性
      */
-    val contentParams: ContentParams = ContentParams()
+    val mContentParams: ContentParams = ContentParams()
 
     /**
      * 列表项目属性
      */
-    val listParams: ListParams = ListParams()
+    val mListParams: ListParams = ListParams()
 
     /**
      * 输入对话框属性
      */
-    val inputParams: InputParams = InputParams()
+    val mInputParams: InputParams = InputParams()
 }

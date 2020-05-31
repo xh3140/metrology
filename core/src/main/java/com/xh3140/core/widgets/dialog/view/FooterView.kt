@@ -1,85 +1,69 @@
 package com.xh3140.core.widgets.dialog.view
 
 import android.content.Context
-import android.view.Gravity
+import android.content.res.ColorStateList
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.RippleDrawable
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
-import com.xh3140.core.extensions.dp2px
-import com.xh3140.core.utils.DrawableUtil
 import com.xh3140.core.widgets.dialog.CircleDialog
 import com.xh3140.core.widgets.dialog.params.ButtonParams
 import com.xh3140.core.widgets.dialog.params.FooterParams
 
-class FooterView(context: Context) : LinearLayout(context) {
+class FooterView<D : CircleDialog>(context: Context) : LinearLayout(context) {
 
-    private var mCircleDialog: CircleDialog? = null
+    private var mCircleDialog: D? = null
 
-    private var mFooterParams: FooterParams = FooterParams(0)
+    private var mFooterParams: FooterParams<D> = FooterParams(0)
 
     fun isEmpty(): Boolean {
         return childCount == 0
     }
 
-    fun setCircleDialog(dialog: CircleDialog?): FooterView {
+    fun setCircleDialog(dialog: D?): FooterView<D> {
         mCircleDialog = dialog
         return this
     }
 
-    fun setFooterParams(params: FooterParams): FooterView {
+    fun setFooterParams(params: FooterParams<D>): FooterView<D> {
         mFooterParams = params
         return this
     }
 
-    fun configView(): FooterView {
+    fun configView(): FooterView<D> {
         orientation = HORIZONTAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         if (childCount > 0) removeAllViews()
-        for (index in mFooterParams.buttonParamsList.indices) {
-            val params = mFooterParams.buttonParamsList[index]
-            val buttonView = AppCompatTextView(context)
-            configButtonView(buttonView, params)
-            buttonView.setOnClickListener { view -> onButtonClick(view, index) }
-            if (buttonView.visibility != View.GONE) {
-                if (childCount > 0) {
-                    addDividerView()
-                }
-                buttonView.background = DrawableUtil.getRippleDrawable(
-                    params.backgroundColor,
-                    params.backgroundColorPressed, null
-                )
-                addView(buttonView)
-            }
+        for (index in mFooterParams.mButtonParamsList.indices) {
+            addButtonView(index, mFooterParams.mButtonParamsList[index])
         }
         return this
     }
 
-    private fun onButtonClick(view: View, index: Int) {
+
+    private fun onButtonClick(button: ButtonView, index: Int) {
         mCircleDialog?.also { dialog ->
             mFooterParams.buttonOnClickListener?.also { listener ->
-                listener.onClick(dialog, view, index)
+                listener.onClick(dialog, button, index)
             } ?: also {
                 dialog.dismiss()
             }
         }
     }
 
-    private fun configButtonView(buttonView: TextView, params: ButtonParams) {
-        if (params.text == null) {
-            buttonView.visibility = View.GONE
-        } else {
-            buttonView.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
-            buttonView.gravity = Gravity.CENTER
-            buttonView.text = params.text
-            buttonView.isEnabled = !params.disable
-            buttonView.setTextColor(if (!params.disable) params.textColor else params.textColorDisable)
-            buttonView.textSize = params.textSize
-            if (params.height != 0F) {
-                buttonView.height = dp2px(params.height)
+    private fun addButtonView(index: Int, params: ButtonParams) {
+        val buttonView = ButtonView(context)
+        buttonView.configButtonView(params)
+        buttonView.setOnClickListener { onButtonClick(buttonView, index) }
+        if (buttonView.visibility != View.GONE) {
+            if (childCount > 0) {
+                addDividerView()
             }
-            buttonView.setTypeface(buttonView.typeface, params.textStyle)
-            buttonView.visibility = View.VISIBLE
+            val gradientDrawable = GradientDrawable()
+            gradientDrawable.setColor(params.backgroundColor)
+            val pressedColor = ColorStateList.valueOf(params.backgroundColorPressed)
+            buttonView.background = RippleDrawable(pressedColor, gradientDrawable, null)
+            addView(buttonView)
         }
     }
 

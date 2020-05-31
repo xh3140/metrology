@@ -1,24 +1,25 @@
 package com.xh3140.core.widgets.dialog.params
 
+import com.xh3140.core.widgets.dialog.CircleDialog
 
-class BuilderParams(buttonCount: Int) {
+class BuilderParams<D : CircleDialog>(buttonCount: Int) {
     /**
      * 对话框属性
      */
-    val dialogParams: DialogParams = DialogParams()
+    val mDialogParams: DialogParams = DialogParams()
 
     /**
      * 首部视图属性
      */
-    val headerParams: HeaderParams = HeaderParams()
+    val mHeaderParams: HeaderParams = HeaderParams()
 
     /**
      * 体部视图属性
      */
-    val bodyParams: BodyParams = BodyParams()
+    val mBodyParams: BodyParams = BodyParams()
 
     /**
      * 底部视图属性
      */
-    val footerParams: FooterParams = FooterParams(buttonCount)
+    val mFooterParams: FooterParams<D> = FooterParams(buttonCount)
 }

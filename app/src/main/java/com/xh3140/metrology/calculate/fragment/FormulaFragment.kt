@@ -6,8 +6,8 @@ import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateViewModel
 import com.xh3140.metrology.calculate.math.MathFormula
 import com.xh3140.metrology.calculate.math.MathFormulaLSM
-import com.xh3140.metrology.calculate.math.MathFormulaRMD
-import com.xh3140.metrology.calculate.math.MathFormulaRSD
+import com.xh3140.metrology.calculate.math.MathFormulaMD
+import com.xh3140.metrology.calculate.math.MathFormulaSD
 import kotlinx.android.synthetic.main.fragment_calculate_formula.*
 
 class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
@@ -17,21 +17,22 @@ class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
     override fun getLayoutResID(): Int = R.layout.fragment_calculate_formula
 
     override fun initData() {
-        setMathFormula(MathFormulaRSD)
+        setMathFormula(MathFormulaSD)
     }
 
     override fun initListener() {
+        val items = listOf(MathFormulaMD.getChineseName(), MathFormulaSD.getChineseName(), MathFormulaLSM.getChineseName())
         buttonSelect.setOnClickListener {
             val builder = CircleListDialog.Builder(2)
                 .setTitleText("选择公式")
-                .setListItems(1, listOf("相对平均偏差", "相对标准偏差", "最小二乘法"))
+                .setListItems(1, items)
                 .setButtonText(0, "取消")
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, index ->
                     if (index == 1) {
-                        when ((dialog as CircleListDialog).getCheckedIndex()) {
-                            0 -> setMathFormula(MathFormulaRMD)
-                            1 -> setMathFormula(MathFormulaRSD)
+                        when (dialog.getCheckedIndex()) {
+                            0 -> setMathFormula(MathFormulaMD)
+                            1 -> setMathFormula(MathFormulaSD)
                             2 -> setMathFormula(MathFormulaLSM)
                         }
                     }

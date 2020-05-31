@@ -2,7 +2,6 @@ package com.xh3140.metrology.main.fragment
 
 import android.text.InputType
 import android.view.Gravity
-import androidx.appcompat.widget.AppCompatTextView
 import com.xh3140.core.extensions.startActivity
 import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
@@ -87,8 +86,8 @@ class HomeFragment : BaseFragment() {
                 )
                 .setButtonText(0, "取消")
                 .setButtonText(1, "确定")
-                .setButtonOnClickListener { dialog, view, i ->
-                    toast("点击了按钮“${(view as AppCompatTextView).text}”，序号为：${i}")
+                .setButtonOnClickListener { dialog, button, i ->
+                    toast("点击了按钮“${button.text}”，序号为：${i}")
                     dialog.dismiss()
                 }
             builder.create().show(parentFragmentManager, null)
@@ -101,7 +100,7 @@ class HomeFragment : BaseFragment() {
                 .setButtonText(0, "取消")
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, _ ->
-                    toast("选择了列表中索引为{${(dialog as CircleListDialog).getCheckedIndex()}}的项目")
+                    toast("选择了列表中索引为{${dialog.getCheckedIndex()}}的项目")
                     dialog.dismiss()
                 }
             builder.create().show(parentFragmentManager, null)
@@ -115,7 +114,7 @@ class HomeFragment : BaseFragment() {
                 .setButtonText(0, "取消")
                 .setButtonText(1, "确定")
                 .setButtonOnClickListener { dialog, _, _ ->
-                    val list = (dialog as CircleListDialog).getCheckedIndexList()
+                    val list = dialog.getCheckedIndexList()
                     var text = "{"
                     for (i in list.indices) {
                         text += when (i) {
@@ -136,13 +135,12 @@ class HomeFragment : BaseFragment() {
                 .setTitleText("批量添加数据")
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
-                //.setInputPadding(20,20,20,20)
                 .setInputMargins(intArrayOf(20, 50, 20, 50))
                 .setButtonText(0, "取消")
                 .setButtonText(1, "添加")
                 .setButtonText(2, "添加到")
-                .setButtonOnClickListener { dialog, view, i ->
-                    toast("点击了按钮“${(view as AppCompatTextView).text}”，序号为：${i}")
+                .setButtonOnClickListener { dialog, button, i ->
+                    toast("输入的文本为“${dialog.getInputText()}”")
                     dialog.dismiss()
                 }
             builder.create().show(parentFragmentManager, null)

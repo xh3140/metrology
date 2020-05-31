@@ -16,21 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_fragment_home_formula_button_text"
-            app:niceTheme="THEME_RED" />
+            app:colorStyle="THEME_RED" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_fragment_home_jjg_jjf_button_text"
-            app:niceTheme="THEME_BLUE" />
+            app:colorStyle="THEME_BLUE" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonMrHomogeneity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="MR图像均匀性"
-            app:niceTheme="THEME_GREEN" />
+            app:colorStyle="THEME_GREEN" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/testCircleDialog1"

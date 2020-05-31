@@ -21,14 +21,16 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
 
     private val mDialogParams: DialogParams = params
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // 设置对话框风格，无标题，无边框
-        setStyle(STYLE_NO_TITLE, 0)
+    companion object {
+        const val FLAG_NOT_FOCUSABLE: Int = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+        const val SOFT_INPUT_STATE_VISIBLE: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+        const val SOFT_INPUT_ADJUST_RESIZE: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // 设置对话框风格，无标题，无边框
+        setStyle(STYLE_NO_TITLE, 0)
         // 设置对话框背景
         val radius = dp2px(mDialogParams.radius)
         val radiusArray = intArrayOf(radius, radius, radius, radius)
@@ -50,7 +52,7 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
         setDialogWindowParams(window)
         // 设置系统UI可视性
         if (mDialogParams.systemUiVisibility != 0) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+            window.setFlags(FLAG_NOT_FOCUSABLE, FLAG_NOT_FOCUSABLE)
         }
         super.onStart()
         // 设置系统UI可视性
@@ -130,12 +132,11 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
         transaction.commitAllowingStateLoss()
     }
 
-
     /**
      * 设置显示键盘模式
      */
     protected fun setSoftInputMode() {
-        requireDialog().window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        requireDialog().window?.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
     }
 
     /**

@@ -7,6 +7,11 @@ import androidx.annotation.ColorInt
 
 class TitleParams {
     /**
+     * 图标资源ID
+     */
+    var icon: Int = 0
+
+    /**
      * 标题文本
      */
     var text: String? = null

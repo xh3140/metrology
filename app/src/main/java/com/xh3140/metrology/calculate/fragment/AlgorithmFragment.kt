@@ -1,9 +1,7 @@
 package com.xh3140.metrology.calculate.fragment
 
-import android.content.SharedPreferences
 import android.text.InputType
 import androidx.lifecycle.Observer
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xh3140.core.base.CD2D
 import com.xh3140.core.extensions.toast
@@ -27,10 +25,6 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
     private val mData2DAdapter: D2DataAdapter by lazy { D2DataAdapter(mViewModel.items2d) }
 
     private val mResultAdapter: ResultAdapter by lazy { ResultAdapter() }
-
-    private val mPreferences: SharedPreferences by lazy {
-        PreferenceManager.getDefaultSharedPreferences(requireActivity())
-    }
 
     override fun getLayoutResID(): Int = R.layout.fragment_calculate_algorithm
 
@@ -66,7 +60,7 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
         }
         // 长按按钮批量添加数据
         buttonAppend.setOnLongClickListener {
-            if (!mPreferences.getBoolean("switch_boolean_formula_batch", true)) {
+            if (!mViewModel.preferences.getBoolean(CalculateViewModel.KEY_ACTION_OPTION_BATCH, true)) {
                 return@setOnLongClickListener false
             }
             val builder = CircleInputDialog.Builder(3)
@@ -81,7 +75,7 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
                 .setButtonText(2, "添加到")
                 .setButtonOnClickListener { dialog, _, index ->
                     if (index > 0) {
-                        val countText = (dialog as CircleInputDialog).getInputText()
+                        val countText = dialog.getInputText()
                         if (countText.isEmpty()) {
                             toast("请输入正确的整数格式！")
                         } else {
@@ -99,7 +93,7 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
         }
         // 长按按钮批量删除数据
         buttonRemove.setOnLongClickListener {
-            if (!mPreferences.getBoolean("switch_boolean_formula_batch", true)) {
+            if (!mViewModel.preferences.getBoolean(CalculateViewModel.KEY_ACTION_OPTION_BATCH, true)) {
                 return@setOnLongClickListener false
             }
             val builder = CircleInputDialog.Builder(3)
@@ -114,7 +108,7 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
                 .setButtonText(2, "删除到")
                 .setButtonOnClickListener { dialog, _, index ->
                     if (index > 0) {
-                        val countText = (dialog as CircleInputDialog).getInputText()
+                        val countText = dialog.getInputText()
                         if (countText.isEmpty()) {
                             toast("请输入正确的整数格式！")
                         } else {
@@ -132,62 +126,13 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
         }
         // 计算数据
         buttonCalculate.setOnClickListener {
-            when (mViewModel.dimension) {
-                1 -> {
-                    if (!mViewModel.isEnoughData()) {
-                        toast("有效数据不能少于${CalculateViewModel.MIN_ITEM_COUNT}项")
-                    } else {
-                        val result: MutableList<CD2D<String>> = ArrayList()
-                        val baseResult = mViewModel.calculationBase()
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MAX, false)) {
-                            result.add(baseResult[0])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MIN, false)) {
-                            result.add(baseResult[1])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_RNG, true)) {
-                            result.add(baseResult[2])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_SUM, true)) {
-                            result.add(baseResult[3])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_AVG, true)) {
-                            result.add(baseResult[4])
-                        }
-                        result.addAll(mViewModel.calculationFormula())
-                        mResultAdapter.submitList(result)
-                    }
-                }
-                2 -> {
-                    if (!mViewModel.isEnoughData()) {
-                        toast("有效数据不能少于${CalculateViewModel.MIN_ITEM_COUNT}项")
-                    } else {
-                        val result: MutableList<CD2D<String>> = ArrayList()
-                        val baseResult = mViewModel.calculationBase()
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MAX, false)) {
-                            result.add(baseResult[0])
-                            result.add(baseResult[1])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_MIN, false)) {
-                            result.add(baseResult[2])
-                            result.add(baseResult[3])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_RNG, true)) {
-                            result.add(baseResult[4])
-                            result.add(baseResult[5])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_SUM, true)) {
-                            result.add(baseResult[6])
-                            result.add(baseResult[7])
-                        }
-                        if (mPreferences.getBoolean(CalculateViewModel.KEY_RESULT_OPTION_AVG, true)) {
-                            result.add(baseResult[8])
-                            result.add(baseResult[9])
-                        }
-                        result.addAll(mViewModel.calculationFormula())
-                        mResultAdapter.submitList(result)
-                    }
-                }
+            if (!mViewModel.isEnoughData()) {
+                toast("有效数据不能少于${CalculateViewModel.MIN_ITEM_COUNT}项")
+            } else {
+                val result: MutableList<CD2D<String>> = ArrayList()
+                result.addAll(mViewModel.calculationBase())
+                result.addAll(mViewModel.calculationFormula())
+                mResultAdapter.submitList(result)
             }
         }
         // 清除数据

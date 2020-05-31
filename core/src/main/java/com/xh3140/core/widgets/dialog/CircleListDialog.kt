@@ -13,7 +13,9 @@ import com.xh3140.core.widgets.dialog.view.RootView
  * 列表选择对话框
  */
 
-class CircleListDialog(params: BuilderParams) : CircleDialog(params) {
+class CircleListDialog(params: BuilderParams<CircleListDialog>) : CircleDialog(params.mDialogParams) {
+
+    private val mParams: BuilderParams<CircleListDialog> = params
 
     private var mBodyView: BodyListView? = null
 
@@ -21,29 +23,29 @@ class CircleListDialog(params: BuilderParams) : CircleDialog(params) {
 
     fun getCheckedIndexList(): List<Int> = mBodyView?.getCheckedIndexList() ?: ArrayList()
 
-    override fun initRootView(context: Context, dialog: CircleDialog?): RootView {
-        val rootView = object : RootView(context) {
+    override fun initRootView(context: Context): View {
+        val rootView = object : RootView<CircleListDialog>(context) {
             override fun initHeadView(context: Context): HeadView? {
                 return HeadView(context)
-                    .setHeaderParams(mParams.headerParams)
+                    .setHeaderParams(mParams.mHeaderParams)
                     .configView()
             }
 
             override fun initBodyView(context: Context): View? {
                 mBodyView = BodyListView(context)
-                    .setListItemParams(mParams.bodyParams.listParams)
+                    .setListItemParams(mParams.mBodyParams.mListParams)
                     .configView()
                 return mBodyView
             }
 
-            override fun initFooterView(context: Context, dialog: CircleDialog?): FooterView? {
-                return FooterView(context)
+            override fun initFooterView(context: Context, dialog: CircleListDialog?): FooterView<CircleListDialog>? {
+                return FooterView<CircleListDialog>(context)
                     .setCircleDialog(dialog)
-                    .setFooterParams(mParams.footerParams)
+                    .setFooterParams(mParams.mFooterParams)
                     .configView()
             }
         }
-        rootView.setCircleDialog(dialog).configView()
+        rootView.setCircleDialog(this).configView()
         return rootView
     }
 

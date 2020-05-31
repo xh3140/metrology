@@ -6,28 +6,28 @@ import android.widget.LinearLayout
 import com.xh3140.core.widgets.dialog.CircleDialog
 
 
-abstract class RootView(context: Context) : LinearLayout(context) {
+abstract class RootView<D : CircleDialog>(context: Context) : LinearLayout(context) {
 
-    private var mCircleDialog: CircleDialog? = null
+    private var mCircleDialog: D? = null
 
     private val mHeadView: HeadView? by lazy { initHeadView(context) }
 
     private val mBodyView: View? by lazy { initBodyView(context) }
 
-    private val mFooterView: FooterView? by lazy { initFooterView(context, mCircleDialog) }
+    private val mFooterView: FooterView<D>? by lazy { initFooterView(context, mCircleDialog) }
 
     abstract fun initHeadView(context: Context): HeadView?
 
     abstract fun initBodyView(context: Context): View?
 
-    abstract fun initFooterView(context: Context, dialog: CircleDialog?): FooterView?
+    abstract fun initFooterView(context: Context, dialog: D?): FooterView<D>?
 
-    fun setCircleDialog(dialog: CircleDialog?): RootView {
+    fun setCircleDialog(dialog: D?): RootView<D> {
         mCircleDialog = dialog
         return this
     }
 
-    fun configView(): RootView {
+    fun configView(): RootView<D> {
         orientation = VERTICAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         mHeadView?.also { headView ->

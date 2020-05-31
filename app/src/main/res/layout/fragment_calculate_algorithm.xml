@@ -33,8 +33,8 @@
             android:layout_weight="1"
             android:text="@string/calculate_button_append_text"
             android:textSize="18sp"
-            app:groupLocation="LEFT"
-            app:niceTheme="THEME_BLUE" />
+            app:colorStyle="THEME_BLUE"
+            app:location="LEFT" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonRemove"
@@ -43,8 +43,8 @@
             android:layout_weight="1"
             android:text="@string/calculate_button_remove_text"
             android:textSize="18sp"
-            app:groupLocation="RIGHT"
-            app:niceTheme="THEME_RED" />
+            app:colorStyle="THEME_RED"
+            app:location="RIGHT" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -78,8 +78,8 @@
             android:layout_weight="1"
             android:text="@string/calculate_button_calculate_text"
             android:textSize="18sp"
-            app:groupLocation="LEFT"
-            app:niceTheme="THEME_BLUE" />
+            app:colorStyle="THEME_BLUE"
+            app:location="LEFT" />
 
         <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonClear"
@@ -88,8 +88,8 @@
             android:layout_weight="1"
             android:text="@string/calculate_button_clear_text"
             android:textSize="18sp"
-            app:groupLocation="RIGHT"
-            app:niceTheme="THEME_RED" />
+            app:colorStyle="THEME_RED"
+            app:location="RIGHT" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -117,6 +117,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewResult"
-        app:niceTheme="THEME_LIGHT" />
+        app:colorStyle="THEME_LIGHT" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

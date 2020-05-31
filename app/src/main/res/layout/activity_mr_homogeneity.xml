@@ -186,8 +186,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/calculate_button_calculate_text"
-                app:groupLocation="LEFT"
-                app:niceTheme="THEME_BLUE" />
+                app:colorStyle="THEME_BLUE"
+                app:location="LEFT" />
 
             <com.xh3140.core.widgets.button.NiceButton
                 android:id="@+id/buttonClear"
@@ -195,8 +195,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/calculate_button_clear_text"
-                app:groupLocation="RIGHT"
-                app:niceTheme="THEME_RED" />
+                app:colorStyle="THEME_RED"
+                app:location="RIGHT" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

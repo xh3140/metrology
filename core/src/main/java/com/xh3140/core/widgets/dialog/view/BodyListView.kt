@@ -60,14 +60,9 @@ class BodyListView(context: Context) : RecyclerView(context) {
 
     private fun configListView(params: ListParams) {
         id = android.R.id.list
-        layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT, 1F
-        )
+        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1F)
         setHasFixedSize(true)
-        layoutManager = LinearLayoutManager(
-            context, LinearLayoutManager.VERTICAL, false
-        )
+        layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         adapter = ListItemAdapter()
         if (params.isDividerList) {
             addItemDecoration(VerticalItemDecoration(context))
@@ -149,7 +144,7 @@ class BodyListView(context: Context) : RecyclerView(context) {
     /**
      * 分割线
      */
-    inner class VerticalItemDecoration(context: Context) : ItemDecoration() {
+    class VerticalItemDecoration(context: Context) : ItemDecoration() {
 
         private val mBounds = Rect()
 

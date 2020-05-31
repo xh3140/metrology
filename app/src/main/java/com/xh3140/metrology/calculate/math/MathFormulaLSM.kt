@@ -18,18 +18,19 @@ object MathFormulaLSM : MathFormula() {
     }
 
     override fun getLatexString(): String {
-        val builder = StringBuilder()
-        builder.append("[center]$\\[\\hat{b}=\\frac{\\sum_{i=1}^{n}x_iy_i-n\\bar{x}\\bar{y}}{\\sum_{i=1}^{n}x_i^2-n\\bar{x}^2}\\]$[/center]\n")
-        builder.append("[center]$\\[\\hat{a}=\\bar{y}-\\hat{b}\\bar{x}\\]$[/center]\n")
-        builder.append("$$\\[\\hat{b}:最小二乘法拟合直线的斜率；\\]$$\n")
-        builder.append("$$\\[\\hat{a}:最小二乘法拟合直线的截距。\\]$$\n")
-        return builder.toString()
+        return "[center]$\\[\\hat{b}=\\frac{\\sum_{i=1}^{n}x_iy_i-n\\bar{x}\\bar{y}}{\\sum_{i=1}^{n}x_i^2-n\\bar{x}^2}\\]$[/center]\n" +
+                "[center]$\\[\\hat{a}=\\bar{y}-\\hat{b}\\bar{x}\\]$[/center]\n" +
+                "$$\\[\\hat{b}:最小二乘法拟合直线的斜率；\\]$$\n" +
+                "$$\\[\\hat{a}:最小二乘法拟合直线的截距；\\]$$\n" +
+                "$$\\[n:测量次数；\\]$$\n" +
+                "$$\\[x_i,y_i:第i次测量的测得值；\\]$$\n" +
+                "$$\\[\\bar{x},\\bar{y}:n次测量所得一组测得值的算数平均值。\\]$$\n"
     }
 
 
     /**
-     * @property a 截距
-     * @property b 斜率
+     * @property a 截距 intercept
+     * @property b 斜率 slope
      */
     data class Result(val a: BigDecimal, val b: BigDecimal)
 

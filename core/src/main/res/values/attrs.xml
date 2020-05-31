@@ -7,7 +7,7 @@
         <!--是否是内嵌背景-->
         <attr name="isInset" format="boolean" />
         <!--主题颜色-->
-        <attr name="niceTheme">
+        <attr name="colorStyle">
             <enum name="THEME_RED" value="0" />
             <enum name="THEME_GREEN" value="1" />
             <enum name="THEME_BLUE" value="2" />
@@ -16,6 +16,16 @@
             <enum name="THEME_GRAY" value="5" />
             <enum name="THEME_LIGHT" value="6" />
             <enum name="THEME_DARK" value="7" />
+        </attr>
+        <!--按钮在按钮组中的位置-->
+        <attr name="location">
+            <enum name="NULL" value="0" />
+            <enum name="LEFT" value="1" />
+            <enum name="HORIZONTAL_BETWEEN" value="2" />
+            <enum name="RIGHT" value="3" />
+            <enum name="TOP" value="4" />
+            <enum name="VERTICAL_BETWEEN" value="5" />
+            <enum name="BOTTOM" value="6" />
         </attr>
         <!--内嵌距离-->
         <attr name="inset" format="dimension" />
@@ -29,15 +39,6 @@
         <attr name="radius_rightTop" format="dimension" />
         <attr name="radius_rightBottom" format="dimension" />
         <attr name="radius_leftBottom" format="dimension" />
-        <!--按钮在按钮组中的位置-->
-        <attr name="groupLocation">
-            <enum name="NULL" value="0" />
-            <enum name="LEFT" value="1" />
-            <enum name="HORIZONTAL_BETWEEN" value="2" />
-            <enum name="RIGHT" value="3" />
-            <enum name="TOP" value="4" />
-            <enum name="VERTICAL_BETWEEN" value="5" />
-            <enum name="BOTTOM" value="6" />
-        </attr>
+
     </declare-styleable>
 </resources>
