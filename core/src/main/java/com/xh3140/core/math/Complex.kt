@@ -32,8 +32,7 @@ class Complex(var real: Double, var imaginary: Double) {
     /**
      * 加法运算
      */
-    operator fun plus(other: Complex): Complex =
-        Complex(real + other.real, imaginary + other.imaginary)
+    operator fun plus(other: Complex): Complex = Complex(real + other.real, imaginary + other.imaginary)
 
     operator fun plus(other: Int): Complex = Complex(real + other, imaginary)
 
@@ -50,9 +49,7 @@ class Complex(var real: Double, var imaginary: Double) {
     /**
      * 减法运算
      */
-    operator fun minus(other: Complex): Complex {
-        return Complex(real - other.real, imaginary - other.imaginary)
-    }
+    operator fun minus(other: Complex): Complex = Complex(real - other.real, imaginary - other.imaginary)
 
     operator fun minus(other: Int): Complex = Complex(real - other, imaginary)
 
@@ -74,22 +71,15 @@ class Complex(var real: Double, var imaginary: Double) {
      * Z.虚部 = X.实部 * Y.虚部 + X.虚部 * Y.实部
      */
     operator fun times(other: Complex): Complex =
-        Complex(
-            real * other.real - imaginary * other.imaginary,
-            real * other.imaginary + imaginary * other.real
-        )
+        Complex(real * other.real - imaginary * other.imaginary, real * other.imaginary + imaginary * other.real)
 
-    operator fun times(other: Int): Complex =
-        Complex(real * other, imaginary * other)
+    operator fun times(other: Int): Complex = Complex(real * other, imaginary * other)
 
-    operator fun times(other: Long): Complex =
-        Complex(real * other, imaginary * other)
+    operator fun times(other: Long): Complex = Complex(real * other, imaginary * other)
 
-    operator fun times(other: Float): Complex =
-        Complex(real * other, imaginary * other)
+    operator fun times(other: Float): Complex = Complex(real * other, imaginary * other)
 
-    operator fun times(other: Double): Complex =
-        Complex(real * other, imaginary * other)
+    operator fun times(other: Double): Complex = Complex(real * other, imaginary * other)
 
     /**
      * 除法运算
@@ -102,10 +92,7 @@ class Complex(var real: Double, var imaginary: Double) {
             throw ArithmeticException("cannot have divisor of zero.")
         }
         val divisor = other.real * other.real + other.imaginary * other.imaginary
-        return Complex(
-            (real * other.real + imaginary * other.imaginary) / divisor,
-            (imaginary * other.real - real * other.imaginary) / divisor
-        )
+        return Complex((real * other.real + imaginary * other.imaginary) / divisor, (imaginary * other.real - real * other.imaginary) / divisor)
     }
 
     operator fun div(other: Int): Complex {
@@ -139,12 +126,14 @@ class Complex(var real: Double, var imaginary: Double) {
     /**
      * 比较运算
      */
-    override operator fun equals(other: Any?): Boolean =
-        when {
+    override operator fun equals(other: Any?): Boolean {
+        return when {
             other === this -> true
             other !is Complex -> false
             else -> real == other.real && imaginary == other.imaginary
         }
+    }
+
 
     override fun toString(): String {
         return if (imaginary < 0) {
@@ -183,3 +172,65 @@ class Complex(var real: Double, var imaginary: Double) {
     }
 
 }
+
+/**
+ * 转换为复数
+ */
+fun Int.toComplex(): Complex = Complex.valueOf(this)
+
+fun Long.toComplex(): Complex = Complex.valueOf(this)
+
+fun Float.toComplex(): Complex = Complex.valueOf(this)
+
+fun Double.toComplex(): Complex = Complex.valueOf(this)
+
+/**
+ * 加法交换
+ * 实数A + 复数B = 复数B + 实数A
+ */
+operator fun Int.plus(other: Complex): Complex = other.plus(this)
+
+operator fun Long.plus(other: Complex): Complex = other.plus(this)
+
+operator fun Float.plus(other: Complex): Complex = other.plus(this)
+
+operator fun Double.plus(other: Complex): Complex = other.plus(this)
+
+/**
+ * 减法交换
+ * 实数A - 复数B != 复数B - 实数A
+ */
+operator fun Int.minus(other: Complex): Complex = Complex.valueOf(this).minus(other)
+
+operator fun Long.minus(other: Complex): Complex = Complex.valueOf(this).minus(other)
+
+operator fun Float.minus(other: Complex): Complex = Complex.valueOf(this).minus(other)
+
+operator fun Double.minus(other: Complex): Complex = Complex.valueOf(this).minus(other)
+
+/**
+ * 乘法交换
+ * 实数A * 复数B = 复数B * 实数A
+ */
+operator fun Int.times(other: Complex): Complex = other.minus(this)
+
+operator fun Long.times(other: Complex): Complex = other.minus(this)
+
+operator fun Float.times(other: Complex): Complex = other.minus(this)
+
+operator fun Double.times(other: Complex): Complex = other.minus(this)
+
+/**
+ * 除法交换
+ * 实数A / 复数B != 复数B / 实数A
+ */
+operator fun Int.div(other: Complex): Complex = Complex.valueOf(this).div(other)
+
+operator fun Long.div(other: Complex): Complex = Complex.valueOf(this).div(other)
+
+operator fun Float.div(other: Complex): Complex = Complex.valueOf(this).div(other)
+
+operator fun Double.div(other: Complex): Complex = Complex.valueOf(this).div(other)
+
+
+

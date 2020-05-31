@@ -56,9 +56,7 @@ abstract class CircleDialog(params: DialogParams) : BaseCircleDialog(params) {
             return this
         }
 
-        fun setDialogMaxHeight(
-            @FloatRange(from = 0.0, to = 1.0) maxHeight: Float
-        ): Builder<D> {
+        fun setDialogMaxHeight(@FloatRange(from = 0.0, to = 1.0) maxHeight: Float): Builder<D> {
             mParams.mDialogParams.maxHeight = maxHeight
             return this
         }
