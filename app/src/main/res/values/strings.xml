@@ -130,5 +130,19 @@
     <string name="switch_average">平均值</string>
     <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
     <string name="jjg_639_1998">JJG 639–1998</string>
+    <string name="image_default_description">ImageView</string>
+    <string name="main_fragment_home_appliance_button_text">计量器具</string>
+    <string name="std_doc_key_publish_date">发布时间</string>
+    <string name="std_doc_key_execute_date">实施时间</string>
+    <string name="std_doc_key_replace_documents">代替文件</string>
+    <string name="std_doc_key_reference_documents">引用文件</string>
+    <string name="std_doc_key_superseded_documents">被代替文件</string>
+    <string name="std_doc_key_adopt_documents">采用文件</string>
+    <string name="std_doc_key_document_type">文件类型</string>
+    <string name="std_doc_key_document_state">文件状态</string>
+    <string name="std_doc_key_chinese_name">中文名称</string>
+    <string name="std_doc_key_english_name">英文名称</string>
+    <string name="std_doc_key_online_read">在线阅读</string>
+    <string name="std_doc_key_detailed_information">详细信息</string>
 
 </resources>

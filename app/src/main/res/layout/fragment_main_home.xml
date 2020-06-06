@@ -19,6 +19,13 @@
             app:colorStyle="THEME_RED" />
 
         <com.xh3140.core.widgets.button.NiceButton
+            android:id="@+id/buttonAppliance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment_home_appliance_button_text"
+            app:colorStyle="THEME_BLUE" />
+
+        <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:replace="android:label">
+        <activity android:name=".appliance.IndexActivity"></activity>
         <activity
             android:name=".calculate.CalculateActivity"
             android:windowSoftInputMode="adjustNothing" />

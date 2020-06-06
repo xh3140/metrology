@@ -1,4 +1,4 @@
-package com.xh3140.metrology.jjg.document
+package com.xh3140.metrology.appliance.document
 
 object JJG9612017Document : StandardDocument() {
 
@@ -10,8 +10,7 @@ object JJG9612017Document : StandardDocument() {
 
     override val chineseName: String = "医用诊断螺旋计算机断层摄影装置(CT)X射线辐射源"
 
-    override val englishName: String =
-        "Medical Diagnostic X-ray Radiation Source for Spiral Computed Tomography(CT)"
+    override val englishName: String = "Medical Diagnostic X-ray Radiation Source for Spiral Computed Tomography(CT)"
 
     override val publishDate: String = "2017-11-20"
 

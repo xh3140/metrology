@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewArrow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="4dp"
+            android:contentDescription="@string/image_default_description"
+            android:src="@drawable/ic_arrow_right" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:text="JJG 270-2008" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:singleLine="true"
+                android:textColor="@color/dim_gray"
+                android:textSize="16sp"
+                tools:text="血压计和血压表" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tabLayoutExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/bg_divider_v_gray"
+        android:orientation="vertical"
+        android:showDividers="middle|beginning|end">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewChineseNameKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_chinese_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewChineseNameValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="血压计和血压表" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewEnglishNameKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_english_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewEnglishNameValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="Sphygmomanometer" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDocumentTypeKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_document_type" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDocumentTypeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="JJG" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDocumentStateKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_document_state" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDocumentStateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="现行的" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewPublishDateKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_publish_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewPublishDateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="2008-03-25" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewExecuteDateKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_execute_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewExecuteDateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="2008-09-25" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewReplaceDocumentsKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_replace_documents" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewReplaceDocumentsValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                tools:text="JJG 270-1995" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewReferenceDocumentsKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_reference_documents" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewReferenceDocumentsValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSupersededDocumentsKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_superseded_documents" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSupersededDocumentsValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAdoptDocumentsKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_adopt_documents" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAdoptDocumentsValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3.02"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/bg_divider_h_gray"
+            android:orientation="horizontal"
+            android:showDividers="middle|beginning|end">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewOnlineRead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_online_read"
+                android:textColor="@android:color/holo_blue_dark" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDetailedInformation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/std_doc_key_detailed_information"
+                android:textColor="@android:color/holo_blue_dark" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
