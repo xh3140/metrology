@@ -1,6 +1,6 @@
 package com.xh3140.metrology.appliance.document
 
-object JJG6922010Document : StandardDocument() {
+object JJGN692Y2010Document : StandardDocument() {
 
     override val type: Type = Type.JJG
 

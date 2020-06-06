@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -19,7 +18,7 @@ import com.xh3140.core.extensions.startActivity
 import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.appliance.document.JJG9612017Document
+import com.xh3140.metrology.appliance.document.JJGN961Y2017Document
 import com.xh3140.metrology.appliance.document.StandardDocument
 import com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
@@ -60,22 +59,19 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var mExpandHeight: Int = 0
-        private val mHeaderView: View = itemView.linearLayoutHeader
-        private val mImageView: ImageView = itemView.imageViewArrow
-        private val mExpandView: View = itemView.tabLayoutExpand
         private val mShowAnimator: ValueAnimator = ValueAnimator.ofInt(0, 100)
         private val mHideAnimator: ValueAnimator = ValueAnimator.ofInt(0, 100)
 
         init {
-            mExpandView.post {
-                mExpandHeight = mExpandView.height
-                mExpandView.visibility = View.GONE
+            itemView.tabLayoutExpand.post {
+                mExpandHeight = itemView.tabLayoutExpand.height
+                itemView.tabLayoutExpand.visibility = View.GONE
             }
             configShowValueAnimator()
             configHideValueAnimator()
-            mHeaderView.setOnClickListener {
+            itemView.linearLayoutHeader.setOnClickListener {
                 if (!mShowAnimator.isRunning && !mHideAnimator.isRunning) {
-                    if (mExpandView.visibility == View.GONE) {
+                    if (itemView.tabLayoutExpand.visibility == View.GONE) {
                         mShowAnimator.start()
                     } else {
                         mHideAnimator.start()
@@ -107,7 +103,7 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
 
             itemView.textViewDetailedInformation.setOnClickListener {
                 when (getItem(adapterPosition)) {
-                    is JJG9612017Document -> activity.startActivity<JJG9612017Activity>()
+                    is JJGN961Y2017Document -> activity.startActivity<JJG9612017Activity>()
                     else -> activity.toast("暂无启用")
                 }
             }
@@ -126,24 +122,24 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
                 duration = 200L
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
-                        mImageView.rotation = 0f
-                        mImageView.setImageResource(R.drawable.ic_arrow_down)
-                        mExpandView.layoutParams = LinearLayout.LayoutParams(
+                        itemView.imageViewArrow.rotation = 0f
+                        itemView.imageViewArrow.setImageResource(R.drawable.ic_arrow_down)
+                        itemView.tabLayoutExpand.layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
                     }
 
                     override fun onAnimationStart(animation: Animator?) {
-                        mImageView.rotation = 0f
-                        mExpandView.setLayoutHeight(0)
-                        mExpandView.visibility = View.VISIBLE
+                        itemView.imageViewArrow.rotation = 0f
+                        itemView.tabLayoutExpand.setLayoutHeight(0)
+                        itemView.tabLayoutExpand.visibility = View.VISIBLE
                     }
                 })
                 addUpdateListener {
                     val value = it.animatedValue as Int
-                    mImageView.rotation = 90f * value / 100
-                    mExpandView.setLayoutHeight(value * mExpandHeight / 100)
+                    itemView.imageViewArrow.rotation = 90f * value / 100
+                    itemView.tabLayoutExpand.setLayoutHeight(value * mExpandHeight / 100)
                 }
             }
         }
@@ -154,15 +150,15 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
                 duration = 200L
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
-                        mImageView.rotation = 0f
-                        mImageView.setImageResource(R.drawable.ic_arrow_right)
-                        mExpandView.setLayoutHeight(0)
-                        mExpandView.visibility = View.GONE
+                        itemView.imageViewArrow.rotation = 0f
+                        itemView.imageViewArrow.setImageResource(R.drawable.ic_arrow_right)
+                        itemView.tabLayoutExpand.setLayoutHeight(0)
+                        itemView.tabLayoutExpand.visibility = View.GONE
                     }
 
                     override fun onAnimationStart(animation: Animator?) {
-                        mImageView.rotation = 0f
-                        mExpandView.layoutParams = LinearLayout.LayoutParams(
+                        itemView.imageViewArrow.rotation = 0f
+                        itemView.tabLayoutExpand.layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
@@ -170,8 +166,8 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
                 })
                 addUpdateListener {
                     val value = it.animatedValue as Int
-                    mImageView.rotation = -90f * value / 100
-                    mExpandView.setLayoutHeight((100 - value) * mExpandHeight / 100)
+                    itemView.imageViewArrow.rotation = -90f * value / 100
+                    itemView.tabLayoutExpand.setLayoutHeight((100 - value) * mExpandHeight / 100)
                 }
             }
         }
