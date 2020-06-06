@@ -3,13 +3,13 @@ package com.xh3140.metrology.calculate.math
 import com.xh3140.core.extensions.sqrt
 import java.math.BigDecimal
 
-object MathFormulaSD : MathFormula() {
+object MathFormulaRSD : MathFormula() {
 
     override fun getDimension(): Int = 1
 
-    override fun getChineseName(): String = "标准偏差"
+    override fun getChineseName(): String = "相对标准偏差"
 
-    override fun getEnglishName(): String = "Standard Deviation"
+    override fun getEnglishName(): String = "Relative Standard Deviation"
 
     override fun getDescription(): String {
         return "标准偏差（Std Dev,Standard Deviation）的计算公式为贝塞尔公式。\n\n" +
@@ -21,10 +21,8 @@ object MathFormulaSD : MathFormula() {
     }
 
     override fun getLatexString(): String {
-        return "[center]$\\[SD=\\sqrt{\\frac{\\sum_{i=1}^{n}\\left(x_i-\\bar{x}\\right)^{2}}{n-1}}\\]$[/center]\n" +
-                "[center]$\\[RSD=\\frac{1}{\\bar{x}}\\sqrt{\\frac{\\sum_{i=1}^{n}\\left(x_i-\\bar{x}\\right)^{2}}{n-1}}\\times{100\\%}\\]$[/center]\n\n" +
-                "$$\\[SD:n次测量中某单个测得值的标准偏差；\\]$$\n" +
-                "$$\\[RSD:n次测量中某单个测得值的相对标准偏差；\\]$$\n" +
+        return "[center]$\\[S=\\frac{1}{\\bar{x}}\\sqrt{\\frac{\\sum_{i=1}^{n}\\left(x_i-\\bar{x}\\right)^{2}}{n-1}}\\times{100\\%}\\]$[/center]\n\n" +
+                "$$\\[S:n次测量中某单个测得值的相对标准偏差；\\]$$\n" +
                 "$$\\[n:测量次数；\\]$$\n" +
                 "$$\\[x_i:第i次测量的测得值；\\]$$\n" +
                 "$$\\[\\bar{x}:n次测量所得一组测得值的算数平均值。\\]$$\n"

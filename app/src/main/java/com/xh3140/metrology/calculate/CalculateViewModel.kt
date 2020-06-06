@@ -13,8 +13,8 @@ import com.xh3140.core.base.VD2D
 import com.xh3140.core.extensions.toDouble
 import com.xh3140.metrology.calculate.math.MathFormula
 import com.xh3140.metrology.calculate.math.MathFormulaLSM
-import com.xh3140.metrology.calculate.math.MathFormulaMD
-import com.xh3140.metrology.calculate.math.MathFormulaSD
+import com.xh3140.metrology.calculate.math.MathFormulaRMD
+import com.xh3140.metrology.calculate.math.MathFormulaRSD
 import java.math.BigDecimal
 
 class CalculateViewModel(application: Application) : AndroidViewModel(application) {
@@ -328,22 +328,22 @@ class CalculateViewModel(application: Application) : AndroidViewModel(applicatio
     fun calculationFormula(): List<CD2D<String>> {
         val result: MutableList<CD2D<String>> = ArrayList()
         when (formula.value) {
-            is MathFormulaMD -> result.addAll(calculationRMD())
-            is MathFormulaSD -> result.addAll(calculationRSD())
+            is MathFormulaRMD -> result.addAll(calculationRMD())
+            is MathFormulaRSD -> result.addAll(calculationRSD())
             is MathFormulaLSM -> result.addAll(calculationLSM())
         }
         return result
     }
 
     private fun calculationRMD(): List<CD2D<String>> {
-        val result = MathFormulaMD.calculate(mData1D)
+        val result = MathFormulaRMD.calculate(mData1D)
         val md = result.md.toDouble(NUMBER_SCALE).toString()
         val rmd = result.rmd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
         return listOf(CD2D("平均偏差", md), CD2D("相对平均偏差", rmd))
     }
 
     private fun calculationRSD(): List<CD2D<String>> {
-        val result = MathFormulaSD.calculate(mData1D)
+        val result = MathFormulaRSD.calculate(mData1D)
         val sd = result.sd.toDouble(NUMBER_SCALE).toString()
         val rsd = result.rsd.multiply(BigDecimal(100)).toDouble(NUMBER_SCALE).toString().plus("%")
         return listOf(CD2D("标准偏差", sd), CD2D("相对标准偏差", rsd))

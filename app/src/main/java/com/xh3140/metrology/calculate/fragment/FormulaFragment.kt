@@ -6,8 +6,8 @@ import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateViewModel
 import com.xh3140.metrology.calculate.math.MathFormula
 import com.xh3140.metrology.calculate.math.MathFormulaLSM
-import com.xh3140.metrology.calculate.math.MathFormulaMD
-import com.xh3140.metrology.calculate.math.MathFormulaSD
+import com.xh3140.metrology.calculate.math.MathFormulaRMD
+import com.xh3140.metrology.calculate.math.MathFormulaRSD
 import kotlinx.android.synthetic.main.fragment_calculate_formula.*
 
 class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
@@ -17,11 +17,11 @@ class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
     override fun getLayoutResID(): Int = R.layout.fragment_calculate_formula
 
     override fun initData() {
-        setMathFormula(MathFormulaSD)
+        setMathFormula(MathFormulaRSD)
     }
 
     override fun initListener() {
-        val items = listOf(MathFormulaMD.getChineseName(), MathFormulaSD.getChineseName(), MathFormulaLSM.getChineseName())
+        val items = listOf(MathFormulaRMD.getChineseName(), MathFormulaRSD.getChineseName(), MathFormulaLSM.getChineseName())
         buttonSelect.setOnClickListener {
             val builder = CircleListDialog.Builder(2)
                 .setTitleText("选择公式")
@@ -31,8 +31,8 @@ class FormulaFragment(viewModel: CalculateViewModel) : BaseFragment() {
                 .setButtonOnClickListener { dialog, _, index ->
                     if (index == 1) {
                         when (dialog.getCheckedIndex()) {
-                            0 -> setMathFormula(MathFormulaMD)
-                            1 -> setMathFormula(MathFormulaSD)
+                            0 -> setMathFormula(MathFormulaRMD)
+                            1 -> setMathFormula(MathFormulaRSD)
                             2 -> setMathFormula(MathFormulaLSM)
                         }
                     }

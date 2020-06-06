@@ -2,13 +2,13 @@ package com.xh3140.metrology.calculate.math
 
 import java.math.BigDecimal
 
-object MathFormulaMD : MathFormula() {
+object MathFormulaRMD : MathFormula() {
 
     override fun getDimension(): Int = 1
 
-    override fun getChineseName(): String = "平均偏差"
+    override fun getChineseName(): String = "相对平均偏差"
 
-    override fun getEnglishName(): String = "Mean Deviation"
+    override fun getEnglishName(): String = "Relative Mean Deviation"
 
     override fun getDescription(): String {
         return "平均偏差（Average Deviation or Mean Deviation ）是数列中各项数值与其算术平均数的离差绝对值的算术平均数。" +
@@ -17,10 +17,8 @@ object MathFormulaMD : MathFormula() {
     }
 
     override fun getLatexString(): String {
-        return "[center]$\\[MD=\\frac{\\sum_{i=1}^{n}\\left|x_i-\\bar{x}\\right|}{n}\\]$[/center]\n" +
-                "[center]$\\[RMD=\\frac{\\sum_{i=1}^{n}\\left|x_i-\\bar{x}\\right|}{n\\bar{x}}\\times{100\\%}\\]$[/center]\n\n" +
-                "$$\\[MD:n次测量中某单个测得值的平均偏差；\\]$$\n" +
-                "$$\\[RMD:n次测量中某单个测得值的相对平均偏差；\\]$$\n" +
+        return "[center]$\\[M=\\frac{\\sum_{i=1}^{n}\\left|x_i-\\bar{x}\\right|}{n\\bar{x}}\\times{100\\%}\\]$[/center]\n\n" +
+                "$$\\[M:n次测量中某单个测得值的相对平均偏差；\\]$$\n" +
                 "$$\\[n:测量次数；\\]$$\n" +
                 "$$\\[x_i:第i次测量的测得值；\\]$$\n" +
                 "$$\\[\\bar{x}:n次测量所得一组测得值的算数平均值。\\]$$\n"
