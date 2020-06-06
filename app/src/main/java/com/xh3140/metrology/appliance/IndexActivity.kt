@@ -26,6 +26,8 @@ class IndexActivity : BaseActivity() {
         val list: MutableList<StandardDocument> = ArrayList()
         list.add(JJG2702008Document)
         list.add(JJG6922010Document)
+        list.add(JJG7602003Document)
+        list.add(JJG11632019Document)
         list.add(JJG5432008Document)
         list.add(JJG10412008Document)
         list.add(JJG9612017Document)

@@ -15,9 +15,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.xh3140.core.extensions.startActivity
+import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
+import com.xh3140.metrology.appliance.document.JJG9612017Document
 import com.xh3140.metrology.appliance.document.StandardDocument
+import com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
 
 
@@ -43,7 +47,6 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
         holder.itemView.textViewSupersededDocumentsValue.text = getItem(position).supersededDocuments.joinToString()
         holder.itemView.textViewAdoptDocumentsValue.text = getItem(position).adoptDocuments.joinToString()
     }
-
 
     object DiffCallBack : DiffUtil.ItemCallback<StandardDocument>() {
         override fun areItemsTheSame(oldItem: StandardDocument, newItem: StandardDocument): Boolean {
@@ -100,6 +103,13 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
                         dialog.dismiss()
                     }
                 builder.create().show(activity.supportFragmentManager, null)
+            }
+
+            itemView.textViewDetailedInformation.setOnClickListener {
+                when (getItem(adapterPosition)) {
+                    is JJG9612017Document -> activity.startActivity<JJG9612017Activity>()
+                    else -> activity.toast("暂无启用")
+                }
             }
         }
 
