@@ -1,16 +1,16 @@
-package com.xh3140.metrology.jjg.jjg9612017
+package com.xh3140.metrology.appliance.jjg.jjgn961y2017
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xh3140.metrology.R
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part1Fragment
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part2Fragment
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part3Fragment
 import com.xh3140.metrology.base.ui.activity.BaseActivity
-import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part1Fragment
-import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part2Fragment
-import com.xh3140.metrology.jjg.jjg9612017.fragment.JJG96120171Part3Fragment
 import kotlinx.android.synthetic.main.activity_calculate.*
 
-class JJG9612017Activity : BaseActivity() {
+class JJGN961Y2017Activity : BaseActivity() {
     override fun getLayoutResID(): Int = R.layout.activity_jjg_961_2017
 
     override fun initData() {

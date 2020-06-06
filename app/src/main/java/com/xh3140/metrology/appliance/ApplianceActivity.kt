@@ -3,16 +3,18 @@ package com.xh3140.metrology.appliance
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xh3140.metrology.R
-import com.xh3140.metrology.appliance.adapter.IndexAdapter
+import com.xh3140.metrology.appliance.adapter.ApplianceAdapter
 import com.xh3140.metrology.appliance.document.*
 import com.xh3140.metrology.base.ui.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_index.*
+import kotlinx.android.synthetic.main.activity_appliance.*
 
-class IndexActivity : BaseActivity() {
-    override fun getLayoutResID(): Int = R.layout.activity_index
+class ApplianceActivity : BaseActivity() {
+    override fun getLayoutResID(): Int = R.layout.activity_appliance
 
     override fun initData() {
-        val indexAdapter = IndexAdapter(this)
+        title = "计量器具"
+        setActionBarBackEnabled(true)
+        val indexAdapter = ApplianceAdapter(this)
         recyclerViewIndex.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

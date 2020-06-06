@@ -3,8 +3,10 @@
     <string name="app_name">metrology</string>
     <string name="app_metrology_name">metrology</string>
     <string name="app_metrology_copyright">© 2020 xh3140</string>
+    <string name="image_default_description">ImageView</string>
     <!--activity-->
     <string name="activity_calculate_title">公式算法</string>
+    <string name="activity_appliance_title">计量器具</string>
 
     <!--fragment-->
     <string name="main_fragment_home_title">主页</string>
@@ -22,8 +24,6 @@
     <string name="calculate_button_clear_text">清除数据</string>
     <string name="calculate_button_chart_text">绘制图表</string>
 
-    <string name="main_fragment_home_formula_button_text">公式算法</string>
-    <string name="main_fragment_home_jjg_jjf_button_text">计量器具检校</string>
     <string name="activity_ultrasound_title">B型超声</string>
 
     <string name="formula_button_reset_text">重置图表</string>
@@ -45,6 +45,25 @@
     <string name="switch_batch_operation">批量操作</string>
     <string name="radio_fuzzy_calculation">模糊计算</string>
     <string name="radio_precise_calculation">精确计算</string>
+
+    <string name="std_doc_key_publish_date">发布时间</string>
+    <string name="std_doc_key_execute_date">实施时间</string>
+    <string name="std_doc_key_replace_documents">代替文件</string>
+    <string name="std_doc_key_reference_documents">引用文件</string>
+    <string name="std_doc_key_superseded_documents">被代替文件</string>
+    <string name="std_doc_key_adopt_documents">采用文件</string>
+    <string name="std_doc_key_document_type">文件类型</string>
+    <string name="std_doc_key_document_state">文件状态</string>
+    <string name="std_doc_key_chinese_name">中文名称</string>
+    <string name="std_doc_key_english_name">英文名称</string>
+    <string name="std_doc_key_online_read">在线阅读</string>
+    <string name="std_doc_key_detailed_information">详细信息</string>
+
+    <string name="appliance_ct_lcr_new_require">新装CT：[1.0%/2.0mm]和[0.3%/5.0mm]</string>
+    <string name="appliance_ct_lcr_old_require">运行CT：[1.0%/3.0mm]和[0.3%/6.0mm]</string>
+    <string name="appliance_ct_lcr_title">检测螺旋CT模体</string>
+    <string name="appliance_ct_lcr_summary">低对比度分辨力(率)层面示意图</string>
+    <string name="appliance_ct_lcr_model_require">检测螺旋CT模体其直径应不小于20cm</string>
 
     <string name="record_unit_name">单位名称</string>
     <string name="record_check_date">检校日期</string>
@@ -130,19 +149,6 @@
     <string name="switch_average">平均值</string>
     <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
     <string name="jjg_639_1998">JJG 639–1998</string>
-    <string name="image_default_description">ImageView</string>
-    <string name="main_fragment_home_appliance_button_text">计量器具</string>
-    <string name="std_doc_key_publish_date">发布时间</string>
-    <string name="std_doc_key_execute_date">实施时间</string>
-    <string name="std_doc_key_replace_documents">代替文件</string>
-    <string name="std_doc_key_reference_documents">引用文件</string>
-    <string name="std_doc_key_superseded_documents">被代替文件</string>
-    <string name="std_doc_key_adopt_documents">采用文件</string>
-    <string name="std_doc_key_document_type">文件类型</string>
-    <string name="std_doc_key_document_state">文件状态</string>
-    <string name="std_doc_key_chinese_name">中文名称</string>
-    <string name="std_doc_key_english_name">英文名称</string>
-    <string name="std_doc_key_online_read">在线阅读</string>
-    <string name="std_doc_key_detailed_information">详细信息</string>
+
 
 </resources>

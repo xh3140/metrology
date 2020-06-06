@@ -8,11 +8,10 @@ import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.core.widgets.dialog.CircleInputDialog
 import com.xh3140.core.widgets.dialog.CircleListDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.appliance.IndexActivity
+import com.xh3140.metrology.appliance.ApplianceActivity
+import com.xh3140.metrology.appliance.jjg.MrHomogeneityActivity
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateActivity
-import com.xh3140.metrology.jjg.JJGActivity
-import com.xh3140.metrology.jjg.MrHomogeneityActivity
 import kotlinx.android.synthetic.main.fragment_main_home.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,11 +28,7 @@ class HomeFragment : BaseFragment() {
         }
         // 计量器具
         buttonAppliance.setOnClickListener {
-            startActivity<IndexActivity>()
-        }
-        // 计量器具检校
-        buttonCheck.setOnClickListener {
-            startActivity<JJGActivity>()
+            startActivity<ApplianceActivity>()
         }
         // MR图像均匀性
         buttonMrHomogeneity.setOnClickListener {

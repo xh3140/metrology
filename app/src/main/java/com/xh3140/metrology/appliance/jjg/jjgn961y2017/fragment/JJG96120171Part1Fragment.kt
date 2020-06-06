@@ -1,4 +1,4 @@
-package com.xh3140.metrology.jjg.jjg9612017.fragment
+package com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment
 
 
 import com.xh3140.metrology.R

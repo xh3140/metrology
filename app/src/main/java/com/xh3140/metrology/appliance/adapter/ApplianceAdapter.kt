@@ -20,11 +20,11 @@ import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.appliance.document.JJGN961Y2017Document
 import com.xh3140.metrology.appliance.document.StandardDocument
-import com.xh3140.metrology.jjg.jjg9612017.JJG9612017Activity
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.JJGN961Y2017Activity
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
 
 
-class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocument, IndexAdapter.ViewHolder>(DiffCallBack) {
+class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocument, ApplianceAdapter.ViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -103,7 +103,7 @@ class IndexAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocumen
 
             itemView.textViewDetailedInformation.setOnClickListener {
                 when (getItem(adapterPosition)) {
-                    is JJGN961Y2017Document -> activity.startActivity<JJG9612017Activity>()
+                    is JJGN961Y2017Document -> activity.startActivity<JJGN961Y2017Activity>()
                     else -> activity.toast("暂无启用")
                 }
             }

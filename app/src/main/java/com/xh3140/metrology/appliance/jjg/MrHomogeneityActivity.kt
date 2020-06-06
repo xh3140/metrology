@@ -1,4 +1,4 @@
-package com.xh3140.metrology.jjg
+package com.xh3140.metrology.appliance.jjg
 
 import android.view.View
 import com.xh3140.core.extensions.toast

@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".jjg.jjg9612017.fragment.JJG96120171Part3Fragment">
+    tools:context=".appliance.jjg.jjgn961y2017.fragment.JJG96120171Part3Fragment">
 
-    <com.xh3140.metrology.jjg.jjg9612017.CTModelLCRView
-        android:id="@+id/CTModelLCRView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/appliance_ct_lcr_title"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:text="@string/appliance_ct_lcr_summary" />
+
+        <com.xh3140.metrology.appliance.jjg.jjgn961y2017.widgets.LowContrastResolutionView
+            android:id="@+id/lcrView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
+
+        <TextView
+            android:id="@+id/textViewRequire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/holo_red_dark"
+            tools:text="[低对比度：1.0%][直径：15.0mm]" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/appliance_ct_lcr_new_require"
+            android:textColor="@color/dim_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:text="@string/appliance_ct_lcr_old_require"
+            android:textColor="@color/dim_gray" />
+    </LinearLayout>
+</ScrollView>
