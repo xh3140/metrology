@@ -92,7 +92,7 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
                     .setButtonText(1, "确定")
                     .setButtonOnClickListener { dialog, _, i ->
                         if (i == 1) {
-                            val url = "http://jjg.spc.org.cn/resmea/standard/JJG%2520${number}/?"
+                            val url = "http://jjg.spc.org.cn/resmea/standard/${document.type.name}%2520${number}/?"
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                             itemView.context.startActivity(intent)
                         }
