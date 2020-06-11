@@ -149,6 +149,20 @@
     <string name="switch_average">平均值</string>
     <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
     <string name="jjg_639_1998">JJG 639–1998</string>
-
-
+    <string name="appliance_jjg_item">检定项目</string>
+    <string name="appliance_jjg_first">首次检定</string>
+    <string name="appliance_jjg_subsequent">后续检定</string>
+    <string name="appliance_jjg_using">使用中检查</string>
+    <string name="appliance_jjg_item_note">注：“＋”表示应检项目，“－”表示可不检项目。</string>
+    <string name="appliance_jjg_1078_2012_item1">辐射输出的空气比释动能</string>
+    <string name="appliance_jjg_1078_2012_item2">辐射输出的重复性</string>
+    <string name="appliance_jjg_1078_2012_item3">辐射输出的质</string>
+    <string name="appliance_jjg_1078_2012_item4">空间分辨力</string>
+    <string name="appliance_jjg_1078_2012_item5">低对比度分辨力</string>
+    <string name="appliance_jjg_1078_2012_item6">影像均匀性</string>
+    <string name="appliance_jjg_1078_2012_item7">光野与照射野一致性</string>
+    <string name="appliance_jjg_1078_2012_item8">有效焦点尺寸</string>
+    <string name="appliance_jjg_1078_2012_item9">X射线管电压</string>
+    <string name="appliance_item_true">＋</string>
+    <string name="appliance_item_false">－</string>
 </resources>

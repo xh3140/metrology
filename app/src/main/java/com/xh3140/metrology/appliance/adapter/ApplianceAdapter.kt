@@ -18,8 +18,10 @@ import com.xh3140.core.extensions.startActivity
 import com.xh3140.core.extensions.toast
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
+import com.xh3140.metrology.appliance.document.JJGN1078Y2012Document
 import com.xh3140.metrology.appliance.document.JJGN961Y2017Document
 import com.xh3140.metrology.appliance.document.StandardDocument
+import com.xh3140.metrology.appliance.jjg.jjgn1078y2012.JJGN1078Y2012Activity
 import com.xh3140.metrology.appliance.jjg.jjgn961y2017.JJGN961Y2017Activity
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
 
@@ -42,9 +44,6 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
         holder.itemView.textViewPublishDateValue.text = getItem(position).publishDate
         holder.itemView.textViewExecuteDateValue.text = getItem(position).executeDate
         holder.itemView.textViewReplaceDocumentsValue.text = getItem(position).replaceDocuments.joinToString()
-        holder.itemView.textViewReferenceDocumentsValue.text = getItem(position).referenceDocuments.joinToString()
-        holder.itemView.textViewSupersededDocumentsValue.text = getItem(position).supersededDocuments.joinToString()
-        holder.itemView.textViewAdoptDocumentsValue.text = getItem(position).adoptDocuments.joinToString()
     }
 
     object DiffCallBack : DiffUtil.ItemCallback<StandardDocument>() {
@@ -63,10 +62,6 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
         private val mHideAnimator: ValueAnimator = ValueAnimator.ofInt(0, 100)
 
         init {
-            itemView.tabLayoutExpand.post {
-                mExpandHeight = itemView.tabLayoutExpand.height
-                itemView.tabLayoutExpand.visibility = View.GONE
-            }
             configShowValueAnimator()
             configHideValueAnimator()
             itemView.linearLayoutHeader.setOnClickListener {
@@ -92,8 +87,8 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
                     .setButtonText(1, "确定")
                     .setButtonOnClickListener { dialog, _, i ->
                         if (i == 1) {
-                            val url = "http://jjg.spc.org.cn/resmea/standard/${document.type.name}%2520${number}/?"
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            val url = Uri.parse(document.getOnLineReadingUrl())
+                            val intent = Intent(Intent.ACTION_VIEW, url)
                             itemView.context.startActivity(intent)
                         }
                         dialog.dismiss()
@@ -103,6 +98,7 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
 
             itemView.textViewDetailedInformation.setOnClickListener {
                 when (getItem(adapterPosition)) {
+                    is JJGN1078Y2012Document -> activity.startActivity<JJGN1078Y2012Activity>()
                     is JJGN961Y2017Document -> activity.startActivity<JJGN961Y2017Activity>()
                     else -> activity.toast("暂无启用")
                 }
@@ -128,6 +124,9 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
+                        if (mExpandHeight == 0) {
+                            mExpandHeight = itemView.tabLayoutExpand.height
+                        }
                     }
 
                     override fun onAnimationStart(animation: Animator?) {
@@ -162,6 +161,9 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
+                        if (mExpandHeight == 0) {
+                            mExpandHeight = itemView.tabLayoutExpand.height
+                        }
                     }
                 })
                 addUpdateListener {

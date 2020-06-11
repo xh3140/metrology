@@ -1,14 +1,11 @@
 package com.xh3140.metrology.appliance.document
 
-abstract class StandardDocument {
+abstract class StandardDocument(val number: String) {
     // 文件类型
     abstract val type: Type
 
     // 文件状态
     abstract val state: State
-
-    // 文件编号
-    abstract val number: String
 
     // 中文名称
     abstract val chineseName: String
@@ -34,6 +31,9 @@ abstract class StandardDocument {
     // 采用文件
     abstract val adoptDocuments: List<String>
 
+    // 检定/校准项目
+    abstract val items: List<Item>
+
     /**
      * 标准文件类型
      * @property JJG 计量检定规程
@@ -47,6 +47,46 @@ abstract class StandardDocument {
      * @property SUPERSEDED 被替代的
      */
     enum class State(val text: String) { ACTIVE("现行的"), SUPERSEDED("被替代的") }
+
+    /**
+     * 检定/校准项目
+     */
+    abstract class Item(val name: String) {
+        // 项目类型
+        abstract val type: Int
+
+        // 技术要求
+        abstract val techRequest: String
+
+        val isFirst: Boolean get() = type and FIRST != 0
+
+        val isSubsequent: Boolean get() = type and SUBSEQUENT != 0
+
+        val isUsing: Boolean get() = type and USING != 0
+
+        val isCalibration: Boolean get() = type and CALIBRATION != 0
+
+        companion object {
+            // 首次检定项目
+            const val FIRST: Int = 1
+
+            // 后续检定项目
+            const val SUBSEQUENT: Int = 2
+
+            // 使用中检查项目
+            const val USING: Int = 4
+
+            // 校准项目
+            const val CALIBRATION: Int = 8
+        }
+    }
+
+    /**
+     * 在线阅读网址
+     */
+    fun getOnLineReadingUrl(): String {
+        return "http://jjg.spc.org.cn/resmea/standard/${number.replace("-", "%2520")}/?"
+    }
 
     override fun hashCode(): Int {
         var result = type.hashCode()
@@ -67,7 +107,7 @@ abstract class StandardDocument {
         return when {
             other === this -> true
             other !is StandardDocument -> false
-            else -> (type == other.type
+            else -> type == other.type
                     && number == other.number
                     && state == other.state
                     && chineseName == other.chineseName
@@ -77,9 +117,7 @@ abstract class StandardDocument {
                     && replaceDocuments == other.replaceDocuments
                     && referenceDocuments == other.referenceDocuments
                     && supersededDocuments == other.supersededDocuments
-                    && adoptDocuments == other.adoptDocuments)
+                    && adoptDocuments == other.adoptDocuments
         }
     }
-
-
 }

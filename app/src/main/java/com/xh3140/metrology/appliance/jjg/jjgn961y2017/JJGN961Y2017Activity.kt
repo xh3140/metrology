@@ -36,5 +36,4 @@ class JJGN961Y2017Activity : BaseActivity() {
             }
         }.attach()
     }
-
 }

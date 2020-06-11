@@ -1,10 +1,8 @@
 package com.xh3140.metrology.appliance.document
 
-object JJGN1078Y2012Document : StandardDocument() {
+object JJGN1078Y2012Document : StandardDocument("JJG 1078-2012") {
 
     override val type: Type = Type.JJG
-
-    override val number: String = "JJG 1078-2012"
 
     override val state: State = State.ACTIVE
 
@@ -32,4 +30,52 @@ object JJGN1078Y2012Document : StandardDocument() {
     override val supersededDocuments: List<String> = emptyList()
 
     override val adoptDocuments: List<String> = emptyList()
+
+    override val items: List<Item> = listOf(
+        object : Item("辐射输出的空气比释动能") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+
+            override val techRequest: String = "在规定的条件下，空气比释动能应不大于10 mGy。"
+        },
+        object : Item("辐射输出的重复性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+
+            override val techRequest: String = "在常规工作条件下，辐射输出的空气比释动能重复性不大于10%。"
+        },
+        object : Item("辐射输出的质") {
+            override val type: Int = FIRST or SUBSEQUENT
+
+            override val techRequest: String = "管电压70kV时，半值层应不大于2.1 mmAl。"
+        },
+        object : Item("空间分辨力") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+
+            override val techRequest: String = "首次检定的应满足出厂的技术指标。后续检定和使用中的CR、DR不小于20 Lp/cm。"
+        },
+        object : Item("低对比度分辨力") {
+            override val type: Int = FIRST or SUBSEQUENT
+
+            override val techRequest: String = "首次检定应满足出厂技术指标。后续检定和使用中的CR、DR不大于2.2%。"
+        },
+        object : Item("影像均匀性") {
+            override val type: Int = FIRST
+
+            override val techRequest: String = "影像均匀性不大于2.2%。"
+        },
+        object : Item("光野与照射野一致性") {
+            override val type: Int = FIRST or SUBSEQUENT
+
+            override val techRequest: String = "光野与照射野之间的偏差不应超过所选SID的0.2%。"
+        },
+        object : Item("有效焦点尺寸") {
+            override val type: Int = FIRST
+
+            override val techRequest: String = "有效焦点尺寸应符合出厂技术要求。"
+        },
+        object : Item("X射线管电压") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+
+            override val techRequest: String = "在工作范围内，X射线管电压的相对偏差不超过±10%。"
+        }
+    )
 }

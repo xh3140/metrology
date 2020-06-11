@@ -1,10 +1,8 @@
 package com.xh3140.metrology.appliance.document
 
-object JJFN1259Y2018Document : StandardDocument() {
+object JJFN1259Y2018Document : StandardDocument("JJF 1259-2018") {
 
     override val type: Type = Type.JJF
-
-    override val number: String = "JJF 1259-2018"
 
     override val state: State = State.ACTIVE
 
@@ -28,4 +26,6 @@ object JJFN1259Y2018Document : StandardDocument() {
     override val supersededDocuments: List<String> = emptyList()
 
     override val adoptDocuments: List<String> = emptyList()
+
+    override val items: List<Item> = emptyList()
 }

@@ -62,7 +62,8 @@
         android:layout_height="wrap_content"
         android:divider="@drawable/bg_divider_v_gray"
         android:orientation="vertical"
-        android:showDividers="middle|beginning|end">
+        android:showDividers="middle|beginning|end"
+        android:visibility="gone">
 
         <TableRow
             android:layout_width="match_parent"
@@ -254,93 +255,6 @@
                 android:padding="8dp"
                 android:textColor="@color/black"
                 tools:text="JJG 270-1995" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:divider="@drawable/bg_divider_h_gray"
-            android:orientation="horizontal"
-            android:showDividers="middle|beginning|end">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewReferenceDocumentsKey"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/std_doc_key_reference_documents" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewReferenceDocumentsValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:divider="@drawable/bg_divider_h_gray"
-            android:orientation="horizontal"
-            android:showDividers="middle|beginning|end">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewSupersededDocumentsKey"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/std_doc_key_superseded_documents" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewSupersededDocumentsValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:divider="@drawable/bg_divider_h_gray"
-            android:orientation="horizontal"
-            android:showDividers="middle|beginning|end">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewAdoptDocumentsKey"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/std_doc_key_adopt_documents" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewAdoptDocumentsValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
-                android:gravity="center"
-                android:padding="8dp"
-                android:textColor="@color/black" />
         </TableRow>
 
         <TableRow
