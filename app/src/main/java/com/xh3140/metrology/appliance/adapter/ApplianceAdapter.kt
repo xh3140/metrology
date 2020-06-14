@@ -3,30 +3,21 @@ package com.xh3140.metrology.appliance.adapter
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.LinearLayout
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.xh3140.core.extensions.startActivity
-import com.xh3140.core.extensions.toast
-import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
-import com.xh3140.metrology.appliance.document.JJGN1078Y2012Document
-import com.xh3140.metrology.appliance.document.JJGN961Y2017Document
+import com.xh3140.metrology.appliance.ApplianceActivity
 import com.xh3140.metrology.appliance.document.StandardDocument
-import com.xh3140.metrology.appliance.jjg.jjgn1078y2012.JJGN1078Y2012Activity
-import com.xh3140.metrology.appliance.jjg.jjgn961y2017.JJGN961Y2017Activity
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
 
 
-class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDocument, ApplianceAdapter.ViewHolder>(DiffCallBack) {
+class ApplianceAdapter(val activity: ApplianceActivity) : ListAdapter<StandardDocument, ApplianceAdapter.ViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -46,6 +37,9 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
         holder.itemView.textViewReplaceDocumentsValue.text = getItem(position).replaceDocuments.joinToString()
     }
 
+    /**
+     * 比较器
+     */
     object DiffCallBack : DiffUtil.ItemCallback<StandardDocument>() {
         override fun areItemsTheSame(oldItem: StandardDocument, newItem: StandardDocument): Boolean {
             return oldItem === newItem
@@ -56,6 +50,21 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
         }
     }
 
+    /**
+     * 回调接口
+     */
+    interface OnClickDocumentListener {
+        /**
+         * 在线阅读
+         */
+        fun onClickOnLineReading(document: StandardDocument)
+
+        /**
+         * 详细信息
+         */
+        fun onClickDetailedInformation(document: StandardDocument)
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var mExpandHeight: Int = 0
         private val mShowAnimator: ValueAnimator = ValueAnimator.ofInt(0, 100)
@@ -64,6 +73,7 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
         init {
             configShowValueAnimator()
             configHideValueAnimator()
+            // 展开与收起
             itemView.linearLayoutHeader.setOnClickListener {
                 if (!mShowAnimator.isRunning && !mHideAnimator.isRunning) {
                     if (itemView.tabLayoutExpand.visibility == View.GONE) {
@@ -73,35 +83,13 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
                     }
                 }
             }
+            // 在线阅读
             itemView.textViewOnlineRead.setOnClickListener {
-                val document = getItem(adapterPosition)
-                val number = document.number.substring(4)
-                if (number.isEmpty()) {
-                    return@setOnClickListener
-                }
-                val builder = CircleContentDialog.Builder(2)
-                    .setTitleText("在线阅读")
-                    .setSummaryText(document.chineseName)
-                    .setContentText("请问是否打开浏览器在线阅读文件？")
-                    .setButtonText(0, "取消")
-                    .setButtonText(1, "确定")
-                    .setButtonOnClickListener { dialog, _, i ->
-                        if (i == 1) {
-                            val url = Uri.parse(document.getOnLineReadingUrl())
-                            val intent = Intent(Intent.ACTION_VIEW, url)
-                            itemView.context.startActivity(intent)
-                        }
-                        dialog.dismiss()
-                    }
-                builder.create().show(activity.supportFragmentManager, null)
+                activity.onClickOnLineReading(getItem(adapterPosition))
             }
-
+            // 详细信息
             itemView.textViewDetailedInformation.setOnClickListener {
-                when (getItem(adapterPosition)) {
-                    is JJGN1078Y2012Document -> activity.startActivity<JJGN1078Y2012Activity>()
-                    is JJGN961Y2017Document -> activity.startActivity<JJGN961Y2017Activity>()
-                    else -> activity.toast("暂无启用")
-                }
+                activity.onClickDetailedInformation(getItem(adapterPosition))
             }
         }
 
@@ -112,6 +100,9 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
             layoutParams = newLayoutParams
         }
 
+        /**
+         * 配置展开动画
+         */
         private fun configShowValueAnimator() {
             mShowAnimator.apply {
                 interpolator = AccelerateDecelerateInterpolator()
@@ -143,6 +134,9 @@ class ApplianceAdapter(val activity: FragmentActivity) : ListAdapter<StandardDoc
             }
         }
 
+        /**
+         * 配置收起动画
+         */
         private fun configHideValueAnimator() {
             mHideAnimator.apply {
                 interpolator = AccelerateDecelerateInterpolator()

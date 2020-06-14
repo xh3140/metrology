@@ -30,5 +30,53 @@ object JJGN1067Y2011Document : StandardDocument("JJG 1067-2011") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("空气比释动能") {
+            override val type: Int = FIRST or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射输出的质(HVL)") {
+            override val type: Int = FIRST
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("模拟血管最小尺寸") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("空间分辨力") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("低对比度分辨力") {
+            override val type: Int = FIRST or SUBSEQUENT
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("对比度线性") {
+            override val type: Int = FIRST
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("减影性能影响") {
+            override val type: Int = FIRST or SUBSEQUENT
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("X射线管电压") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("X射线管的焦点(夹缝法)") {
+            override val type: Int = FIRST
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
+
+    override val itemsNotes: String = "注：“＋”表示应检项目，“－”表示可不检项目。"
 }

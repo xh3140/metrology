@@ -36,5 +36,81 @@ object JJGN744Y2004Document : StandardDocument("JJG 744-2004") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("辐射输出的空气比释动能") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射输出的质") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射输出的重复性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射输出的线性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("分辨力") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射野与光野的一致性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("X射线管的电压") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("X射线管的电流") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("X射线管的焦点") {
+            override val type: Int = NULL
+            override val techRequest: String = ""
+            override val subItems: List<Item> = listOf(
+                object : Item("夹缝法") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("星卡法") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                }
+            )
+        },
+        object : Item("加载时间") {
+            override val type: Int = NULL
+            override val techRequest: String = ""
+            override val subItems: List<Item> = listOf(
+                object : Item("时间") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("电流时间积") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                }
+            )
+        }
+    )
+
+    override val itemsNotes: String = "注：“＋”表示应检项目，“－”表示可不检项目。\n" +
+            "　　“X射线管的焦点”选用“夹缝法”与“星卡法”其中之一。"
 }

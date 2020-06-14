@@ -31,8 +31,11 @@ abstract class StandardDocument(val number: String) {
     // 采用文件
     abstract val adoptDocuments: List<String>
 
-    // 检定/校准项目
+    // 项目树
     abstract val items: List<Item>
+
+    // 项目注释
+    abstract val itemsNotes: String
 
     /**
      * 标准文件类型
@@ -49,7 +52,7 @@ abstract class StandardDocument(val number: String) {
     enum class State(val text: String) { ACTIVE("现行的"), SUPERSEDED("被替代的") }
 
     /**
-     * 检定/校准项目
+     * 检定、校准项目
      */
     abstract class Item(val name: String) {
         // 项目类型
@@ -58,15 +61,13 @@ abstract class StandardDocument(val number: String) {
         // 技术要求
         abstract val techRequest: String
 
-        val isFirst: Boolean get() = type and FIRST != 0
-
-        val isSubsequent: Boolean get() = type and SUBSEQUENT != 0
-
-        val isUsing: Boolean get() = type and USING != 0
-
-        val isCalibration: Boolean get() = type and CALIBRATION != 0
+        // 子项目
+        abstract val subItems: List<Item>
 
         companion object {
+            // 未表明
+            const val NULL: Int = 0
+
             // 首次检定项目
             const val FIRST: Int = 1
 
@@ -85,7 +86,7 @@ abstract class StandardDocument(val number: String) {
      * 在线阅读网址
      */
     fun getOnLineReadingUrl(): String {
-        return "http://jjg.spc.org.cn/resmea/standard/${number.replace("-", "%2520")}/?"
+        return "http://jjg.spc.org.cn/resmea/standard/${number.replace(" ", "%2520")}/?"
     }
 
     override fun hashCode(): Int {

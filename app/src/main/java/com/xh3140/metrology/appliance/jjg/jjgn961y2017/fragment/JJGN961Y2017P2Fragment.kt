@@ -7,7 +7,7 @@ import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_jjg_961_2017_part2.*
 
-class JJG96120171Part2Fragment : BaseFragment() {
+class JJGN961Y2017P2Fragment : BaseFragment() {
 
     override fun getLayoutResID(): Int = R.layout.fragment_jjg_961_2017_part2
 

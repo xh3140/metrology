@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.fragment_jjg_961_2017_part3.*
 import java.util.*
 
 
-class JJG96120171Part3Fragment : BaseFragment() {
+class JJGN961Y2017P3Fragment : BaseFragment() {
 
     override fun getLayoutResID(): Int = R.layout.fragment_jjg_961_2017_part3
 

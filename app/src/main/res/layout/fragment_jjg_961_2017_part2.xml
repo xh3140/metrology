@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appliance.jjg.jjgn961y2017.fragment.JJG96120171Part2Fragment">
+    tools:context=".appliance.jjg.jjgn961y2017.fragment.JJGN961Y2017P2Fragment">
 
     <com.daquexian.flexiblerichtextview.FlexibleRichTextView
         android:id="@+id/flexibleRichTextView"

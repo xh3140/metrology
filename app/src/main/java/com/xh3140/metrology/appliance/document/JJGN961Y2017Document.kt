@@ -31,5 +31,49 @@ object JJGN961Y2017Document : StandardDocument("JJG 961-2017") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("剂量指数") {
+            override val type: Int = FIRST or SUBSEQUENT
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("均匀性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("噪声水平") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("图像之间的一致性") {
+            override val type: Int = FIRST
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("CT值") {
+            override val type: Int = FIRST or SUBSEQUENT
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("层厚") {
+            override val type: Int = FIRST or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("空间分辨力(率)") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("低对比度分辨力(率)") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
+
+    override val itemsNotes: String = "注：“＋”表示应检项目，“－”表示可不检项目。\n" +
+            "　　“图像之间的一致性”是指多排螺旋CT。"
 }

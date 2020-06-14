@@ -28,4 +28,6 @@ object JJFN1259Y2018Document : StandardDocument("JJF 1259-2018") {
     override val adoptDocuments: List<String> = emptyList()
 
     override val items: List<Item> = emptyList()
+
+    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
 }

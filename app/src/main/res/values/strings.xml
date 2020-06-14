@@ -59,6 +59,15 @@
     <string name="std_doc_key_online_read">在线阅读</string>
     <string name="std_doc_key_detailed_information">详细信息</string>
 
+    <string name="appliance_document_jjg">JJG-国家计量检定规程</string>
+    <string name="appliance_document_jjf">JJF-国家计量校准规范</string>
+
+    <string name="appliance_document_jjg_item">检定项目</string>
+    <string name="appliance_document_jjf_item">校准项目</string>
+    <string name="appliance_document_jjg_method">检定方法</string>
+    <string name="appliance_document_jjf_method">校准方法</string>
+    <string name="appliance_document_tech_request">技术要求</string>
+
     <string name="appliance_ct_lcr_new_require">新装CT：[1.0%/2.0mm]和[0.3%/5.0mm]</string>
     <string name="appliance_ct_lcr_old_require">运行CT：[1.0%/3.0mm]和[0.3%/6.0mm]</string>
     <string name="appliance_ct_lcr_title">检测螺旋CT模体</string>
@@ -149,20 +158,14 @@
     <string name="switch_average">平均值</string>
     <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
     <string name="jjg_639_1998">JJG 639–1998</string>
+
     <string name="appliance_jjg_item">检定项目</string>
     <string name="appliance_jjg_first">首次检定</string>
     <string name="appliance_jjg_subsequent">后续检定</string>
     <string name="appliance_jjg_using">使用中检查</string>
     <string name="appliance_jjg_item_note">注：“＋”表示应检项目，“－”表示可不检项目。</string>
-    <string name="appliance_jjg_1078_2012_item1">辐射输出的空气比释动能</string>
-    <string name="appliance_jjg_1078_2012_item2">辐射输出的重复性</string>
-    <string name="appliance_jjg_1078_2012_item3">辐射输出的质</string>
-    <string name="appliance_jjg_1078_2012_item4">空间分辨力</string>
-    <string name="appliance_jjg_1078_2012_item5">低对比度分辨力</string>
-    <string name="appliance_jjg_1078_2012_item6">影像均匀性</string>
-    <string name="appliance_jjg_1078_2012_item7">光野与照射野一致性</string>
-    <string name="appliance_jjg_1078_2012_item8">有效焦点尺寸</string>
-    <string name="appliance_jjg_1078_2012_item9">X射线管电压</string>
+
+    <string name="appliance_item_null">／</string>
     <string name="appliance_item_true">＋</string>
     <string name="appliance_item_false">－</string>
 </resources>

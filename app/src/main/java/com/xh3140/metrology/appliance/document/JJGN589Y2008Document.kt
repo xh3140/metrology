@@ -32,5 +32,85 @@ object JJGN589Y2008Document : StandardDocument("JJG 589-2008") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("医用X加速器辐射源") {
+            override val type: Int = NULL
+            override val techRequest: String = ""
+            override val subItems: List<Item> = listOf(
+                object : Item("辐射质") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("辐射野的均整度") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("辐射野与光野的重合") {
+                    override val type: Int = FIRST or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("辐射野的对称性") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的重复性") {
+                    override val type: Int = FIRST
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的线性") {
+                    override val type: Int = FIRST
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                })
+        },
+        object : Item("医用加速器电子束辐射源") {
+            override val type: Int = NULL
+            override val techRequest: String = ""
+            override val subItems: List<Item> = listOf(
+                object : Item("辐射质") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("辐射野均整度") {
+                    override val type: Int = FIRST
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("辐射野对称性") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的重复性") {
+                    override val type: Int = FIRST
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的线性") {
+                    override val type: Int = FIRST
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                },
+                object : Item("剂量示值的误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val techRequest: String = ""
+                    override val subItems: List<Item> = emptyList()
+                }
+            )
+        }
+    )
+
+    override val itemsNotes: String = "注：在后续检定和使用中检验时，规定以外的项目是否检定由用户决定。\n" +
+            "　　“＋”表示应检项目；“－”表示可不检项目。"
 }

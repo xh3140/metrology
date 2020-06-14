@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xh3140.metrology.R
-import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part1Fragment
-import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part2Fragment
-import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJG96120171Part3Fragment
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJGN961Y2017P1Fragment
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJGN961Y2017P2Fragment
+import com.xh3140.metrology.appliance.jjg.jjgn961y2017.fragment.JJGN961Y2017P3Fragment
 import com.xh3140.metrology.base.ui.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_calculate.*
 
@@ -22,9 +22,9 @@ class JJGN961Y2017Activity : BaseActivity() {
 
             override fun createFragment(position: Int): Fragment =
                 when (position) {
-                    0 -> JJG96120171Part1Fragment()
-                    1 -> JJG96120171Part2Fragment()
-                    else -> JJG96120171Part3Fragment()
+                    0 -> JJGN961Y2017P1Fragment()
+                    1 -> JJGN961Y2017P2Fragment()
+                    else -> JJGN961Y2017P3Fragment()
                 }
         }
         // 选项卡

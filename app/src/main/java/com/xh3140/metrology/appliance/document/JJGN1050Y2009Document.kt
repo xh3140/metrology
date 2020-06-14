@@ -31,5 +31,28 @@ object JJGN1050Y2009Document : StandardDocument("JJG 1050-2009") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("重复性") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("测量结果误差") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("单光子骨密度仪短期稳定性") {
+            override val type: Int = FIRST
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("辐射防护性能") {
+            override val type: Int = FIRST or SUBSEQUENT or USING
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
+
+    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
 }

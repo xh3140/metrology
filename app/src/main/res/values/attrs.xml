@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ItemTableView">
+        <!--头部属性-->
+        <attr name="header_textSize" format="dimension" />
+        <attr name="header_textColor" format="color" />
+        <attr name="header_backgroundColor" format="color" />
+        <!--内容属性-->
+        <attr name="content_TextSize" format="dimension" />
+        <attr name="content_textColor" format="color" />
+        <attr name="content_backgroundColor" format="color" />
+        <attr name="footer_TextSize" format="dimension" />
+        <!--底部属性-->
+        <attr name="footer_textColor" format="color" />
+        <attr name="footer_backgroundColor" format="color" />
+        <!--分割线颜色-->
+        <attr name="dividerColor" format="color" />
+        <!--器具文档-->
         <attr name="document">
             <enum name="JJG_1078_2012" value="0" />
+            <enum name="JJG_961_2017" value="1" />
         </attr>
     </declare-styleable>
 </resources>

@@ -1,8 +1,11 @@
 package com.xh3140.core.widgets.dialog.view
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.LinearLayout
+import com.xh3140.core.extensions.dp2px
 import com.xh3140.core.widgets.dialog.CircleDialog
 
 
@@ -30,33 +33,30 @@ abstract class RootView<D : CircleDialog>(context: Context) : LinearLayout(conte
     fun configView(): RootView<D> {
         orientation = VERTICAL
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        addDividerDrawable()
         mHeadView?.also { headView ->
             if (!headView.isEmpty()) {
                 addView(headView)
             }
         }
         mBodyView?.also { bodyView ->
-            if (childCount > 0) {
-                addDividerView()
-            }
             addView(bodyView)
         }
         mFooterView?.also { footerView ->
             if (!footerView.isEmpty()) {
-                if (childCount > 0) {
-                    addDividerView()
-                }
                 addView(footerView)
             }
         }
         return this
     }
 
-    private fun addDividerView() {
-        val divider = View(context)
-        divider.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 1)
-        divider.setBackgroundColor(0xFFD7D7DB.toInt())
-        addView(divider)
+    private fun addDividerDrawable() {
+        showDividers = SHOW_DIVIDER_MIDDLE
+        dividerDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(Color.parseColor("#FFD7D7DB"))
+            setSize(1, dp2px(1))
+        }
     }
 }
 
