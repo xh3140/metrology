@@ -6,6 +6,8 @@ object JJFN1259Y2018Document : StandardDocument("JJF 1259-2018") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF or LABEL_PRESSURE or LABEL_FLOW
+
     override val chineseName: String = "医用注射泵和输液泵校准规范"
 
     override val englishName: String = "Calibration Specification for Syringe Pumps and Infusion Pumps"
@@ -27,7 +29,28 @@ object JJFN1259Y2018Document : StandardDocument("JJF 1259-2018") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("外观及功能性检查") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("流量相对示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("流量示值重复性") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("阻塞报警误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
 
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val itemsNotes: String = ""
 }

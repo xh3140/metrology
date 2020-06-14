@@ -6,6 +6,8 @@ object JJFN1649Y2017Document : StandardDocument("JJF 1649-2017") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF or LABEL_ULTRASOUND or LABEL_DENSITY
+
     override val chineseName: String = "超声骨密度仪校准规范"
 
     override val englishName: String = "Calibration Specification for Ultrasound Bone Sonometers"
@@ -29,7 +31,22 @@ object JJFN1649Y2017Document : StandardDocument("JJF 1649-2017") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
-
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val items: List<Item> = listOf(
+        object : Item("声速") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("声速测量重复性") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("宽带超声衰减") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
+    override val itemsNotes: String = ""
 }

@@ -1,29 +1,30 @@
 package com.xh3140.metrology.appliance.document
 
-object JJFN1213Y2008Document : StandardDocument("JJF 1213-2008") {
+object JJFN1260Y2010Document : StandardDocument("JJF 1260-2010") {
 
     override val type: Type = Type.JJF
 
     override val state: State = State.ACTIVE
 
-    override val labels: Int = LABEL_JJF or LABEL_PRESSURE or LABEL_FLOW
+    override val labels: Int = LABEL_JJF or LABEL_HUMITURE
 
-    override val chineseName: String = "肺功能仪校准规范"
+    override val chineseName: String = "婴儿培养箱校准规范"
 
-    override val englishName: String = "Calibration Specification for the Pulmonary Function Measuring Instrument"
+    override val englishName: String = "Calibration Specification for Baby Incubator"
 
-    override val publishDate: String = "2008-09-27"
+    override val publishDate: String = "2010-06-10"
 
-    override val executeDate: String = "2009-01-01"
+    override val executeDate: String = "2010-09-10"
 
     override val replaceDocuments: List<String> = emptyList()
 
     override val referenceDocuments: List<String> = listOf(
+        "GB 9706.1-2007",
+        "GB 11243-2008",
+        "JJG 535-2004",
         "JJF 1001-1998",
         "JJF 1071-2000",
-        "JJF 1059-1999",
-        "Standardization of spirometry,1994 Update,American Thoracic Society. American Journal of Respiratory and Critical care Medicine. 1995，Vol152:1107-1136",
-        "Standardization of spirometry,European Respiratory Journal. 2005,Vol26:319-338"
+        "JJF 1101-2003"
     )
 
     override val supersededDocuments: List<String> = emptyList()
@@ -31,37 +32,52 @@ object JJFN1213Y2008Document : StandardDocument("JJF 1213-2008") {
     override val adoptDocuments: List<String> = emptyList()
 
     override val items: List<Item> = listOf(
-        object : Item("外观及功能性检查") {
+        object : Item("报警功能及电气安全检查") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("肺活量") {
+        object : Item("温度偏差") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("用力肺活量") {
+        object : Item("温度均匀度") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("呼气峰值流量") {
+        object : Item("温度波动度") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("最大分钟通气量") {
+        object : Item("平均培养箱温度与控制温度之差") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("气体分析器的校准") {
+        object : Item("温度超调量") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()
         },
-        object : Item("气体分析器测量重复性") {
+        object : Item("相对湿度偏差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("氧分析器示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("婴儿舱内噪声") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("报警器报警噪声") {
             override val type: Int = CALIBRATION
             override val techRequest: String = ""
             override val subItems: List<Item> = emptyList()

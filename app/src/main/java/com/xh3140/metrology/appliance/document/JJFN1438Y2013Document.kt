@@ -6,6 +6,8 @@ object JJFN1438Y2013Document : StandardDocument("JJF 1438-2013") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF or LABEL_ULTRASOUND or LABEL_FLOW
+
     override val chineseName: String = "彩色多普勒超声诊断仪(血流测量部分)校准规范"
 
     override val englishName: String = "Calibration Specification for Color Doppler Ultrasound Diagnostic Equipments—Blood Flow Measurement"
@@ -29,7 +31,23 @@ object JJFN1438Y2013Document : StandardDocument("JJF 1438-2013") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("多普勒血流速度测量") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("血流方向识别能力") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("多普勒血流探测深度") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
 
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val itemsNotes: String = ""
 }

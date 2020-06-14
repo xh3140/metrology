@@ -6,6 +6,8 @@ object JJGN744Y2004Document : StandardDocument("JJG 744-2004") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJG or LABEL_FORCIBLE or LABEL_IMAGING or LABEL_RADIATION
+
     override val chineseName: String = "医用诊断X射线辐射源"
 
     override val englishName: String = "Medical Diagnostic X-ray Radiation Source"

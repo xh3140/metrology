@@ -6,6 +6,8 @@ object JJGN1078Y2012Document : StandardDocument("JJG 1078-2012") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJG or LABEL_IMAGING or LABEL_RADIATION
+
     override val chineseName: String = "医用数字摄影(CR、DR)系统X射线辐射源"
 
     override val englishName: String = "X-ray Radiation Sources for Medical Computed Radiography System and Digital Radiography System"

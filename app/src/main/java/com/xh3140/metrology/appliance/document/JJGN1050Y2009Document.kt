@@ -6,6 +6,8 @@ object JJGN1050Y2009Document : StandardDocument("JJG 1050-2009") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJG or LABEL_IMAGING or LABEL_RADIATION or LABEL_DENSITY
+
     override val chineseName: String = "X、γ射线骨密度仪"
 
     override val englishName: String = "X、gamma-ray Densitometry for Bone Mineral Density"

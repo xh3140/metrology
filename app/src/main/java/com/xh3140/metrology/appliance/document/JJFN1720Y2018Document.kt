@@ -6,6 +6,8 @@ object JJFN1720Y2018Document : StandardDocument("JJF 1720-2018") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF or LABEL_TEST or LABEL_ANALYSIS
+
     override val chineseName: String = "全自动生化分析仪校准规范"
 
     override val englishName: String = "Calibration Specification for Automatic Chemistry Analyzers"
@@ -28,7 +30,37 @@ object JJFN1720Y2018Document : StandardDocument("JJF 1720-2018") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
-
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val items: List<Item> = listOf(
+        object : Item("外观") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("吸光度示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("吸光度重复性") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("线性误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("ALT和GLU测量示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("ALT和GLU测量重复性") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
+    override val itemsNotes: String = ""
 }

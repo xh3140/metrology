@@ -172,33 +172,41 @@ class ItemTableView : LinearLayout {
      * 构建表格
      */
     private fun buildTable(document: StandardDocument) {
-        if (childCount > 0) {
-            removeAllViews()
-        }
         orientation = VERTICAL
         dividerDrawable = createTableDividerDrawable()
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-        addHeaderRow()
-        val depth = document.getMaxDepth()
-        for (item in document.items) {
-            addContentRow(depth, item)
+        if (childCount > 0) {
+            removeAllViews()
         }
-        addFooterRow(document.itemsNotes)
+        addHeaderRow(document)
+        val depth = document.getMaxDepth()
+        for (i in document.items.indices) {
+            addContentRow(document, i, depth, document.items[i])
+        }
+        addFooterRow(document)
     }
 
     /**
      * 添加表格头部行
      */
-    private fun addHeaderRow() {
+    private fun addHeaderRow(document: StandardDocument) {
         val headerRow = LinearLayout(context).apply {
             orientation = HORIZONTAL
             dividerDrawable = createTableDividerDrawable()
             showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-            addView(createHeaderCellView(3f, "检定项目"))
-            addView(createHeaderCellView(2f, "首次检定"))
-            addView(createHeaderCellView(2f, "后续检定"))
-            addView(createHeaderCellView(2f, "使用中检查"))
+            when (document.type) {
+                StandardDocument.Type.JJG -> {
+                    addView(createHeaderCellView(3f, "检定项目"))
+                    addView(createHeaderCellView(2f, "首次检定"))
+                    addView(createHeaderCellView(2f, "后续检定"))
+                    addView(createHeaderCellView(2f, "使用中检查"))
+                }
+                StandardDocument.Type.JJF -> {
+                    addView(createHeaderCellView(2f, "序号"))
+                    addView(createHeaderCellView(7f, "校准项目"))
+                }
+            }
         }
         addView(headerRow)
     }
@@ -206,14 +214,22 @@ class ItemTableView : LinearLayout {
     /**
      * 添加表格内容行
      */
-    private fun addContentRow(depth: Int, item: StandardDocument.Item) {
+    private fun addContentRow(document: StandardDocument, index: Int, depth: Int, item: StandardDocument.Item) {
         val tableRow = LinearLayout(context).apply {
             orientation = HORIZONTAL
             dividerDrawable = createTableDividerDrawable()
             showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         }
-        tableRow.addRecursionView(0f, depth, item)
+        when (document.type) {
+            StandardDocument.Type.JJG -> {
+                tableRow.addRecursionView(0f, depth, item)
+            }
+            StandardDocument.Type.JJF -> {
+                tableRow.addView(createContentCellView(2f, (index + 1).toString()))
+                tableRow.addView(createContentCellView(7f, item.name))
+            }
+        }
         addView(tableRow)
     }
 
@@ -252,15 +268,17 @@ class ItemTableView : LinearLayout {
     /**
      * 添加表格底部行
      */
-    private fun addFooterRow(note: String) {
-        val footerRow = LinearLayout(context).apply {
-            orientation = HORIZONTAL
-            dividerDrawable = createTableDividerDrawable()
-            showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-            layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-            addView(createFooterCellView(note))
+    private fun addFooterRow(document: StandardDocument) {
+        if (document.itemsNotes.isNotEmpty()) {
+            val footerRow = LinearLayout(context).apply {
+                orientation = HORIZONTAL
+                dividerDrawable = createTableDividerDrawable()
+                showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
+                layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+                addView(createFooterCellView(document.itemsNotes))
+            }
+            addView(footerRow)
         }
-        addView(footerRow)
     }
 
     /**

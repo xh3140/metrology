@@ -13,6 +13,8 @@ object StandardDocumentCache {
         postDocument(JJGN1163Y2019Document) //多参数监护仪
         postDocument(JJGN543Y2008Document) // 心电图机
         postDocument(JJGN1041Y2008Document) // 数字心电图机
+        postDocument(JJGN1043Y2008Document) // 脑电图机
+        postDocument(JJGN954Y2019Document) // 数字脑电图仪
         postDocument(JJGN744Y2004Document) // 医用诊断X射线辐射源
         // 检定
         postDocument(JJGN1078Y2012Document) // 医用数字摄影(CR、DR)系统X射线辐射源
@@ -35,6 +37,7 @@ object StandardDocumentCache {
         postDocument(JJFN1234Y2018Document) // 呼吸机校准规范
         postDocument(JJFN1149Y2014Document) // 心脏除颤器校准规范
         postDocument(JJFN1217Y2009Document) // 高频电刀校准规范
+        postDocument(JJFN1260Y2010Document) // 婴儿培养箱校准规范
         postDocument(JJFN1353Y2012Document) // 血液透析装置校准规范
         postDocument(JJFN1213Y2008Document) // 肺功能仪校准规范
         postDocument(JJFN1438Y2013Document) // 彩色多普勒超声诊断仪(血流测量部分)校准规范
@@ -53,4 +56,15 @@ object StandardDocumentCache {
     fun findDocument(key: Int): StandardDocument? {
         return mChildTable[key]
     }
+
+    fun findDocumentsByLabels(labels: Int): List<StandardDocument> {
+        val list: MutableList<StandardDocument> = ArrayList()
+        for (document in mChildList) {
+            if (labels and document.labels != 0) {
+                list.add(document)
+            }
+        }
+        return list
+    }
+
 }

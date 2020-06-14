@@ -6,6 +6,8 @@ object JJFN1149Y2014Document : StandardDocument("JJF 1149-2014") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF or LABEL_BIOELECTRICITY
+
     override val chineseName: String = "心脏除颤器校准规范"
 
     override val englishName: String = "Calibration Specification for Cardiac Defibrillators"
@@ -22,7 +24,58 @@ object JJFN1149Y2014Document : StandardDocument("JJF 1149-2014") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("外观、工作正常性检查") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("释放能量") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("充电或内部放电过程中心电监视器信号描记幅度的波动") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("经皮起搏脉冲频率") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("经皮起搏脉冲宽度") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("经皮起搏脉冲电流幅度") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("心电信号电压示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("心电显示扫描速度示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("幅频特性") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("心率示值误差") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
 
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val itemsNotes: String = "注：以上指标不是用于合格性判别，仅供参考。"
 }

@@ -6,6 +6,8 @@ object JJFN1217Y2009Document : StandardDocument("JJF 1217-2009") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJF
+
     override val chineseName: String = "高频电刀校准规范"
 
     override val englishName: String = "Calibratior Specification for Electrosurgical Generator"
@@ -28,7 +30,33 @@ object JJFN1217Y2009Document : StandardDocument("JJF 1217-2009") {
 
     override val adoptDocuments: List<String> = emptyList()
 
-    override val items: List<Item> = emptyList()
+    override val items: List<Item> = listOf(
+        object : Item("外观及工作正常性的检查") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("高频漏电流的校准") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("输出功率设置值误差的校准") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("最大输出功率的校准") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        },
+        object : Item("外壳漏电流的测量") {
+            override val type: Int = CALIBRATION
+            override val techRequest: String = ""
+            override val subItems: List<Item> = emptyList()
+        }
+    )
 
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val itemsNotes: String = ""
 }

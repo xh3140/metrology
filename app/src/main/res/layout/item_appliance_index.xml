@@ -14,8 +14,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewArrow"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="4dp"
             android:contentDescription="@string/image_default_description"
@@ -32,11 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:text="JJG 270-2008" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -45,12 +45,12 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
                 android:singleLine="true"
                 android:textColor="@color/dim_gray"
-                android:textSize="16sp"
+                android:textSize="13sp"
                 tools:text="血压计和血压表" />
         </LinearLayout>
 

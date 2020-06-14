@@ -6,6 +6,8 @@ object JJGN464Y2011Document : StandardDocument("JJG 464-2011") {
 
     override val state: State = State.ACTIVE
 
+    override val labels: Int = LABEL_JJG or LABEL_TEST or LABEL_ANALYSIS
+
     override val chineseName: String = "半自动生化分析仪"
 
     override val englishName: String = "Semiautomatic Clinical Chemistry Analyzers"

@@ -2,10 +2,16 @@
   <dictionary name="xh3140">
     <words>
       <w>aapm</w>
+      <w>angiography</w>
+      <w>bioelectricity</w>
+      <w>calibratior</w>
       <w>densitometry</w>
+      <w>dosimetry</w>
       <w>electro</w>
+      <w>electrosurgical</w>
       <w>frac</w>
       <w>hemodialysis</w>
+      <w>humiture</w>
       <w>iaea</w>
       <w>jjggz</w>
       <w>jjgn</w>
@@ -13,8 +19,10 @@
       <w>metrological</w>
       <w>metrology</w>
       <w>oiml</w>
+      <w>sonometers</w>
       <w>sphygmomanometer</w>
       <w>sphygmomanometers</w>
+      <w>spirometry</w>
     </words>
   </dictionary>
 </component>
