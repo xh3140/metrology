@@ -26,6 +26,13 @@
             app:colorStyle="THEME_BLUE" />
 
         <com.xh3140.core.widgets.button.NiceButton
+            android:id="@+id/buttonCT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CT低对比度分辨力"
+            app:colorStyle="THEME_YELLOW" />
+
+        <com.xh3140.core.widgets.button.NiceButton
             android:id="@+id/buttonMrHomogeneity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

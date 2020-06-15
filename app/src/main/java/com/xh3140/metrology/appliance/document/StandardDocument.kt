@@ -44,23 +44,22 @@ abstract class StandardDocument(val number: String) {
      * 静态
      */
     companion object {
-        const val LABEL_NULL: Int = 0x0000000
-        const val LABEL_JJG: Int = 0x0000001
-        const val LABEL_JJF: Int = 0x0000002
-        const val LABEL_FORCIBLE: Int = 0x0000004
-        const val LABEL_TEST: Int = 0x0000008
-        const val LABEL_IMAGING: Int = 0x0000010
-        const val LABEL_RADIATION: Int = 0x0000020
-        const val LABEL_ULTRASOUND: Int = 0x0000040
-        const val LABEL_PRESSURE: Int = 0x0000080
-        const val LABEL_FLOW: Int = 0x0000100
-        const val LABEL_DENSITY: Int = 0x0000200
-        const val LABEL_BIOELECTRICITY: Int = 0x0000400
-        const val LABEL_ANALYSIS: Int = 0x0000800
-        const val LABEL_LASER: Int = 0x0001000
-        const val LABEL_MAGNETISM: Int = 0x0002000
-        const val LABEL_HUMITURE: Int = 0x0004000
-
+        const val LABEL_ALL: Int = -1
+        const val LABEL_JJG: Int = 1
+        const val LABEL_JJF: Int = 2
+        const val LABEL_FORCIBLE: Int = 4
+        const val LABEL_TEST: Int = 8
+        const val LABEL_IMAGING: Int = 16
+        const val LABEL_RADIATION: Int = 32
+        const val LABEL_ULTRASOUND: Int = 64
+        const val LABEL_PRESSURE: Int = 128
+        const val LABEL_FLOW: Int = 256
+        const val LABEL_DENSITY: Int = 512
+        const val LABEL_BIOELECTRICITY: Int = 1024
+        const val LABEL_ANALYSIS: Int = 2048
+        const val LABEL_LASER: Int = 4096
+        const val LABEL_MAGNETISM: Int = 8192
+        const val LABEL_HUMITURE: Int = 16384
     }
 
     /**
@@ -81,7 +80,7 @@ abstract class StandardDocument(val number: String) {
      * 标签
      */
     enum class Label(val value: Int, val text: String) {
-        NULL(LABEL_NULL, ""),
+        ALL(LABEL_ALL, "所有"),
         JJG(LABEL_JJG, "检定"),
         JJF(LABEL_JJF, "校准"),
         FORCIBLE(LABEL_FORCIBLE, "强制检定"),
@@ -97,35 +96,6 @@ abstract class StandardDocument(val number: String) {
         LASER(LABEL_LASER, "激光"),
         MAGNETISM(LABEL_MAGNETISM, "磁性"),
         HUMITURE(LABEL_HUMITURE, "温湿度");
-
-        /**
-         * 属于
-         */
-        infix fun of(labels: Int): Boolean {
-            return value and labels != 0
-        }
-
-        companion object {
-
-            fun label(value: Int): Label {
-                for (l in values()) {
-                    if (l.value == value) {
-                        return l
-                    }
-                }
-                return NULL
-            }
-
-            fun labels(value: Int): List<Label> {
-                val list: MutableList<Label> = ArrayList()
-                for (l in values()) {
-                    if (l.value and value != 0) {
-                        list.add(l)
-                    }
-                }
-                return list
-            }
-        }
     }
 
     /**

@@ -62,12 +62,11 @@
         android:layout_height="wrap_content"
         android:divider="@drawable/bg_divider_v_gray"
         android:orientation="vertical"
-        android:showDividers="middle|beginning|end"
-        android:visibility="gone">
+        android:showDividers="middle|beginning|end">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -76,28 +75,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewChineseNameKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_chinese_name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewChineseNameValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="血压计和血压表" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -106,28 +103,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewEnglishNameKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_english_name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewEnglishNameValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="Sphygmomanometer" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -136,29 +131,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDocumentTypeKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_document_type" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDocumentTypeValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="JJG" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDocumentStateKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp"
@@ -167,18 +159,17 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDocumentStateValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="现行的" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -187,29 +178,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewPublishDateKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_publish_date" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewPublishDateValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="2008-03-25" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewExecuteDateKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="8dp"
@@ -218,18 +206,17 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewExecuteDateValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="2008-09-25" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -238,28 +225,26 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewReplaceDocumentsKey"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_replace_documents" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewReplaceDocumentsValue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3.02"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:textColor="@color/black"
                 tools:text="JJG 270-1995" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:divider="@drawable/bg_divider_h_gray"
             android:orientation="horizontal"
@@ -268,22 +253,20 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewOnlineRead"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_online_read"
                 android:textColor="@android:color/holo_blue_dark" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewDetailedInformation"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="@string/std_doc_key_detailed_information"
                 android:textColor="@android:color/holo_blue_dark" />
         </TableRow>

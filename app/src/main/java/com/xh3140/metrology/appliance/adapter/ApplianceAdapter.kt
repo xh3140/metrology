@@ -17,7 +17,9 @@ import com.xh3140.metrology.appliance.document.StandardDocument
 import kotlinx.android.synthetic.main.item_appliance_index.view.*
 
 
-class ApplianceAdapter(val activity: ApplianceActivity) : ListAdapter<StandardDocument, ApplianceAdapter.ViewHolder>(DiffCallBack) {
+class ApplianceAdapter(val activity: ApplianceActivity) : ListAdapter<ApplianceAdapter.Item, ApplianceAdapter.ViewHolder>(DiffCallBack) {
+
+    data class Item(var active: Boolean, val document: StandardDocument)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,26 +28,31 @@ class ApplianceAdapter(val activity: ApplianceActivity) : ListAdapter<StandardDo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.textViewNumber.text = getItem(position).number
-        holder.itemView.textViewName.text = getItem(position).chineseName
-        holder.itemView.textViewChineseNameValue.text = getItem(position).chineseName
-        holder.itemView.textViewEnglishNameValue.text = getItem(position).englishName
-        holder.itemView.textViewDocumentTypeValue.text = getItem(position).type.name
-        holder.itemView.textViewDocumentStateValue.text = getItem(position).state.text
-        holder.itemView.textViewPublishDateValue.text = getItem(position).publishDate
-        holder.itemView.textViewExecuteDateValue.text = getItem(position).executeDate
-        holder.itemView.textViewReplaceDocumentsValue.text = getItem(position).replaceDocuments.joinToString()
+        val active = getItem(position).active
+        val document = getItem(position).document
+        holder.itemView.apply {
+            tabLayoutExpand.visibility = if (active) View.VISIBLE else View.GONE
+            textViewNumber.text = document.number
+            textViewName.text = document.chineseName
+            textViewChineseNameValue.text = document.chineseName
+            textViewEnglishNameValue.text = document.englishName
+            textViewDocumentTypeValue.text = document.type.name
+            textViewDocumentStateValue.text = document.state.text
+            textViewPublishDateValue.text = document.publishDate
+            textViewExecuteDateValue.text = document.executeDate
+            textViewReplaceDocumentsValue.text = document.replaceDocuments.joinToString()
+        }
     }
 
     /**
      * 比较器
      */
-    object DiffCallBack : DiffUtil.ItemCallback<StandardDocument>() {
-        override fun areItemsTheSame(oldItem: StandardDocument, newItem: StandardDocument): Boolean {
+    object DiffCallBack : DiffUtil.ItemCallback<Item>() {
+        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: StandardDocument, newItem: StandardDocument): Boolean {
+        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
             return oldItem == newItem
         }
     }
@@ -78,18 +85,20 @@ class ApplianceAdapter(val activity: ApplianceActivity) : ListAdapter<StandardDo
                 if (!mShowAnimator.isRunning && !mHideAnimator.isRunning) {
                     if (itemView.tabLayoutExpand.visibility == View.GONE) {
                         mShowAnimator.start()
+                        getItem(adapterPosition).active = true
                     } else {
                         mHideAnimator.start()
+                        getItem(adapterPosition).active = false
                     }
                 }
             }
             // 在线阅读
             itemView.textViewOnlineRead.setOnClickListener {
-                activity.onClickOnLineReading(getItem(adapterPosition))
+                activity.onClickOnLineReading(getItem(adapterPosition).document)
             }
             // 详细信息
             itemView.textViewDetailedInformation.setOnClickListener {
-                activity.onClickDetailedInformation(getItem(adapterPosition))
+                activity.onClickDetailedInformation(getItem(adapterPosition).document)
             }
         }
 
