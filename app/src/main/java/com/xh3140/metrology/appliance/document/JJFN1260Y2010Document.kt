@@ -34,55 +34,45 @@ object JJFN1260Y2010Document : StandardDocument("JJF 1260-2010") {
     override val items: List<Item> = listOf(
         object : Item("报警功能及电气安全检查") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("温度偏差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("温度均匀度") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("温度波动度") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("平均培养箱温度与控制温度之差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("温度超调量") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("相对湿度偏差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("氧分析器示值误差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("婴儿舱内噪声") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("报警器报警噪声") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         }
     )
 
-    override val itemsNotes: String = ""
+    override val itemsNotes: List<String> = emptyList()
 }

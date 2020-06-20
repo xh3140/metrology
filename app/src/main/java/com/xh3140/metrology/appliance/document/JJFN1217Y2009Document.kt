@@ -33,30 +33,25 @@ object JJFN1217Y2009Document : StandardDocument("JJF 1217-2009") {
     override val items: List<Item> = listOf(
         object : Item("外观及工作正常性的检查") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("高频漏电流的校准") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("输出功率设置值误差的校准") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("最大输出功率的校准") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("外壳漏电流的测量") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         }
     )
 
-    override val itemsNotes: String = ""
+    override val itemsNotes: List<String> = emptyList()
 }

@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fragmentHome"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_home_fill"
         android:title="@string/main_fragment_home_title" />
     <item
-        android:id="@+id/fragmentWork"
-        android:icon="@drawable/ic_tool_black_24dp"
+        android:id="@+id/fragmentTools"
+        android:icon="@drawable/ic_tools_fill"
         android:title="@string/main_fragment_tools_title" />
     <item
-        android:id="@+id/fragmentSetting"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/main_fragment_setting_title" />
+        android:id="@+id/fragmentSettings"
+        android:icon="@drawable/ic_settings_fill"
+        android:title="@string/main_fragment_settings_title" />
 </menu>

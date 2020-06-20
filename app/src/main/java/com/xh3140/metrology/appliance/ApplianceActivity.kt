@@ -12,7 +12,7 @@ import com.xh3140.metrology.R
 import com.xh3140.metrology.appliance.adapter.ApplianceAdapter
 import com.xh3140.metrology.appliance.document.StandardDocument
 import com.xh3140.metrology.appliance.document.StandardDocumentCache
-import com.xh3140.metrology.appliance.widgets.LabelTableView
+import com.xh3140.metrology.appliance.widgets.LabelsView
 import com.xh3140.metrology.base.ui.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_appliance.*
 
@@ -37,7 +37,7 @@ class ApplianceActivity : BaseActivity(), ApplianceAdapter.OnClickDocumentListen
     }
 
     override fun initListener() {
-        labelTableView.setOnLabelsChangedListener(object : LabelTableView.OnLabelsChangedListener {
+        labelTableView.setOnLabelsChangedListener(object : LabelsView.OnLabelsChangedListener {
             override fun onChanged(logicOr: Boolean, labels: Int) {
                 Log.d("xh3140", "$logicOr ${labels.toString(2)}")
                 if (logicOr) {

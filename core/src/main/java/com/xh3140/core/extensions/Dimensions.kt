@@ -2,6 +2,8 @@ package com.xh3140.core.extensions
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Paint
+import android.graphics.Rect
 import android.util.DisplayMetrics
 import android.view.View
 import androidx.annotation.DimenRes
@@ -74,3 +76,24 @@ fun Activity.getScreenHeight(): Int {
 fun Fragment.getScreenWidth(): Int = requireActivity().getScreenWidth()
 
 fun Fragment.getScreenHeight(): Int = requireActivity().getScreenHeight()
+
+/**
+ * 测量区域，复用优化
+ */
+private val BOUNDS: Rect = Rect()
+
+/**
+ * 获取文本区域宽度 px
+ */
+fun Paint.getTextBoundsWidth(text: String): Int {
+    getTextBounds(text, 0, text.length, BOUNDS)
+    return BOUNDS.width()
+}
+
+/**
+ * 获取文本区域高度 px
+ */
+fun Paint.getTextBoundsHeight(text: String): Int {
+    getTextBounds(text, 0, text.length, BOUNDS)
+    return BOUNDS.height()
+}

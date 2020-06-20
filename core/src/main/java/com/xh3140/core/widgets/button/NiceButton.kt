@@ -1,7 +1,6 @@
 package com.xh3140.core.widgets.button
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import com.xh3140.core.R
@@ -113,62 +112,56 @@ class NiceButton : AppCompatButton {
     }
 
     /**
-     * 拓展方法，获取圆角半径数组
-     */
-    private fun TypedArray.getRadiusArray() = intArrayOf(
-        getDimensionPixelSize(R.styleable.NiceButton_radius_leftTop, mRadius[0]),
-        getDimensionPixelSize(R.styleable.NiceButton_radius_rightTop, mRadius[1]),
-        getDimensionPixelSize(R.styleable.NiceButton_radius_rightBottom, mRadius[2]),
-        getDimensionPixelSize(R.styleable.NiceButton_radius_leftBottom, mRadius[3])
-    )
-
-    /**
-     * 拓展方法，获取内嵌距离数组
-     */
-    private fun TypedArray.getInsetArray() = intArrayOf(
-        getDimensionPixelSize(R.styleable.NiceButton_inset_left, mInset[0]),
-        getDimensionPixelSize(R.styleable.NiceButton_inset_top, mInset[1]),
-        getDimensionPixelSize(R.styleable.NiceButton_inset_right, mInset[2]),
-        getDimensionPixelSize(R.styleable.NiceButton_inset_bottom, mInset[3])
-    )
-
-    /**
      * 由XML初始化视图
      */
     private fun configView(context: Context, attrs: AttributeSet?) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
         // 设置是否是波纹背景
-        val isRipple = typedArray.getBoolean(R.styleable.NiceButton_isRipple, true)
+        val isRipple = a.getBoolean(R.styleable.NiceButton_isRipple, true)
         setIsRippleDrawable(isRipple)
         // 设置是否是内嵌背景
-        val isInset = typedArray.getBoolean(R.styleable.NiceButton_isInset, true)
+        val isInset = a.getBoolean(R.styleable.NiceButton_isInset, true)
         setIsInsetDrawable(isInset)
         // 设置圆角半径
-        val radius = typedArray.getDimensionPixelSize(R.styleable.NiceButton_radius, -1)
+        val radius = a.getDimensionPixelSize(R.styleable.NiceButton_radius, -1)
         if (radius >= 0) {
             setRadius(radius)
         } else {
-            setRadius(typedArray.getRadiusArray())
+            setRadius(
+                intArrayOf(
+                    a.getDimensionPixelSize(R.styleable.NiceButton_radius_leftTop, mRadius[0]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_radius_rightTop, mRadius[1]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_radius_rightBottom, mRadius[2]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_radius_leftBottom, mRadius[3])
+                )
+            )
         }
         // 设置内嵌距离
-        val inset = typedArray.getDimensionPixelSize(R.styleable.NiceButton_inset, -1)
+        val inset = a.getDimensionPixelSize(R.styleable.NiceButton_inset, -1)
         if (inset >= 0) {
             setInset(inset)
         } else {
-            setInset(typedArray.getInsetArray())
+            setInset(
+                intArrayOf(
+                    a.getDimensionPixelSize(R.styleable.NiceButton_inset_left, mInset[0]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_inset_top, mInset[1]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_inset_right, mInset[2]),
+                    a.getDimensionPixelSize(R.styleable.NiceButton_inset_bottom, mInset[3])
+                )
+            )
         }
         // 设置主题颜色
-        val themeIndex = typedArray.getInt(R.styleable.NiceButton_colorStyle, -1)
+        val themeIndex = a.getInt(R.styleable.NiceButton_colorStyle, -1)
         if (themeIndex >= 0) {
             setColorStyle(ColorStyle.values()[themeIndex])
         }
         // 设置按钮位置
-        val locationIndex = typedArray.getInt(R.styleable.NiceButton_location, -1)
+        val locationIndex = a.getInt(R.styleable.NiceButton_location, -1)
         if (locationIndex >= 0) {
             setLocation(Location.values()[locationIndex])
         }
         done()
-        typedArray.recycle()
+        a.recycle()
     }
 
     /**
@@ -183,7 +176,7 @@ class NiceButton : AppCompatButton {
      * true RippleDrawable
      * false StateListDrawable
      */
-    fun setIsRippleDrawable(flag: Boolean = true) {
+    fun setIsRippleDrawable(flag: Boolean) {
         mIsRippleDrawable = flag
     }
 
@@ -192,7 +185,7 @@ class NiceButton : AppCompatButton {
      * true InsetDrawable
      * false GradientDrawable
      */
-    fun setIsInsetDrawable(flag: Boolean = true) {
+    fun setIsInsetDrawable(flag: Boolean) {
         mIsInsetDrawable = flag
     }
 

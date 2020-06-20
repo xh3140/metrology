@@ -1,14 +1,16 @@
 package com.xh3140.metrology.main
 
 import android.view.View
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.activity.BaseActivity
 import io.github.kbiakov.codeview.classifier.CodeProcessor
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_main_navigation_home.*
+import kotlinx.android.synthetic.main.layout_main_navigation_settings.*
+import kotlinx.android.synthetic.main.layout_main_navigation_tools.*
 import org.scilab.forge.jlatexmath.core.AjLatexMath
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,16 +24,13 @@ class MainActivity : BaseActivity() {
         // 过期保护
         if (checkAuthorization()) {
             setContentView(View(this))
-            return
+        } else {
+            // 数学公式
+            AjLatexMath.init(this)
+            CodeProcessor.init(this)
+            // 底部导航
+            configBottomNavigation()
         }
-        // 数学公式
-        AjLatexMath.init(this)
-        CodeProcessor.init(this)
-        // 底部导航
-        val controller = Navigation.findNavController(this, R.id.navHostFragment)
-        val configuration = AppBarConfiguration.Builder(bottomNavigationView.menu).build()
-        NavigationUI.setupActionBarWithNavController(this, controller, configuration)
-        NavigationUI.setupWithNavController(bottomNavigationView, controller)
     }
 
     private fun checkAuthorization(): Boolean {
@@ -51,5 +50,23 @@ class MainActivity : BaseActivity() {
             return true
         }
         return false
+    }
+
+    private fun configBottomNavigation() {
+        val destinationMap = mapOf(
+            R.id.fragmentHome to motionLayoutHome,
+            R.id.fragmentTools to motionLayoutTools,
+            R.id.fragmentSettings to motionLayoutSettings
+        )
+        val navController = findNavController(R.id.fragment)
+        setupActionBarWithNavController(navController, AppBarConfiguration(destinationMap.keys))
+        destinationMap.forEach { map ->
+            map.value.setOnClickListener { navController.navigate(map.key) }
+        }
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            controller.popBackStack()
+            destinationMap.values.forEach { it.progress = 0.00001f }
+            destinationMap[destination.id]?.transitionToEnd()
+        }
     }
 }

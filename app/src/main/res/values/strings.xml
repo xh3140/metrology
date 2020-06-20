@@ -11,7 +11,7 @@
     <!--fragment-->
     <string name="main_fragment_home_title">主页</string>
     <string name="main_fragment_tools_title">工具</string>
-    <string name="main_fragment_setting_title">设置</string>
+    <string name="main_fragment_settings_title">设置</string>
 
     <string name="calculate_fragment_formula_title">公式</string>
     <string name="calculate_fragment_algorithm_title">算法</string>

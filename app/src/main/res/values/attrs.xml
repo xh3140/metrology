@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ItemTableView">
+    <declare-styleable name="ItemsView">
         <!--头部属性-->
         <attr name="header_textSize" format="dimension" />
         <attr name="header_textColor" format="color" />

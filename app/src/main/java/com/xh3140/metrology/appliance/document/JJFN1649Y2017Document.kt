@@ -34,19 +34,16 @@ object JJFN1649Y2017Document : StandardDocument("JJF 1649-2017") {
     override val items: List<Item> = listOf(
         object : Item("声速") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("声速测量重复性") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("宽带超声衰减") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         }
     )
-    override val itemsNotes: String = ""
+    override val itemsNotes: List<String> = emptyList()
 }

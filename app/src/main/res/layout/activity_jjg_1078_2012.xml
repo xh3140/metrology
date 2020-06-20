@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".appliance.jjg.jjgn1078y2012.JJGN1078Y2012Activity">
 
-    <com.xh3140.metrology.appliance.widgets.ItemTableView
+    <com.xh3140.metrology.appliance.widgets.ItemsView
         android:layout_width="match_parent"
         android:layout_height="4dp"
         app:document="JJG_1078_2012" />

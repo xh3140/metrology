@@ -33,30 +33,25 @@ object JJGN581Y2016Document : StandardDocument("JJG 581-2016") {
     override val items: List<Item> = listOf(
         object : Item("外观质量与和安全可靠性") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("指示光功率") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("重复性") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("复现性") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("示值相对误差") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         }
     )
 
-    override val itemsNotes: String = "注：“＋”表示应检定。"
+    override val itemsNotes: List<String> = listOf("注：“＋”表示应检定。")
 }

@@ -38,7 +38,7 @@ abstract class StandardDocument(val number: String) {
     abstract val items: List<Item>
 
     // 项目注释
-    abstract val itemsNotes: String
+    abstract val itemsNotes: List<String>
 
     /**
      * 静态
@@ -106,10 +106,10 @@ abstract class StandardDocument(val number: String) {
         abstract val type: Int
 
         // 技术要求
-        abstract val techRequest: String
+        abstract val requests: List<String>
 
         // 子项目
-        abstract val subItems: List<Item>
+        open val children: List<Item> = emptyList()
 
         companion object {
             // 未表明

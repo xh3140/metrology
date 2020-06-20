@@ -27,30 +27,25 @@ object JJGN714Y2012Document : StandardDocument("JJG 714-2012") {
     override val items: List<Item> = listOf(
         object : Item("通用技术要求") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("空白值") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("携带污染率") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("示值误差") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("重复性") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = emptyList()
         }
     )
 
-    override val itemsNotes: String = "注：“＋”为需检定的项目，“－”为不需检定的项目。"
+    override val itemsNotes: List<String> = listOf("注：“＋”为需检定的项目，“－”为不需检定的项目。")
 }

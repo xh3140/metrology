@@ -11,13 +11,13 @@
         android:label="@string/main_fragment_home_title"
         tools:layout="@layout/fragment_main_home" />
     <fragment
-        android:id="@+id/fragmentWork"
+        android:id="@+id/fragmentTools"
         android:name="com.xh3140.metrology.main.fragment.ToolsFragment"
         android:label="@string/main_fragment_tools_title"
         tools:layout="@layout/fragment_main_tools" />
     <fragment
-        android:id="@+id/fragmentSetting"
+        android:id="@+id/fragmentSettings"
         android:name="com.xh3140.metrology.main.fragment.SettingFragment"
-        android:label="@string/main_fragment_setting_title"
-        tools:layout="@layout/fragment_main_setting" />
+        android:label="@string/main_fragment_settings_title"
+        tools:layout="@layout/fragment_main_settings" />
 </navigation>

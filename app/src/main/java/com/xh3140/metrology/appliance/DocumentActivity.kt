@@ -1,19 +1,21 @@
 package com.xh3140.metrology.appliance
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.xh3140.core.extensions.dp2px
+import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.appliance.document.StandardDocument
 import com.xh3140.metrology.appliance.document.StandardDocumentCache
-import com.xh3140.metrology.appliance.widgets.ItemTableView
+import com.xh3140.metrology.appliance.widgets.ItemsView
+import com.xh3140.metrology.appliance.widgets.RequestsView
 import com.xh3140.metrology.base.ui.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_jjg_gz_16_2018.*
 
@@ -31,9 +33,9 @@ class DocumentActivity : BaseActivity() {
         viewPager2.adapter = object : FragmentStateAdapter(this) {
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> ItemFragment(mDocument)
-                    1 -> TechRequestFragment(mDocument)
-                    else -> MethodFragment(mDocument)
+                    0 -> ItemsFragment(mDocument)
+                    1 -> RequestsFragment(mDocument)
+                    else -> MethodsFragment(mDocument)
                 }
             }
 
@@ -60,17 +62,15 @@ class DocumentActivity : BaseActivity() {
         }).attach()
     }
 
+
     /**
-     * 检定、校准项目
+     * 检校项目
      */
-    class ItemFragment(val document: StandardDocument?) : Fragment() {
+    class ItemsFragment(val document: StandardDocument?) : Fragment() {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val scrollView = ScrollView(requireContext())
-            val itemTableView = ItemTableView(requireContext()).setDocument(document).rebuild()
-            val margin = dp2px(4)
-            val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-            lp.setMargins(margin, margin, margin, margin)
-            scrollView.addView(itemTableView, lp)
+            val contentView = ItemsView(requireContext()).build(document)
+            scrollView.addView(contentView)
             return scrollView
         }
     }
@@ -78,16 +78,29 @@ class DocumentActivity : BaseActivity() {
     /**
      * 技术要求
      */
-    class TechRequestFragment(val document: StandardDocument?) : Fragment() {
+    class RequestsFragment(val document: StandardDocument?) : Fragment() {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            return ScrollView(requireContext())
+            val scrollView = ScrollView(requireContext())
+            val contentView = RequestsView(requireContext()).build(document)
+            contentView.setOnLongClickRequestListener(object : RequestsView.OnLongClickRequestListener {
+                override fun onLongClickRequest(request: String) {
+                    val builder = CircleContentDialog.Builder(0)
+                        .setContentGravity(Gravity.CENTER_VERTICAL)
+                        .setContentTextSize(18f)
+                        .setContentTextColor(Color.BLACK)
+                        .setContentText(request)
+                    builder.create().show(parentFragmentManager, null)
+                }
+            })
+            scrollView.addView(contentView)
+            return scrollView
         }
     }
 
     /**
-     * 检定、校准方法
+     * 检校方法
      */
-    class MethodFragment(val document: StandardDocument?) : Fragment() {
+    class MethodsFragment(val document: StandardDocument?) : Fragment() {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             return ScrollView(requireContext())
         }

@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
 import com.xh3140.core.extensions.dp2px
 import com.xh3140.metrology.appliance.document.StandardDocument
 
-class LabelTableView : LinearLayout {
+class LabelsView : LinearLayout {
 
     private var mLabels: Int = StandardDocument.LABEL_ALL
 

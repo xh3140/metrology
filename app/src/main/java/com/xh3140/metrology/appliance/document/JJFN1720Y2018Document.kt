@@ -33,34 +33,29 @@ object JJFN1720Y2018Document : StandardDocument("JJF 1720-2018") {
     override val items: List<Item> = listOf(
         object : Item("外观") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("吸光度示值误差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("吸光度重复性") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("线性误差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("ALT和GLU测量示值误差") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("ALT和GLU测量重复性") {
             override val type: Int = CALIBRATION
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         }
     )
-    override val itemsNotes: String = ""
+
+    override val itemsNotes: List<String> = emptyList()
 }

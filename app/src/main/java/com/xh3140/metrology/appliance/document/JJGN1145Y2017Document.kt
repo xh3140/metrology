@@ -34,26 +34,21 @@ object JJGN1145Y2017Document : StandardDocument("JJG 1145-2017") {
     override val items: List<Item> = listOf(
         object : Item("乳腺腺体平均剂量") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("分辨力") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("输出的辐射质") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("X射线管电压") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-
+            override val requests: List<String> = emptyList()
         }
     )
 
-    override val itemsNotes: String = "注：“＋”为需检定的项目，“－”为不需检定的项目。"
+    override val itemsNotes: List<String> = listOf("注：“＋”为需检定的项目，“－”为不需检定的项目。")
 }

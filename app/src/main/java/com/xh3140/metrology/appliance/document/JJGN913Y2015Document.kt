@@ -34,65 +34,65 @@ object JJGN913Y2015Document : StandardDocument("JJG 913-2015") {
     override val items: List<Item> = listOf(
         object : Item("外观") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("工作压力(墙式吸入器不适应)") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("密封性") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("安全阀排气压力") {
             override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("潮化瓶耐压强度") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
-        object : Item("氧气压力表零位误差(墙式吸入器不适应)") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+        object : Item("氧气压力表(墙式吸入器不适应)") {
+            override val type: Int = NULL
+            override val requests: List<String> = listOf()
+            override val children: List<Item> = listOf(
+                object : Item("零位误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                },
+                object : Item("示值误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                },
+                object : Item("回程误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                },
+                object : Item("轻敲位移") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                },
+                object : Item("指针偏转平稳性") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                }
+            )
         },
-        object : Item("氧气压力表示值误差(墙式吸入器不适应)") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-        },
-        object : Item("氧气压力表回程误差(墙式吸入器不适应)") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-        },
-        object : Item("氧气压力表轻敲位移(墙式吸入器不适应)") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-        },
-        object : Item("氧气压力表指针偏转平稳性(墙式吸入器不适应)") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-        },
-        object : Item("流量计的流量调节范围") {
-            override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
-        },
-        object : Item("流量计的示值误差") {
-            override val type: Int = FIRST or SUBSEQUENT or USING
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+        object : Item("流量计") {
+            override val type: Int = NULL
+            override val requests: List<String> = listOf()
+            override val children: List<Item> = listOf(
+                object : Item("流量调节范围") {
+                    override val type: Int = FIRST or SUBSEQUENT
+                    override val requests: List<String> = listOf()
+                },
+                object : Item("示值误差") {
+                    override val type: Int = FIRST or SUBSEQUENT or USING
+                    override val requests: List<String> = listOf()
+                }
+            )
         }
     )
 
-    override val itemsNotes: String = "注：“＋”为应检项目，“－”为可不检项目。"
+    override val itemsNotes: List<String> = listOf("注：“＋”为应检项目，“－”为可不检项目。")
 }

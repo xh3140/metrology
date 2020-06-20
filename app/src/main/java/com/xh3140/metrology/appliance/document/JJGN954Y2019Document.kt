@@ -27,50 +27,41 @@ object JJGN954Y2019Document : StandardDocument("JJG 954-2019") {
     override val items: List<Item> = listOf(
         object : Item("外观和工作正常性检查") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("电压测量") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("时间间隔") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("幅频特性") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("低通滤波器") {
             override val type: Int = FIRST
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("高通滤波器") {
             override val type: Int = FIRST
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("噪声电平") {
             override val type: Int = FIRST or SUBSEQUENT
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("共模抑制比") {
             override val type: Int = FIRST
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = listOf()
         },
         object : Item("耐极化电压") {
             override val type: Int = FIRST
-            override val techRequest: String = ""
-            override val subItems: List<Item> = emptyList()
+            override val requests: List<String> = emptyList()
         }
     )
 
-    override val itemsNotes: String = "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+    override val itemsNotes: List<String> = listOf("注：表中“＋”表示应检项目，“－”表示可不检项目。")
 }

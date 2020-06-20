@@ -143,7 +143,7 @@ class HomeFragment : BaseFragment() {
                 .setButtonText(0, "取消")
                 .setButtonText(1, "添加")
                 .setButtonText(2, "添加到")
-                .setButtonOnClickListener { dialog, button, i ->
+                .setButtonOnClickListener { dialog, _, _ ->
                     toast("输入的文本为“${dialog.getInputText()}”")
                     dialog.dismiss()
                 }

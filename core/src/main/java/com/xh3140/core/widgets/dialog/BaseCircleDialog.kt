@@ -3,7 +3,6 @@ package com.xh3140.core.widgets.dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.Window
 import android.view.WindowManager
 import android.widget.FrameLayout
@@ -65,18 +64,25 @@ abstract class BaseCircleDialog(params: DialogParams) : DialogFragment() {
     private fun setDialogMaxHeight() {
         // 调整对话框高度
         val view = requireView()
-        if (mDialogParams.maxHeight > 0F && mDialogParams.maxHeight <= 1F) {
-            view.viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
-                override fun onGlobalLayout() {
-                    val screenHeight: Int = getScreenHeight()
-                    val maxHeight = (screenHeight * mDialogParams.maxHeight).toInt()
-                    if (view.height > maxHeight) {
-                        view.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        view.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, maxHeight)
-                    }
-                }
-            })
+        view.post {
+            val screenHeight: Int = getScreenHeight()
+            val maxHeight = (screenHeight * mDialogParams.maxHeight).toInt()
+            if (view.height > maxHeight) {
+                view.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, maxHeight)
+            }
         }
+//        if (mDialogParams.maxHeight > 0F && mDialogParams.maxHeight <= 1F) {
+//            view.viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+//                override fun onGlobalLayout() {
+//                    val screenHeight: Int = getScreenHeight()
+//                    val maxHeight = (screenHeight * mDialogParams.maxHeight).toInt()
+//                    if (view.height > maxHeight) {
+//                        view.viewTreeObserver.removeOnGlobalLayoutListener(this)
+//                        view.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, maxHeight)
+//                    }
+//                }
+//            })
+//        }
     }
 
     private fun setDialogWindowParams(window: Window) {
