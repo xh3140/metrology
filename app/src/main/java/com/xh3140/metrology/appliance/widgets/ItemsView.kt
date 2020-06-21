@@ -117,7 +117,7 @@ class ItemsView(context: Context) : LinearLayout(context) {
      */
     private fun LinearLayout.addTreeView(weight: Float, depth: Int, item: StandardDocument.Item) {
         if (orientation == HORIZONTAL) {
-            if (item.children.isEmpty()) {
+            if (item.children.isEmpty() || item.type != StandardDocument.Item.NULL) {
                 addView(createContentCellView(3f - weight, item.name))
                 addView(createContentCellView(2f, matchSymbols(StandardDocument.Item.FIRST, item.type)))
                 addView(createContentCellView(2f, matchSymbols(StandardDocument.Item.SUBSEQUENT, item.type)))

@@ -37,8 +37,14 @@ abstract class StandardDocument(val number: String) {
     // 项目树
     abstract val items: List<Item>
 
+    // 通用技术要求
+    open val generalRequests: List<Item> = emptyList()
+
     // 项目注释
     abstract val itemsNotes: List<String>
+
+    //技术要求注释
+    open val requestsNotes: List<String> = emptyList()
 
     /**
      * 静态

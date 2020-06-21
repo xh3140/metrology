@@ -79,6 +79,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
         for (item in document.items) {
             addContentRow(depth, item)
         }
+        addFooterRow(document)
     }
 
     /**
@@ -192,6 +193,36 @@ class RequestsView(context: Context?) : LinearLayout(context) {
                     return@setOnLongClickListener true
                 }
             }
+        }
+    }
+
+    /**
+     * 添加表格底部行
+     */
+    private fun addFooterRow(document: StandardDocument) {
+        if (document.requestsNotes.isNotEmpty()) {
+            val footerRow = LinearLayout(context).apply {
+                orientation = HORIZONTAL
+                dividerDrawable = createTableDividerDrawable()
+                showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
+                layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+                addView(createFooterCellView(document.requestsNotes.joinToString("\n")))
+            }
+            addView(footerRow)
+        }
+    }
+
+    /**
+     * 创建底部单元视图
+     */
+    private fun createFooterCellView(message: String): AppCompatTextView {
+        return AppCompatTextView(context).apply {
+            setPadding(dp2px(8))
+            text = message
+            textSize = 10f
+            setTextColor(Color.GRAY)
+            setBackgroundColor(Color.WHITE)
+            layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, 1f).apply { gravity = Gravity.CENTER }
         }
     }
 

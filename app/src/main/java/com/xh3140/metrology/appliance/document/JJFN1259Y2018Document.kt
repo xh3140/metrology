@@ -36,17 +36,28 @@ object JJFN1259Y2018Document : StandardDocument("JJF 1259-2018") {
         },
         object : Item("流量相对示值误差") {
             override val type: Int = CALIBRATION
-            override val requests: List<String> = listOf()
+            override val requests: List<String> = listOf(
+                "注射泵：",
+                "　　流量范围在[5,20)mL/h内，最大允许误差为±6%；",
+                "　　流量范围在[20,200]mL/h内，最大允许误差为±5%；",
+                "　　流量范围在(200,1000]mL/h内，最大允许误差为±6%。",
+                "输液泵：",
+                "　　流量范围在[5,20)mL/h内，最大允许误差为±8%；",
+                "　　流量范围在[20,200]mL/h内，最大允许误差为±6%；",
+                "　　流量范围在(200,1000]mL/h内，最大允许误差为±8%。"
+            )
         },
         object : Item("流量示值重复性") {
             override val type: Int = CALIBRATION
-            override val requests: List<String> = listOf()
+            override val requests: List<String> = listOf("注射泵重复性为2%；输液泵重复性为3%。")
         },
         object : Item("阻塞报警误差") {
             override val type: Int = CALIBRATION
-            override val requests: List<String> = listOf()
+            override val requests: List<String> = listOf("阻塞报警设定值的最大允许误差:±13.33kPa(±100mmHg)或阻塞报警设定值的±30%,两者取大者。")
         }
     )
 
     override val itemsNotes: List<String> = emptyList()
+
+    override val requestsNotes: List<String> = listOf(" 注：以上指标不用于合格性判别，似供参考。")
 }
