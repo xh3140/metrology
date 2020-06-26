@@ -32,14 +32,14 @@ class SeekBar : View {
     // 标签选中状态字体颜色 argb
     private var mLabelCheckedTextColor: Int = Color.parseColor("#000000")
 
-    // 标签与滑条的距离 dp
-    private var mLabelDistance: Int = 15
+    // 标签与滑条的距离 px
+    private var mLabelDistance: Int = dp2px(15)
 
-    // 滑条宽度 dp
-    private var mSliderStripWidth: Int = 8
+    // 滑条宽度 px
+    private var mSliderStripWidth: Int = dp2px(8)
 
-    // 滑条圆角半径 dp
-    private var mSliderStripRadius: Int = 4
+    // 滑条圆角半径 px
+    private var mSliderStripRadius: Int = dp2px(4)
 
     // 滑条颜色 argb
     private var mSliderStripColor: Int = Color.parseColor("#C0C0C0")
@@ -50,8 +50,8 @@ class SeekBar : View {
     // 滑块颜色 argb
     private var mSliderBlockColor: Int = Color.parseColor("#F5F5F5")
 
-    // 滑块半径 dp
-    private var mSliderBlockRadius: Int = 8
+    // 滑块半径 px
+    private var mSliderBlockRadius: Int = dp2px(12)
 
     // 内边距 px
     private var mSeekPadding: IntArray = intArrayOf(0, 0, 0, 0)
@@ -79,13 +79,13 @@ class SeekBar : View {
 
     // 滑条画笔
     private val mPaintSliderStrip = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = 1f
+        strokeWidth = 3f
         style = Paint.Style.FILL_AND_STROKE
     }
 
     // 滑块画笔
     private val mPaintSliderBlock = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = 1f
+        strokeWidth = 3f
         style = Paint.Style.FILL_AND_STROKE
     }
 
@@ -142,7 +142,7 @@ class SeekBar : View {
 
     init {
         mLabels = listOf("初级码农", "中级码农", "高级码农", "CTO", "卒")
-        mSeekPadding = intArrayOf(30, 30, 30, 30)
+        mSeekPadding = intArrayOf(dp2px(30), dp2px(30), dp2px(30), dp2px(30))
         mSliderBlockIndex = 2
     }
 
@@ -168,8 +168,8 @@ class SeekBar : View {
         // 标签文本宽度和高度 px
         mLabelTextWidth = mPaintLabelText.getTextBoundsWidth(mLabels.joinToString(" "))
         mLabelTextHeight = mPaintLabelText.getTextBoundsHeight(mLabels.joinToString())
-        val width = mLabelTextWidth + dp2px(mSeekPadding[0]) + dp2px(mSeekPadding[2])
-        val height = mLabelTextHeight + dp2px(mLabelDistance) + dp2px(mSliderStripWidth) + dp2px(mSeekPadding[1]) + dp2px(mSeekPadding[3])
+        val width = mLabelTextWidth + mSeekPadding[0] + mSeekPadding[2]
+        val height = mLabelTextHeight + mLabelDistance + mSliderStripWidth + mSeekPadding[1] + mSeekPadding[3]
         if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(width, height)
         } else if (widthMode == MeasureSpec.AT_MOST) {
@@ -184,10 +184,10 @@ class SeekBar : View {
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         // 滑条区域
-        mSliderStripRectF.left = dp2px(mSeekPadding[0]).toFloat()
-        mSliderStripRectF.top = dp2px(mSeekPadding[1]) + mLabelTextHeight + dp2px(mLabelDistance).toFloat()
-        mSliderStripRectF.right = width - dp2px(mSeekPadding[2]).toFloat()
-        mSliderStripRectF.bottom = height - dp2px(mSeekPadding[3]).toFloat()
+        mSliderStripRectF.left = mSeekPadding[0].toFloat()
+        mSliderStripRectF.top = mSeekPadding[1] + mLabelTextHeight + mLabelDistance.toFloat()
+        mSliderStripRectF.right = width - mSeekPadding[2].toFloat()
+        mSliderStripRectF.bottom = height - mSeekPadding[3].toFloat()
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -208,10 +208,10 @@ class SeekBar : View {
         }
         // 绘制滑块
         mPaintSliderBlock.color = mSliderBlockColor
-        canvas.drawCircle(centerX, (mSliderStripRectF.top + mSliderStripRectF.bottom) / 2, dp2px(mSliderBlockRadius).toFloat(), mPaintSliderBlock)
+        canvas.drawCircle(centerX, (mSliderStripRectF.top + mSliderStripRectF.bottom) / 2, mSliderBlockRadius.toFloat(), mPaintSliderBlock)
         // 绘制标签
         if (mLabels.isNotEmpty()) {
-            val labelY = mLabelTextHeight + dp2px(mSeekPadding[1]).toFloat()
+            val labelY = mLabelTextHeight + mSeekPadding[1].toFloat()
             for ((i, label) in mLabels.withIndex()) {
                 val halfWidth = mPaintLabelText.getTextBoundsWidth(label) / 2
                 val labelX = getIndexLabelCenterX(i) - halfWidth
@@ -288,7 +288,7 @@ class SeekBar : View {
     }
 
     /**
-     * 设置标签与滑条的距离 dp
+     * 设置标签与滑条的距离 px
      */
     fun setLabelDistance(distance: Int) {
         if (mLabelDistance != distance) {
@@ -298,7 +298,7 @@ class SeekBar : View {
     }
 
     /**
-     * 设置滑条宽度 dp
+     * 设置滑条宽度 px
      */
     fun setSliderStripWidth(width: Int) {
         if (mSliderStripWidth != width) {
@@ -308,7 +308,7 @@ class SeekBar : View {
     }
 
     /**
-     * 滑条圆角半径 dp
+     * 滑条圆角半径 px
      */
     fun setSliderStripRadius(radius: Int) {
         if (mSliderStripRadius != radius) {
@@ -348,7 +348,7 @@ class SeekBar : View {
     }
 
     /**
-     * 设置滑块半径 dp
+     * 设置滑块半径 px
      */
     fun setSliderBlockRadius(radius: Int) {
         if (mSliderBlockRadius != radius) {
@@ -358,7 +358,7 @@ class SeekBar : View {
     }
 
     /**
-     * 设置内边距 dp
+     * 设置内边距 px
      */
     fun setSeekPadding(padding: IntArray) {
         if (!padding.contentEquals(mSeekPadding)) {
