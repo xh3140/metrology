@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -34,8 +35,16 @@ class LowContrastResolutionView : View {
 
     // 模体半径
     private var mRadiusBody = 100f
-    private var mRadius4Hole = 0f
-    private var mRadius9Hole = 0f
+
+    // 4孔圆心点坐标
+    private val mHole4Contrast030Points: List<PointF> = List(4) { PointF(0f, 0f) }
+    private val mHole4Contrast050Points: List<PointF> = List(4) { PointF(0f, 0f) }
+    private val mHole4Contrast100Points: List<PointF> = List(4) { PointF(0f, 0f) }
+
+    // 9孔圆心点坐标
+    private val mHole9Contrast030Points: List<PointF> = List(9) { PointF(0f, 0f) }
+    private val mHole9Contrast050Points: List<PointF> = List(9) { PointF(0f, 0f) }
+    private val mHole9Contrast100Points: List<PointF> = List(9) { PointF(0f, 0f) }
 
     // 触点
     private var mTouchX: Float = 0f
@@ -57,8 +66,38 @@ class LowContrastResolutionView : View {
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
+    interface OnClickHoleListener {
+        fun onClickHole(index: Int, contrast: Float, radius: Float)
+    }
+
     fun setOnClickHoleListener(listener: OnClickHoleListener?) {
         mOnClickHoleListener = listener
+    }
+
+    private fun init4HolePoints(degree: Float, points: List<PointF>) {
+        var deg4hole = degree + 30f
+        var step4hole = 26f
+        val radius4Hole = mRadiusBody / 3
+        for (i in 0..3) {
+            val radian = deg4hole * PI / 180f
+            points[i].x = width - mCircleX - radius4Hole * cos(radian).toFloat()
+            points[i].y = height - mCircleY - radius4Hole * sin(radian).toFloat()
+            deg4hole += step4hole
+            step4hole -= 4f
+        }
+    }
+
+    private fun init9HolePoints(degree: Float, points: List<PointF>) {
+        var deg9hole = degree + 30f
+        var step9hole = 20f
+        val radius9Hole = mRadiusBody * 2 / 3
+        for (i in 0..8) {
+            val radian = deg9hole * PI / 180f
+            points[i].x = width - mCircleX - radius9Hole * cos(radian).toFloat()
+            points[i].y = height - mCircleY - radius9Hole * sin(radian).toFloat()
+            deg9hole += step9hole
+            step9hole -= 2f
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -79,14 +118,19 @@ class LowContrastResolutionView : View {
         }
     }
 
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         mRatio = 0.45f * minOf(width, height) / mModelRadius
         mCircleX = width / 2f
         mCircleY = height / 2f
         mRadiusBody = mRatio * mModelRadius
-        mRadius4Hole = mRadiusBody / 3
-        mRadius9Hole = mRadiusBody * 2 / 3
+        init4HolePoints(210f, mHole4Contrast030Points)
+        init4HolePoints(330f, mHole4Contrast050Points)
+        init4HolePoints(090f, mHole4Contrast100Points)
+        init9HolePoints(210f, mHole9Contrast030Points)
+        init9HolePoints(330f, mHole9Contrast050Points)
+        init9HolePoints(090f, mHole9Contrast100Points)
     }
 
     override fun performClick(): Boolean {
@@ -108,14 +152,12 @@ class LowContrastResolutionView : View {
         return super.onTouchEvent(event)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        canvas?.apply {
-            drawModel()
-            drawHole(90f, 1.0f)
-            drawHole(210f, 0.3f)
-            drawHole(330f, 0.5f)
-            drawCheckModel()
-        }
+    override fun onDraw(canvas: Canvas) {
+        canvas.drawModel()
+        canvas.drawHole(0.3f, mHole4Contrast030Points, mHole9Contrast030Points)
+        canvas.drawHole(0.5f, mHole4Contrast050Points, mHole9Contrast050Points)
+        canvas.drawHole(1.0f, mHole4Contrast100Points, mHole9Contrast100Points)
+        canvas.drawCheckModel()
     }
 
     private fun Canvas.drawModel() {
@@ -124,61 +166,32 @@ class LowContrastResolutionView : View {
         drawCircle(mCircleX, mCircleY, mRadiusBody, mPaint)
     }
 
-    private fun Canvas.drawCheckHole(x: Float, y: Float, radius: Float, contrast: Float) {
-        mPaint.color = Color.RED
-        mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.alpha = (255 * contrast).toInt()
-        drawCircle(x, y, radius, mPaint)
-        mPaint.color = Color.DKGRAY
-        mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.alpha = (255 * contrast).toInt()
-    }
-
-    private fun Canvas.drawHole(degree: Float, contrast: Float) {
-        mPaint.color = Color.DKGRAY
-        mPaint.style = Paint.Style.FILL_AND_STROKE
-        mPaint.alpha = (255 * contrast).toInt()
-        draw4Hole(degree, contrast)
-        draw9Hole(degree, contrast)
-    }
-
-    private fun Canvas.draw4Hole(degree: Float, contrast: Float) {
-        var angle4hole = degree + 30f
-        var distance4hole = 26f
-        for (i in mHole4Radius.indices) {
-            val radian = angle4hole * PI / 180f
-            val radius = mRatio * mHole4Radius[i]
-            val x = width - mCircleX - mRadius4Hole * cos(radian).toFloat()
-            val y = height - mCircleY - mRadius4Hole * sin(radian).toFloat()
-            if (!mChecked && isTouchInside(x, y, radius + 15f)) {
-                mChecked = true
-                drawCheckHole(x, y, radius, contrast)
-                mOnClickHoleListener?.onClickHole(i, contrast, mHole4Radius[i])
-            } else {
-                drawCircle(x, y, radius, mPaint)
-            }
-            angle4hole += distance4hole
-            distance4hole -= 4f
+    private fun Canvas.drawHole(index: Int, contrast: Float, holeRadius: Float, point: PointF) {
+        val radius = mRatio * holeRadius
+        if (!mChecked && isTouchInside(point.x, point.y, radius + 15f)) {
+            mChecked = true
+            mPaint.color = Color.RED
+            mPaint.style = Paint.Style.FILL_AND_STROKE
+            mPaint.alpha = (255 * contrast).toInt()
+            drawCircle(point.x, point.y, radius, mPaint)
+            mPaint.color = Color.DKGRAY
+            mPaint.style = Paint.Style.FILL_AND_STROKE
+            mPaint.alpha = (255 * contrast).toInt()
+            mOnClickHoleListener?.onClickHole(index, contrast, holeRadius)
+        } else {
+            drawCircle(point.x, point.y, radius, mPaint)
         }
     }
 
-    private fun Canvas.draw9Hole(degree: Float, contrast: Float) {
-        var angle9hole = degree
-        var distance9hole = 20f
-        for (i in mHole9Radius.indices) {
-            val radian = angle9hole * PI / 180f
-            val radius = mRatio * mHole9Radius[i]
-            val x = width - mCircleX - mRadius9Hole * cos(radian).toFloat()
-            val y = height - mCircleY - mRadius9Hole * sin(radian).toFloat()
-            if (!mChecked && isTouchInside(x, y, radius + 15f)) {
-                mChecked = true
-                drawCheckHole(x, y, radius, contrast)
-                mOnClickHoleListener?.onClickHole(i, contrast, mHole9Radius[i])
-            } else {
-                drawCircle(x, y, radius, mPaint)
-            }
-            angle9hole += distance9hole
-            distance9hole -= 2f
+    private fun Canvas.drawHole(contrast: Float, hole4Points: List<PointF>, hole9Points: List<PointF>) {
+        mPaint.color = Color.DKGRAY
+        mPaint.style = Paint.Style.FILL_AND_STROKE
+        mPaint.alpha = (255 * contrast).toInt()
+        for ((i, point) in hole4Points.withIndex()) {
+            drawHole(i, contrast, mHole4Radius[i], point)
+        }
+        for ((i, point) in hole9Points.withIndex()) {
+            drawHole(i, contrast, mHole9Radius[i], point)
         }
     }
 
