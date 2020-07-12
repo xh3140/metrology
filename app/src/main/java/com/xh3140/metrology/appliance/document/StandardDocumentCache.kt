@@ -1,5 +1,7 @@
 package com.xh3140.metrology.appliance.document
 
+import android.util.Log
+
 object StandardDocumentCache {
     const val KEY_DOCUMENT_HASH_CODE = "KEY_DOCUMENT_HASH_CODE"
     private val mChildList: MutableList<StandardDocument> = ArrayList()
@@ -42,6 +44,8 @@ object StandardDocumentCache {
         postDocument(JJFN1213Y2008Document) // 肺功能仪校准规范
         postDocument(JJFN1438Y2013Document) // 彩色多普勒超声诊断仪(血流测量部分)校准规范
         postDocument(JJFN1649Y2017Document) // 超声骨密度仪校准规范
+        // JSON
+        toJson(JJGN270Y2008Document)
     }
 
     private fun postDocument(document: StandardDocument) {
@@ -65,6 +69,73 @@ object StandardDocumentCache {
             }
         }
         return list
+    }
+
+
+    fun toJson(document: StandardDocument) {
+        val json = StringBuilder()
+        json.append("{\n")
+        json.append("\"type\":\"${document.type.name}\",\n")
+        json.append("\"state\":\"${document.state.name}\",\n")
+        json.append("\"labels\":[\n")
+        for (label in StandardDocument.Label.values()) {
+            if (document.labels and label.value != 0) {
+                json.append("\"${label.name}\",\n")
+            }
+        }
+        json.append("],\n")
+        json.append("\"chineseName\":\"${document.chineseName}\",\n")
+        json.append("\"englishName\":\"${document.englishName}\",\n")
+        json.append("\"publishDate\":\"${document.publishDate}\",\n")
+        json.append("\"executeDate\":\"${document.executeDate}\",\n")
+        json.append("\"replaceDocuments\":[\n")
+        for (doc in document.replaceDocuments) {
+            json.append("\"${doc}\",\n")
+        }
+        json.append("],\n")
+        json.append("\"referenceDocuments\":[\n")
+        for (doc in document.referenceDocuments) {
+            json.append("\"${doc}\",\n")
+        }
+        json.append("],\n")
+        json.append("\"supersededDocuments\":[\n")
+        for (doc in document.supersededDocuments) {
+            json.append("\"${doc}\",\n")
+        }
+        json.append("],\n")
+        json.append("\"adoptDocuments\":[\n")
+        for (doc in document.adoptDocuments) {
+            json.append("\"${doc}\",\n")
+        }
+        json.append("],\n")
+        json.append("\"items\":[\n")
+        for ((i, item) in document.items.withIndex()) {
+            json.append("{\n")
+            json.append("\"type\":\"${item.type}\",\n")
+            json.append("\"requests\":[\n")
+            for (req in item.requests) {
+                json.append("\"${req}\",\n")
+            }
+            json.append("],\n")
+            if (i + 1 < document.items.size) {
+                json.append("},\n")
+            } else {
+                json.append("}\n")
+            }
+        }
+        json.append("],\n")
+        json.append("\"itemsNotes\":[\n")
+        for (note in document.itemsNotes) {
+            json.append("\"${note}\",\n")
+        }
+        json.append("],\n")
+        json.append("\"requestsNotes\":[\n")
+        for (note in document.requestsNotes) {
+            json.append("\"${note}\",\n")
+        }
+        json.append("],\n")
+        json.append("}\n")
+        Log.d("xh3140", json.toString())
     }
 
 }

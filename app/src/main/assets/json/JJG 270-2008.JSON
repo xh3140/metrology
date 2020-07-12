@@ -1,0 +1,31 @@
+{
+  "type": "JJG",
+  "state": "ACTIVE",
+  "labels": [
+    "JJG",
+    "FORCIBLE",
+    "PRESSURE"
+  ],
+  "chineseName": "血压计和血压表",
+  "englishName": "Sphygmomanometer",
+  "publishDate": "2008-03-25",
+  "executeDate": "2008-09-25",
+  "replaceDocuments": [],
+  "referenceDocuments": [],
+  "supersededDocuments": [],
+  "adoptDocuments": [],
+  "items": [
+    {
+      "name": "外观",
+      "type": [
+        "FIRST",
+        "SUBSEQUENT",
+        "USING"
+      ],
+      "requests": []
+    }
+  ],
+  "itemsNotes": [
+    "注：表中“＋”表示应检项目，“－”表示可不检项目。"
+  ]
+}

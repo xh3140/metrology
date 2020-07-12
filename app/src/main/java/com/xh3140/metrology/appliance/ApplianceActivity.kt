@@ -3,7 +3,6 @@ package com.xh3140.metrology.appliance
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xh3140.core.extensions.startActivity
@@ -39,7 +38,6 @@ class ApplianceActivity : BaseActivity(), ApplianceAdapter.OnClickDocumentListen
     override fun initListener() {
         labelTableView.setOnLabelsChangedListener(object : LabelsView.OnLabelsChangedListener {
             override fun onChanged(logicOr: Boolean, labels: Int) {
-                Log.d("xh3140", "$logicOr ${labels.toString(2)}")
                 if (logicOr) {
                     val documents = StandardDocumentCache.getDocuments().filter { it.labels and labels != 0 }
                     val items = List(documents.size) { ApplianceAdapter.Item(false, documents[it]) }
