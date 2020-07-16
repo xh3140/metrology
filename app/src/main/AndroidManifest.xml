@@ -27,6 +27,7 @@
         <activity android:name="com.xh3140.metrology.appliance.DocumentActivity" />
         <activity android:name="com.xh3140.metrology.appliance.jjg.jjgn961y2017.JJGN961Y2017Activity" />
         <activity android:name="com.xh3140.metrology.appliance.jjg.jjgn1078y2012.JJGN1078Y2012Activity" />
+        <activity android:name="com.xh3140.metrology.appliance.jjg.jjgn1163y2019.JJGN1163Y2019Activity" />
         <activity android:name="com.xh3140.metrology.appliance.jjg.JJGGZ162018Activity" />
         <activity android:name="com.xh3140.metrology.appliance.jjg.MrHomogeneityActivity" />
         <activity android:name=".main.MainActivity">

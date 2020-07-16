@@ -40,27 +40,10 @@
             app:colorStyle="THEME_GREEN" />
 
         <com.xh3140.core.widgets.button.NiceButton
-            android:id="@+id/testCircleDialog1"
+            android:id="@+id/buttonJHY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="测试 内容对话框" />
-
-        <com.xh3140.core.widgets.button.NiceButton
-            android:id="@+id/testCircleDialog2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="测试 单选对话框" />
-
-        <com.xh3140.core.widgets.button.NiceButton
-            android:id="@+id/testCircleDialog3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="测试 多选对话框" />
-
-        <com.xh3140.core.widgets.button.NiceButton
-            android:id="@+id/testCircleDialog4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="测试 输入对话框" />
+            android:text="多参数监护仪"
+            app:colorStyle="THEME_GRAY" />
     </LinearLayout>
 </ScrollView>

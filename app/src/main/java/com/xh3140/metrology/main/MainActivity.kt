@@ -3,7 +3,6 @@ package com.xh3140.metrology.main
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.xh3140.core.json.JsonTest
 import com.xh3140.core.widgets.dialog.CircleContentDialog
 import com.xh3140.metrology.R
 import com.xh3140.metrology.base.ui.activity.BaseActivity
@@ -21,7 +20,6 @@ class MainActivity : BaseActivity() {
     override fun getLayoutResID(): Int = R.layout.activity_main
 
     override fun initData() {
-        JsonTest.test1()
         // 数学公式
         AjLatexMath.init(this)
         CodeProcessor.init(this)
