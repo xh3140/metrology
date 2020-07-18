@@ -3,7 +3,17 @@
     <string name="app_name">metrology</string>
     <string name="app_metrology_name">metrology</string>
     <string name="app_metrology_copyright">© 2020 xh3140</string>
-    <string name="image_default_description">ImageView</string>
+
+
+    <string name="default_image_description">ImageView</string>
+
+    <!--common-->
+    <string name="common_append_data">添加数据</string>
+    <string name="common_remove_data">删除数据</string>
+    <string name="common_calculate_data">计算数据</string>
+    <string name="common_clear_data">清除数据</string>
+    <string name="common_random_data">随机数据</string>
+
     <!--activity-->
     <string name="activity_calculate_title">公式算法</string>
     <string name="activity_appliance_title">计量器具</string>
@@ -18,10 +28,6 @@
     <string name="calculate_fragment_setting_title">设置</string>
 
     <string name="calculate_button_select_text">选择公式</string>
-    <string name="calculate_button_append_text">添加数据</string>
-    <string name="calculate_button_remove_text">删除数据</string>
-    <string name="calculate_button_calculate_text">计算数据</string>
-    <string name="calculate_button_clear_text">清除数据</string>
     <string name="calculate_button_chart_text">绘制图表</string>
 
     <string name="activity_ultrasound_title">B型超声</string>
@@ -144,20 +150,15 @@
     <string name="formula_degrees_315">315°</string>
     <string name="formula_degrees_270">270°</string>
 
-    <string name="widget_circle_dialog_title">标题</string>
-    <string name="widget_circle_dialog_content">内容</string>
-    <string name="widget_circle_dialog_positive">确定</string>
-    <string name="widget_circle_dialog_negative">取消</string>
-    <string name="widget_circle_dialog_ignore">忽略</string>
-
     <string name="jjg_961_2017">JJG 961–2017</string>
+    <string name="jjg_639_1998">JJG 639–1998</string>
+
     <string name="switch_maximum">最大值</string>
     <string name="switch_minimum">最小值</string>
     <string name="switch_range">极　差</string>
     <string name="switch_summation">总　和</string>
     <string name="switch_average">平均值</string>
     <string name="result_item_tip">开启后可以在计算结果中显示相应的结果项。</string>
-    <string name="jjg_639_1998">JJG 639–1998</string>
 
     <string name="appliance_jjg_item">检定项目</string>
     <string name="appliance_jjg_first">首次检定</string>
@@ -168,4 +169,28 @@
     <string name="appliance_item_null">／</string>
     <string name="appliance_item_true">＋</string>
     <string name="appliance_item_false">－</string>
+
+
+    <string name="jjg_1163_2019_number">JJG 1163–2019</string>
+    <string name="jjg_1163_2019_appliance_name">多参数监护仪</string>
+
+    <string name="jjg_1163_2019_tab1_title1">1、步进增转换式</string>
+    <string name="jjg_1163_2019_tab1_title2">2、连续可调增益转换式</string>
+    <string name="jjg_1163_2019_tab1_title3">3、技术要求</string>
+    <string name="jjg_1163_2019_tab1_title4">4、计算公式</string>
+    <string name="jjg_1163_2019_tab1_method1">
+        \t\t将监护仪增益设置为10mm/mV，使心电模拟仪输出电压为1.0mV、频率为2.0Hz的方波信号到监护仪。
+        测量监护仪屏幕上的方波信号幅值长度，根据所设置的增益，计算监护仪所测量到的方波信号电压值。
+        按公式计算电压测量误差。\n
+        \t\t按上述方法分别检定监护仪的5mm/mV、20mm/mV增益挡（心电模拟仪对应输出电压在5mm/mV挡时为2.0mV、在20mm/mV挡时为0.5mV）。
+    </string>
+    <string name="jjg_1163_2019_tab1_method2">
+        \t\t用监护仪的内部电压校准源（如定标电压或标尺）将增益校准设置为20mm/mV。
+        心电模拟仪分别输出电压为1.0mV、0.5mV，频率为2.0Hz的方波信号到监护仪。
+        测量监护仪屏幕上的方波信号幅值长度，根据所设置的增益，计算监护仪所测量到的方波信号电压值V。
+        按式按公式计算电压测量误差。
+    </string>
+    <string name="jjg_1163_2019_tab1_request">\t\t电压测量最大允许误差为±10%。</string>
+
+
 </resources>

@@ -38,8 +38,9 @@ class BodyInputView(context: Context) : AppCompatEditText(context) {
         viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 viewTreeObserver.removeOnGlobalLayoutListener(this)
-                if (params.height > measuredHeight) {
-                    height = dp2px(params.height)
+                val newHeight = dp2px(params.height)
+                if (newHeight > measuredHeight) {
+                    height = newHeight
                 }
             }
         })

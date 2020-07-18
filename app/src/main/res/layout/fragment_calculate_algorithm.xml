@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calculate_button_append_text"
+            android:text="@string/common_append_data"
             android:textSize="18sp"
             app:colorStyle="THEME_BLUE"
             app:location="LEFT" />
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calculate_button_remove_text"
+            android:text="@string/common_remove_data"
             android:textSize="18sp"
             app:colorStyle="THEME_RED"
             app:location="RIGHT" />
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calculate_button_calculate_text"
+            android:text="@string/common_calculate_data"
             android:textSize="18sp"
             app:colorStyle="THEME_BLUE"
             app:location="LEFT" />
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calculate_button_clear_text"
+            android:text="@string/common_clear_data"
             android:textSize="18sp"
             app:colorStyle="THEME_RED"
             app:location="RIGHT" />

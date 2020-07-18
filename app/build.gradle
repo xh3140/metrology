@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.xh3140.metrology"
-        minSdkVersion 23
-        targetSdkVersion 29
+        minSdkVersion 26
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -52,6 +52,7 @@ dependencies {
     implementation 'com.github.daquexian:FlexibleRichTextView:0.8.2'
     implementation project(path: ':core')
     implementation 'com.alibaba:fastjson:1.2.72'
+    implementation 'com.eftimoff:android-pathview:1.0.8@aar'
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

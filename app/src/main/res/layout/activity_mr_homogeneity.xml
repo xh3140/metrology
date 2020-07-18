@@ -185,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/calculate_button_calculate_text"
+                android:text="@string/common_calculate_data"
                 app:colorStyle="THEME_BLUE"
                 app:location="LEFT" />
 
@@ -194,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/calculate_button_clear_text"
+                android:text="@string/common_clear_data"
                 app:colorStyle="THEME_RED"
                 app:location="RIGHT" />
         </LinearLayout>

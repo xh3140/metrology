@@ -1,13 +1,12 @@
 package com.xh3140.metrology.appliance.jjg.jjgn1163y2019
 
-import android.graphics.Color
-import android.widget.TextView
-import com.xh3140.core.widgets.dialog.CircleContentDialog
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.xh3140.metrology.R
+import com.xh3140.metrology.appliance.jjg.jjgn1163y2019.fragment.*
 import com.xh3140.metrology.base.ui.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_jjg_1163_2019.*
-import java.math.BigDecimal
-
+import kotlinx.android.synthetic.main.activity_calculate.*
 
 /**
  * @Author : xh3140
@@ -18,110 +17,47 @@ import java.math.BigDecimal
 class JJGN1163Y2019Activity : BaseActivity() {
     override fun getLayoutResID(): Int = R.layout.activity_jjg_1163_2019
 
-    override fun initListener() {
-        // 计算数据
-        buttonCalculate.setOnClickListener {
-            val s1 = editText1.text.toString()
-            if (s1.isNotEmpty()) {
-                val e1 = calculateError(10.0, 1.0, BigDecimal(s1))
-                textView1.text = "$e1"
-                textView1.setErrorTextColor(e1.toDouble())
-            }
-            val s2 = editText2.text.toString()
-            if (s2.isNotEmpty()) {
-                val e2 = calculateError(5.0, 2.0, BigDecimal(s2))
-                textView2.text = "$e2"
-                textView2.setErrorTextColor(e2.toDouble())
-            }
-            val s3 = editText3.text.toString()
-            if (s3.isNotEmpty()) {
-                val e3 = calculateError(20.0, 0.5, BigDecimal(s3))
-                textView3.text = "$e3"
-                textView3.setErrorTextColor(e3.toDouble())
-            }
-            val s4 = editText4.text.toString()
-            if (s4.isNotEmpty()) {
-                val e4 = calculateError(20.0, 1.0, BigDecimal(s4))
-                textView4.text = "$e4"
-                textView4.setErrorTextColor(e4.toDouble())
-            }
-            val s5 = editText5.text.toString()
-            if (s5.isNotEmpty()) {
-                val e5 = calculateError(20.0, 0.5, BigDecimal(s5))
-                textView5.text = "$e5"
-                textView5.setErrorTextColor(e5.toDouble())
-            }
-        }
-        // 随机数据
-        buttonRandom.setOnClickListener {
-            val v1 = BigDecimal.valueOf(0.1 * (90..110).random()).setScale(1, BigDecimal.ROUND_HALF_UP)
-            val e1 = calculateError(10.0, 1.0, v1)
-            editText1.setText("$v1")
-            textView1.text = "$e1"
-            textView1.setErrorTextColor(e1.toDouble())
-            val v2 = BigDecimal.valueOf(0.1 * (90..110).random()).setScale(1, BigDecimal.ROUND_HALF_UP)
-            val e2 = calculateError(5.0, 2.0, v2)
-            editText2.setText("$v2")
-            textView2.text = "$e2"
-            textView2.setErrorTextColor(e2.toDouble())
-            val v3 = BigDecimal.valueOf(0.1 * (90..110).random()).setScale(1, BigDecimal.ROUND_HALF_UP)
-            val e3 = calculateError(20.0, 0.5, v3)
-            editText3.setText("$v3")
-            textView3.text = "$e3"
-            textView3.setErrorTextColor(e3.toDouble())
-            val v4 = BigDecimal.valueOf(0.1 * (180..220).random()).setScale(1, BigDecimal.ROUND_HALF_UP)
-            val e4 = calculateError(20.0, 1.0, v4)
-            editText4.setText("$v4")
-            textView4.text = "$e4"
-            textView4.setErrorTextColor(e4.toDouble())
-            val v5 = BigDecimal.valueOf(0.1 * (90..110).random()).setScale(1, BigDecimal.ROUND_HALF_UP)
-            val e5 = calculateError(20.0, 0.5, v5)
-            editText5.setText("$v5")
-            textView5.text = "$e5"
-            textView5.setErrorTextColor(e5.toDouble())
-        }
-        // 清除数据
-        buttonClear.setOnClickListener {
-            val builder = CircleContentDialog.Builder(2)
-                .setTitleText("清除数据")
-                .setContentText("请问是否清除数据？")
-                .setButtonText(0, "取消")
-                .setButtonText(1, "确定")
-                .setButtonOnClickListener { dialog, _, i ->
-                    if (i == 1) {
-                        editText1.text.clear()
-                        editText2.text.clear()
-                        editText3.text.clear()
-                        editText4.text.clear()
-                        editText5.text.clear()
-                        textView1.text = ""
-                        textView2.text = ""
-                        textView3.text = ""
-                        textView4.text = ""
-                        textView5.text = ""
-                    }
-                    dialog.dismiss()
+    override fun initData() {
+        setTitle(R.string.jjg_1163_2019_appliance_name)
+        setActionBarBackEnabled(true)
+        // 配适器
+        viewPager2.adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int = 12
+
+            override fun createFragment(position: Int): Fragment =
+                when (position) {
+                    0 -> JJGN1163Y2019P1Fragment()
+                    1 -> JJGN1163Y2019P2Fragment()
+                    2 -> JJGN1163Y2019P3Fragment()
+                    3 -> JJGN1163Y2019P4Fragment()
+                    4 -> JJGN1163Y2019P5Fragment()
+                    5 -> JJGN1163Y2019P6Fragment()
+                    6 -> JJGN1163Y2019P7Fragment()
+                    7 -> JJGN1163Y2019P8Fragment()
+                    8 -> JJGN1163Y2019P9Fragment()
+                    9 -> JJGN1163Y2019P10Fragment()
+                    10 -> JJGN1163Y2019P11Fragment()
+                    else -> JJGN1163Y2019P12Fragment()
                 }
-            builder.create().show(supportFragmentManager, null)
         }
-
+        // 选项卡
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            when (position) {
+                0 -> tab.text = "电压测量误差"
+                1 -> tab.text = "扫描速度误差"
+                2 -> tab.text = "幅频特性"
+                3 -> tab.text = "心率示值误差"
+                4 -> tab.text = "静态压力测量范围"
+                5 -> tab.text = "静态压力示值误差"
+                6 -> tab.text = "血压示值重复性"
+                7 -> tab.text = "气密性"
+                8 -> tab.text = "脉搏血氧饱和度重复性"
+                9 -> tab.text = "脉率示值误差"
+                10 -> tab.text = "呼末二氧化碳浓度示值误差"
+                else -> tab.text = "呼吸率示值误差"
+            }
+        }.attach()
     }
 
 
-    private fun calculateError(gain: Double, voltage: Double, value: BigDecimal): BigDecimal {
-        return value.divide(BigDecimal(gain), 16, BigDecimal.ROUND_HALF_UP)
-            .subtract(BigDecimal(voltage))
-            .divide(BigDecimal(voltage), 16, BigDecimal.ROUND_HALF_UP)
-            .multiply(BigDecimal(100))
-            .setScale(1, BigDecimal.ROUND_HALF_UP)
-    }
-
-
-    private fun TextView.setErrorTextColor(error: Double) {
-        if (error >= -10.0 && error <= 10.0) {
-            setTextColor(Color.parseColor("#8A000000"))
-        } else {
-            setTextColor(Color.RED)
-        }
-    }
 }

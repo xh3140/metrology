@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--        <com.xh3140.metrology.appliance.jjg.jjgn1163y2019.widgets.Tab3MethodsView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="8dp" />-->
+
+        <com.xh3140.metrology.appliance.jjg.jjgn1163y2019.widgets.Tab4RawDataView
+            android:id="@+id/rawDataView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
+        <include
+            layout="@layout/include_raw_data_button_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+    </LinearLayout>
+</ScrollView>
+
+

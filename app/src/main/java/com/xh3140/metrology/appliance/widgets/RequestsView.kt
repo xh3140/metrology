@@ -2,13 +2,12 @@ package com.xh3140.metrology.appliance.widgets
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.setPadding
 import com.xh3140.core.extensions.dp2px
+import com.xh3140.core.widgets.common.LinearLayoutDivider
 import com.xh3140.metrology.appliance.document.StandardDocument
 
 
@@ -66,7 +65,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
      */
     private fun buildTable(document: StandardDocument) {
         orientation = VERTICAL
-        dividerDrawable = createTableDividerDrawable()
+        dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
         if (childCount > 0) {
             removeAllViews()
@@ -88,7 +87,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
     private fun addHeaderRow() {
         val headerRow = LinearLayout(context).apply {
             orientation = HORIZONTAL
-            dividerDrawable = createTableDividerDrawable()
+            dividerDrawable = LinearLayoutDivider(Color.GRAY)
             showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             addView(createHeaderCellView(3f, "项目名称"))
@@ -103,7 +102,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
     private fun addContentRow(depth: Int, item: StandardDocument.Item) {
         val tableRow = LinearLayout(context).apply {
             orientation = HORIZONTAL
-            dividerDrawable = createTableDividerDrawable()
+            dividerDrawable = LinearLayoutDivider(Color.GRAY)
             showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         }
@@ -123,7 +122,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
                 addView(createNameCellView(3f / depth, item.name))
                 val layout = LinearLayout(context).apply {
                     orientation = VERTICAL
-                    dividerDrawable = createTableDividerDrawable()
+                    dividerDrawable = LinearLayoutDivider(Color.GRAY)
                     showDividers = SHOW_DIVIDER_MIDDLE
                     layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, 9f - weight - 3f / depth)
                 }
@@ -135,7 +134,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
         } else {
             val layout = LinearLayout(context).apply {
                 orientation = HORIZONTAL
-                dividerDrawable = createTableDividerDrawable()
+                dividerDrawable = LinearLayoutDivider(Color.GRAY)
                 showDividers = SHOW_DIVIDER_MIDDLE
                 layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             }
@@ -203,7 +202,7 @@ class RequestsView(context: Context?) : LinearLayout(context) {
         if (document.requestsNotes.isNotEmpty()) {
             val footerRow = LinearLayout(context).apply {
                 orientation = HORIZONTAL
-                dividerDrawable = createTableDividerDrawable()
+                dividerDrawable = LinearLayoutDivider(Color.GRAY)
                 showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
                 layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 addView(createFooterCellView(document.requestsNotes.joinToString("\n")))
@@ -223,17 +222,6 @@ class RequestsView(context: Context?) : LinearLayout(context) {
             setTextColor(Color.GRAY)
             setBackgroundColor(Color.WHITE)
             layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, 1f).apply { gravity = Gravity.CENTER }
-        }
-    }
-
-    /**
-     * 创建分割线
-     */
-    private fun createTableDividerDrawable(): Drawable {
-        return GradientDrawable().apply {
-            shape = GradientDrawable.RECTANGLE
-            setColor(Color.GRAY)
-            setSize(1, 1)
         }
     }
 }

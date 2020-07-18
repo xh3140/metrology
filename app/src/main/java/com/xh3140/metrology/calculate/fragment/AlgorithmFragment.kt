@@ -69,6 +69,7 @@ class AlgorithmFragment(viewModel: CalculateViewModel) : BaseFragment() {
                 .setInputType(InputType.TYPE_CLASS_NUMBER)
                 .setInputHintText("请输入数量")
                 .setInputMaxLength(5)
+                .setInputTextSize(18f)
                 .setInputBackgroundResourceId(R.drawable.theme_input_gray)
                 .setButtonText(0, "取消")
                 .setButtonText(1, "添加")
