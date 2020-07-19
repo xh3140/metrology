@@ -99,155 +99,74 @@ class NiceButton : AppCompatButton {
     /**
      * 构造函数
      */
-    constructor(context: Context) : super(context) {
+    constructor(context: Context?) : super(context) {
         configView(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         configView(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         configView(context, attrs)
+    }
+
+    constructor(context: Context?, text: String, style: ColorStyle) : super(context) {
+        this.text = text
+        mColorStyle = style
     }
 
     /**
      * 由XML初始化视图
      */
-    private fun configView(context: Context, attrs: AttributeSet?) {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
-        // 设置是否是波纹背景
-        val isRipple = a.getBoolean(R.styleable.NiceButton_isRipple, true)
-        setIsRippleDrawable(isRipple)
-        // 设置是否是内嵌背景
-        val isInset = a.getBoolean(R.styleable.NiceButton_isInset, true)
-        setIsInsetDrawable(isInset)
-        // 设置圆角半径
-        val radius = a.getDimensionPixelSize(R.styleable.NiceButton_radius, -1)
-        if (radius >= 0) {
-            setRadius(radius)
-        } else {
-            setRadius(
-                intArrayOf(
+    private fun configView(context: Context?, attrs: AttributeSet?) {
+        if (context != null && attrs != null) {
+            val a = context.obtainStyledAttributes(attrs, R.styleable.NiceButton)
+            // 设置是否是波纹背景
+            val isRipple = a.getBoolean(R.styleable.NiceButton_isRipple, true)
+            setIsRippleDrawable(isRipple)
+            // 设置是否是内嵌背景
+            val isInset = a.getBoolean(R.styleable.NiceButton_isInset, true)
+            setIsInsetDrawable(isInset)
+            // 设置圆角半径
+            val radius = a.getDimensionPixelSize(R.styleable.NiceButton_radius, -1)
+            if (radius >= 0) {
+                setRadius(radius)
+            } else {
+                setRadius(
                     a.getDimensionPixelSize(R.styleable.NiceButton_radius_leftTop, mRadius[0]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_radius_rightTop, mRadius[1]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_radius_rightBottom, mRadius[2]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_radius_leftBottom, mRadius[3])
                 )
-            )
-        }
-        // 设置内嵌距离
-        val inset = a.getDimensionPixelSize(R.styleable.NiceButton_inset, -1)
-        if (inset >= 0) {
-            setInset(inset)
-        } else {
-            setInset(
-                intArrayOf(
+            }
+            // 设置内嵌距离
+            val inset = a.getDimensionPixelSize(R.styleable.NiceButton_inset, -1)
+            if (inset >= 0) {
+                setInset(inset)
+            } else {
+                setInset(
                     a.getDimensionPixelSize(R.styleable.NiceButton_inset_left, mInset[0]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_inset_top, mInset[1]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_inset_right, mInset[2]),
                     a.getDimensionPixelSize(R.styleable.NiceButton_inset_bottom, mInset[3])
                 )
-            )
-        }
-        // 设置主题颜色
-        val themeIndex = a.getInt(R.styleable.NiceButton_colorStyle, -1)
-        if (themeIndex >= 0) {
-            setColorStyle(ColorStyle.values()[themeIndex])
-        }
-        // 设置按钮位置
-        val locationIndex = a.getInt(R.styleable.NiceButton_location, -1)
-        if (locationIndex >= 0) {
-            setLocation(Location.values()[locationIndex])
-        }
-        done()
-        a.recycle()
-    }
-
-    /**
-     * 设置主题颜色 enum
-     */
-    fun setColorStyle(style: ColorStyle) {
-        mColorStyle = style
-    }
-
-    /**
-     * 设置是否是波纹背景
-     * true RippleDrawable
-     * false StateListDrawable
-     */
-    fun setIsRippleDrawable(flag: Boolean) {
-        mIsRippleDrawable = flag
-    }
-
-    /**
-     * 设置是否是内嵌背景
-     * true InsetDrawable
-     * false GradientDrawable
-     */
-    fun setIsInsetDrawable(flag: Boolean) {
-        mIsInsetDrawable = flag
-    }
-
-    /**
-     * 设置圆角半径，左上、右上、右下、左下 px
-     */
-    fun setRadius(radius: IntArray) {
-        mRadius[0] = maxOf(0, radius[0])
-        mRadius[1] = maxOf(0, radius[1])
-        mRadius[2] = maxOf(0, radius[2])
-        mRadius[3] = maxOf(0, radius[3])
-    }
-
-    /**
-     * 设置圆角半径 px
-     */
-    fun setRadius(radius: Int) {
-        setRadius(intArrayOf(radius, radius, radius, radius))
-    }
-
-    /**
-     * 设置内嵌距离，左、上、右、下 px
-     */
-    fun setInset(inset: IntArray) {
-        mInset[0] = maxOf(0, inset[0])
-        mInset[1] = maxOf(0, inset[1])
-        mInset[2] = maxOf(0, inset[2])
-        mInset[3] = maxOf(0, inset[3])
-    }
-
-    /**
-     * 设置内嵌距离 px
-     */
-    fun setInset(inset: Int) {
-        setInset(intArrayOf(inset, inset, inset, inset))
-    }
-
-    /**
-     * 设置在按钮组中的位置 enum
-     */
-    fun setLocation(location: Location) {
-        mLocation = location
-    }
-
-    /**
-     * 完成主题设置并更新背景
-     */
-    fun done() {
-        // 调整
-        adjustDimension()
-        // 设置字体颜色
-        setTextColor(mColorStyle.textColor)
-        // 设置背景
-        background = if (mIsRippleDrawable) {
-            DrawableUtil.getRippleDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
-        } else {
-            DrawableUtil.getStateListDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
+            }
+            // 设置主题颜色
+            val themeIndex = a.getInt(R.styleable.NiceButton_colorStyle, -1)
+            if (themeIndex >= 0) {
+                setColorStyle(ColorStyle.values()[themeIndex])
+            }
+            // 设置按钮位置
+            val locationIndex = a.getInt(R.styleable.NiceButton_location, -1)
+            if (locationIndex >= 0) {
+                setLocation(Location.values()[locationIndex])
+            }
+            a.recycle()
         }
     }
 
-
-    private fun adjustDimension() {
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         // 调节圆角半径
         mRadius[0] *= mLocation.factory[0]
         mRadius[1] *= mLocation.factory[1]
@@ -258,5 +177,128 @@ class NiceButton : AppCompatButton {
         mInset[1] *= mLocation.factory[5]
         mInset[2] *= mLocation.factory[6]
         mInset[3] *= mLocation.factory[7]
+        // 设置字体颜色
+        setTextColor(mColorStyle.textColor)
+        // 设置背景
+        background = if (mIsRippleDrawable) {
+            DrawableUtil.getRippleDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
+        } else {
+            DrawableUtil.getStateListDrawable(mColorStyle.defaultColor, mColorStyle.pressedColor, mRadius, if (mIsInsetDrawable) mInset else null)
+        }
+        super.onLayout(changed, left, top, right, bottom)
     }
+
+    /**
+     * 设置主题颜色 enum
+     */
+    fun setColorStyle(style: ColorStyle): NiceButton {
+        if (style != mColorStyle) {
+            mColorStyle = style
+            requestLayout()
+        }
+        return this
+    }
+
+    /**
+     * 设置是否是波纹背景
+     * true RippleDrawable
+     * false StateListDrawable
+     */
+    fun setIsRippleDrawable(flag: Boolean): NiceButton {
+        if (flag != mIsRippleDrawable) {
+            mIsRippleDrawable = flag
+            requestLayout()
+        }
+        return this
+    }
+
+    /**
+     * 设置是否是内嵌背景
+     * true InsetDrawable
+     * false GradientDrawable
+     */
+    fun setIsInsetDrawable(flag: Boolean): NiceButton {
+        if (flag != mIsInsetDrawable) {
+            mIsInsetDrawable = flag
+            requestLayout()
+        }
+        return this
+    }
+
+    /**
+     * 设置圆角半径，左上、右上、右下、左下 px
+     */
+    fun setRadius(radius: IntArray): NiceButton {
+        for ((i, v) in radius.withIndex()) {
+            if (v < 0) radius[i] = 0
+        }
+        if (!radius.contentEquals(mRadius)) {
+            for (index in radius.indices) {
+                mRadius[index] = radius[index]
+            }
+            requestLayout()
+        }
+        return this
+    }
+
+    /**
+     * 设置圆角半径 px
+     */
+    fun setRadius(radius: Int): NiceButton {
+        setRadius(intArrayOf(radius, radius, radius, radius))
+        return this
+    }
+
+    /**
+     * 设置圆角半径 px
+     */
+    fun setRadius(leftTop: Int, rightTop: Int, rightBottom: Int, leftBottom: Int): NiceButton {
+        setRadius(intArrayOf(leftTop, rightTop, rightBottom, leftBottom))
+        return this
+    }
+
+    /**
+     * 设置内嵌距离，左、上、右、下 px
+     */
+    fun setInset(inset: IntArray): NiceButton {
+        for ((i, v) in inset.withIndex()) {
+            if (v < 0) inset[i] = 0
+        }
+        if (!inset.contentEquals(mInset)) {
+            for (index in inset.indices) {
+                mInset[index] = inset[index]
+            }
+            requestLayout()
+        }
+        return this
+    }
+
+    /**
+     * 设置内嵌距离 px
+     */
+    fun setInset(inset: Int): NiceButton {
+        setInset(intArrayOf(inset, inset, inset, inset))
+        return this
+    }
+
+    /**
+     * 设置内嵌距离 px
+     */
+    fun setInset(left: Int, top: Int, right: Int, bottom: Int): NiceButton {
+        setInset(intArrayOf(left, top, right, bottom))
+        return this
+    }
+
+    /**
+     * 设置在按钮组中的位置 enum
+     */
+    fun setLocation(location: Location): NiceButton {
+        if (location != mLocation) {
+            mLocation = location
+            requestLayout()
+        }
+        return this
+    }
+
+
 }

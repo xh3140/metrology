@@ -3,9 +3,9 @@ package com.xh3140.metrology.main.fragment
 import com.xh3140.core.extensions.startActivity
 import com.xh3140.metrology.R
 import com.xh3140.metrology.appliance.ApplianceActivity
-import com.xh3140.metrology.appliance.jjg.MrHomogeneityActivity
-import com.xh3140.metrology.appliance.jjg.jjgn1163y2019.JJGN1163Y2019Activity
-import com.xh3140.metrology.appliance.jjg.jjgn961y2017.JJGN961Y2017Activity
+import com.xh3140.metrology.appliance.MrHomogeneityActivity
+import com.xh3140.metrology.appliance.jjgn1163y2019.JJGN1163Y2019Activity
+import com.xh3140.metrology.appliance.jjgn961y2017.JJGN961Y2017Activity
 import com.xh3140.metrology.base.ui.fragment.BaseFragment
 import com.xh3140.metrology.calculate.CalculateActivity
 import kotlinx.android.synthetic.main.fragment_main_home.*

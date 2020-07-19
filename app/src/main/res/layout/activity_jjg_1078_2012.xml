@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".appliance.jjg.jjgn1078y2012.JJGN1078Y2012Activity">
+    tools:context=".appliance.jjgn1078y2012.JJGN1078Y2012Activity">
 
     <com.xh3140.metrology.appliance.widgets.ItemsView
         android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.Space
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.setMargins
 import androidx.core.view.setPadding
 import com.xh3140.core.extensions.dp2px
 import com.xh3140.core.widgets.common.LinearLayoutDivider
@@ -23,14 +24,15 @@ import com.xh3140.core.widgets.common.LinearLayoutDivider
 
 abstract class MethodsView : LinearLayout {
 
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
         orientation = VERTICAL
         dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply { setMargins(dp2px(8)) }
     }
 
     protected fun createLayout(vararg views: View): LinearLayout {

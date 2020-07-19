@@ -28,7 +28,6 @@ object JJGN1163Y2019Document : StandardDocument("JJG 1163-2019") {
         object : Item("外观及工作正常性检查") {
             override val type: Int = FIRST or SUBSEQUENT or USING
             override val requests: List<String> = listOf()
-
         },
         object : Item("心电") {
             override val type: Int = NULL
