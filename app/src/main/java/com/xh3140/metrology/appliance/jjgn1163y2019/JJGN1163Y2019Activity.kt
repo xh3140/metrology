@@ -51,6 +51,12 @@ class JJGN1163Y2019Activity : BaseActivity() {
                     3 -> TabFragment(context, Tab4MethodsView(context), Tab4RawDataView(context))
                     4 -> TabFragment(context, Tab5MethodsView(context), null)
                     5 -> TabFragment(context, Tab6MethodsView(context), Tab6RawDataView(context))
+                    6 -> TabFragment(context, Tab7MethodsView(context), null)
+                    7 -> TabFragment(context, Tab8MethodsView(context), null)
+                    8 -> TabFragment(context, Tab9MethodsView(context), null)
+                    9 -> TabFragment(context, Tab10MethodsView(context), null)
+                    10 -> TabFragment(context, Tab11MethodsView(context), null)
+                    11 -> TabFragment(context, Tab12MethodsView(context), null)
                     else -> Fragment()
                 }
         }

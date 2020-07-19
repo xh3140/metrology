@@ -34,24 +34,27 @@ class Tab1MethodsView : MethodsView {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
-        addView(createLayout(createTextView("1、步进增转换式", 15f)))
+        addView(createLayout(createTextView("1、心电", 15f)))
+        val method0 = "　　电压测量误差、幅频特性一般在监护仪的Ⅱ导联进行测量。" +
+                "对于具有记录输出的监护仪，可在监护仪显示屏幕上对波形进行测量，也可在记录纸上对输出的波形进行测量。"
+        addView(createLayout(createTextView(method0, 13f)))
+        addView(createLayout(createTextView("2、步进增转换式", 15f)))
         val method1 = "　　将监护仪增益设置为10mm/mV，使心电模拟仪输出电压为1.0mV、频率为2.0Hz的方波信号到监护仪。" +
                 "测量监护仪屏幕上的方波信号幅值长度，根据所设置的增益，计算监护仪所测量到的方波信号电压值。" +
                 "按公式计算电压测量误差，应符合技术要求。\n" +
                 "　　按上述方法分别检定监护仪的5mm/mV、20mm/mV增益挡（心电模拟仪对应输出电压在5mm/mV挡时为2.0mV、在20mm/mV挡时为0.5mV）。" +
                 "按公式计算电压测量误差，应符合技术要求。"
         addView(createLayout(createTextView(method1, 13f)))
-        addView(createLayout(createTextView("2、连续可调增益转换式", 15f)))
+        addView(createLayout(createTextView("3、连续可调增益转换式", 15f)))
         val method2 = "　　用监护仪的内部电压校准源（如定标电压或标尺）将增益校准设置为20mm/mV。" +
                 "心电模拟仪分别输出电压为1.0mV、0.5mV，频率为2.0Hz的方波信号到监护仪。" +
                 "测量监护仪屏幕上的方波信号幅值长度，根据所设置的增益，计算监护仪所测量到的方波信号电压值。" +
                 "按公式计算电压测量误差，应符合技术要求。"
         addView(createLayout(createTextView(method2, 13f)))
-        addView(createLayout(createTextView("3、电压测量误差技术要求", 15f)))
+        addView(createLayout(createTextView("4、电压测量误差技术要求", 15f)))
         val request = "　　电压测量最大允许误差为±10%。"
         addView(createLayout(createTextView(request, 13f)))
-        addView(createLayout(createTextView("4、电压测量误差计算公式", 15f)))
-        val aspectRatioHeight = (350.0 / (3786.0 / 1833.0)).toInt()
-        addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight), R.drawable.jjg_1163_2019_formula1), createSpace()))
+        addView(createLayout(createTextView("5、电压测量误差计算公式", 15f)))
+        addView(createLayout(createSpace(), createImageView(dp2px(350), 3786, 1833, R.drawable.jjg_1163_2019_formula1), createSpace()))
     }
 }

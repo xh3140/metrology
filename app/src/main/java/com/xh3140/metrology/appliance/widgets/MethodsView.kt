@@ -56,8 +56,10 @@ abstract class MethodsView : LinearLayout {
         }
     }
 
-    protected fun createImageView(width: Int, height: Int, resId: Int): AppCompatImageView {
+    protected fun createImageView(width: Int, widthPx: Int, heightPx: Int, resId: Int): AppCompatImageView {
         return AppCompatImageView(context).apply {
+            val aspectRatio = 1.0 * widthPx / heightPx
+            val height = (width / aspectRatio).toInt()
             layoutParams = LayoutParams(width, height).apply { gravity = Gravity.CENTER }
             maxWidth = width
             maxHeight = height

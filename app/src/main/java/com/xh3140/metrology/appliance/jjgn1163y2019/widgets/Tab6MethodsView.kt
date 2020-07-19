@@ -40,8 +40,7 @@ class Tab6MethodsView : MethodsView {
                 "用医用橡胶管和三通把监护仪、袖带及无创血压模拟仪连接起来组成检定系统。"
         addView(createLayout(createTextView(method1, 13f)))
         addView(createLayout(createTextView("2、无创血压检定系统示意图", 15f)))
-        val aspectRatioHeight1 = (350.0 / (1658.0 / 577.0)).toInt()
-        addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight1), R.drawable.jjg_1163_2019_image1), createSpace()))
+        addView(createLayout(createSpace(), createImageView(dp2px(350), 1658, 577, R.drawable.jjg_1163_2019_image1), createSpace()))
         addView(createLayout(createTextView("3、静态压力示值误差", 15f)))
         val method2 = "　　按示意图的方法连接检定系统，在规定的静态压力范围内测量点不得少于5个(不含零点)，并均匀分布在全量程上。" +
                 "按公式计算静态压力示值误差，每个测量点的静态压力示值误差应符合技术要求。"
@@ -50,7 +49,6 @@ class Tab6MethodsView : MethodsView {
         val request = "　　最大允许误差：±0.4kPa(±3mmHg)或者±2%读数(两者取其大)。"
         addView(createLayout(createTextView(request, 13f)))
         addView(createLayout(createTextView("5、静态压力示值误差计算公式", 15f)))
-        val aspectRatioHeight2 = (350.0 / (1658.0 / 577.0)).toInt()
-        addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight2), R.drawable.jjg_1163_2019_formula6), createSpace()))
+        addView(createLayout(createSpace(), createImageView(dp2px(350), 1658, 577, R.drawable.jjg_1163_2019_formula6), createSpace()))
     }
 }

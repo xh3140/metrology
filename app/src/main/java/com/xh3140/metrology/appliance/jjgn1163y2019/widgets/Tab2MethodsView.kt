@@ -51,20 +51,22 @@ class Tab2MethodsView : MethodsView {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
-        addView(createLayout(createTextView("1、扫描速度误差", 15f)))
+        addView(createLayout(createTextView("1、心电", 15f)))
+        val method0 = "　　电压测量误差、幅频特性一般在监护仪的Ⅱ导联进行测量。" +
+                "对于具有记录输出的监护仪，可在监护仪显示屏幕上对波形进行测量，也可在记录纸上对输出的波形进行测量。"
+        addView(createLayout(createTextView(method0, 13f)))
+        addView(createLayout(createTextView("2、扫描速度误差", 15f)))
         val method = "　　监护仪扫描速度设置为25mm/s，模拟仪输出频率为2Hz，幅度为1mV的标准方波信号到监护仪。" +
                 "有冻结功能的被检设备启用冻结功能，在显示波形中，测量4个完整周期波形所对应的显示宽度。" +
                 "按公式计算扫描速度和扫描速度误差，应符合技术要求。\n" +
                 "　　具有50mm/s扫描速度的监护仪，应按上述方法，测量2个完整周期波形所对应的显示宽度，检定扫描速度，应符合技术要求。"
         addView(createLayout(createTextView(method, 13f)))
-        addView(createLayout(createTextView("2、扫描速度误差技术要求", 15f)))
+        addView(createLayout(createTextView("3、扫描速度误差技术要求", 15f)))
         val request = "　　扫描速度最大允许误差为±10%。"
         addView(createLayout(createTextView(request, 13f)))
-        addView(createLayout(createTextView("3、扫描速度计算公式", 15f)))
-        val aspectRatioHeight1 = (350.0 / (3750.0 / 2223.0)).toInt()
-        addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight1), R.drawable.jjg_1163_2019_formula2), createSpace()))
-        addView(createLayout(createTextView("4、扫描速度误差计算公式", 15f)))
-        val aspectRatioHeight2 = (350.0 / (3815.0 / 1473.0)).toInt()
-        addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight2), R.drawable.jjg_1163_2019_formula3), createSpace()))
+        addView(createLayout(createTextView("4、扫描速度计算公式", 15f)))
+        addView(createLayout(createSpace(), createImageView(dp2px(350), 3750, 2223, R.drawable.jjg_1163_2019_formula2), createSpace()))
+        addView(createLayout(createTextView("5、扫描速度误差计算公式", 15f)))
+        addView(createLayout(createSpace(), createImageView(dp2px(350), 3815, 1473, R.drawable.jjg_1163_2019_formula3), createSpace()))
     }
 }
