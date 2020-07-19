@@ -36,5 +36,20 @@ fun BigDecimal.sqrt(precision: Int = 100, roundingMode: RoundingMode = RoundingM
 /**
  * 转换为Double
  */
-fun BigDecimal.toDouble(scale: Int, roundingMode: Int = BigDecimal.ROUND_HALF_UP) =
-    setScale(scale, roundingMode).toDouble()
+fun BigDecimal.toDouble(scale: Int, roundingMode: Int = BigDecimal.ROUND_HALF_UP): Double = setScale(scale, roundingMode).toDouble()
+
+/**
+ * 大数，提高效率
+ * 1 千帕 = 7.5006168270417 毫米汞柱。
+ */
+private val BIG_KPA2MMHG: BigDecimal by lazy { BigDecimal(7.5006168270417) }
+
+/**
+ * kPa转换为mmHg
+ */
+fun BigDecimal.kPa2mmHg(scale: Int, roundingMode: Int = BigDecimal.ROUND_HALF_UP): BigDecimal = multiply(BIG_KPA2MMHG).setScale(scale, roundingMode)
+
+/**
+ * mmHg转换为kPa
+ */
+fun BigDecimal.mmHg2kPa(scale: Int, roundingMode: Int = BigDecimal.ROUND_HALF_UP): BigDecimal = divide(BIG_KPA2MMHG, 16, BigDecimal.ROUND_HALF_UP).setScale(scale, roundingMode)

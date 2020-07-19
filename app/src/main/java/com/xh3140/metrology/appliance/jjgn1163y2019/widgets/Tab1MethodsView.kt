@@ -47,10 +47,10 @@ class Tab1MethodsView : MethodsView {
                 "测量监护仪屏幕上的方波信号幅值长度，根据所设置的增益，计算监护仪所测量到的方波信号电压值。" +
                 "按公式计算电压测量误差，应符合技术要求。"
         addView(createLayout(createTextView(method2, 13f)))
-        addView(createLayout(createTextView("3、技术要求", 15f)))
+        addView(createLayout(createTextView("3、电压测量误差技术要求", 15f)))
         val request = "　　电压测量最大允许误差为±10%。"
         addView(createLayout(createTextView(request, 13f)))
-        addView(createLayout(createTextView("4、计算公式", 15f)))
+        addView(createLayout(createTextView("4、电压测量误差计算公式", 15f)))
         val aspectRatioHeight = (350.0 / (3786.0 / 1833.0)).toInt()
         addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight), R.drawable.jjg_1163_2019_formula1), createSpace()))
     }

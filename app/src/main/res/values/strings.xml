@@ -8,6 +8,8 @@
     <string name="default_image_description">ImageView</string>
 
     <!--common-->
+    <string name="common_unit_kPa">kPa</string>
+    <string name="common_unit_mmHg">mmHg</string>
     <string name="common_append_data">添加数据</string>
     <string name="common_remove_data">删除数据</string>
     <string name="common_calculate_data">计算数据</string>

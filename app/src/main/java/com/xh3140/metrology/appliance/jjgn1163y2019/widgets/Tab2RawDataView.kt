@@ -18,12 +18,12 @@ import java.math.BigDecimal
  */
 
 class Tab2RawDataView : RawDataView {
-    private val editText1 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 1f)
-    private val editText2 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 1f)
-    private val textView1x1 = createTextView(null, 1f)
-    private val textView1x2 = createTextView(null, 1f)
-    private val textView2x1 = createTextView(null, 1f)
-    private val textView2x2 = createTextView(null, 1f)
+    private val editText1 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 1f)
+    private val editText2 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 1f)
+    private val textView1x1 = newTextView(null, 1f)
+    private val textView1x2 = newTextView(null, 1f)
+    private val textView2x1 = newTextView(null, 1f)
+    private val textView2x2 = newTextView(null, 1f)
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -33,32 +33,32 @@ class Tab2RawDataView : RawDataView {
         orientation = VERTICAL
         dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-        addView(createLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, createTextView("扫描速度误差", 1f)))
+        addView(newLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, newTextView("扫描速度误差", 1f)))
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("扫描速度设置值", 1f),
-                createTextView("扫描时间", 1f),
-                createTextView("显示宽度", 1f),
-                createTextView("扫描速度\nmm/s", 1f),
-                createTextView("相对误差\n%", 1f)
+                newTextView("扫描速度设置值", 1f),
+                newTextView("扫描时间", 1f),
+                newTextView("显示宽度", 1f),
+                newTextView("扫描速度\nmm/s", 1f),
+                newTextView("相对误差\n%", 1f)
             )
         )
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("25 mm/s", 1f),
-                createTextView("2s", 1f),
+                newTextView("25 mm/s", 1f),
+                newTextView("2s", 1f),
                 editText1,
                 textView1x1,
                 textView1x2
             )
         )
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("50 mm/s", 1f),
-                createTextView("1s", 1f),
+                newTextView("50 mm/s", 1f),
+                newTextView("1s", 1f),
                 editText2,
                 textView2x1,
                 textView2x2
@@ -103,11 +103,7 @@ class Tab2RawDataView : RawDataView {
             val error2 = error1.toDouble()
             textView1.text = "$speed2"
             textView2.text = "$error1"
-            if (error2 >= -10.0 && error2 <= 10.0) {
-                textView2.setTextColor(Color.parseColor("#8A000000"))
-            } else {
-                textView2.setTextColor(Color.RED)
-            }
+            setTextViewErrorColor(textView2, error2 >= -10.0 && error2 <= 10.0)
         }
     }
 }

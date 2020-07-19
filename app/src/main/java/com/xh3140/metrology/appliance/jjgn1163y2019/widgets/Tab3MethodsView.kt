@@ -41,10 +41,10 @@ class Tab3MethodsView : MethodsView {
                 "在(1～25)Hz频率范围内，选取不少于5个测量点进行测量，包含幅频特性的频率下限(1Hz)和上限(25Hz)，并保证测量点的频率发布较均匀。" +
                 "测量监护仪显示的波形幅度，取偏离H10最大者为Hx，按公式计算幅频特性相对误差，应符合技术要求。"
         addView(createLayout(createTextView(method, 13f)))
-        addView(createLayout(createTextView("2、技术要求", 15f)))
+        addView(createLayout(createTextView("2、幅频特性技术要求", 15f)))
         val request = "　　在监护模式下，以10Hz正弦波为参考值，在(1～25)Hz频率范围内，幅度变化应在+5%～-30%。"
         addView(createLayout(createTextView(request, 13f)))
-        addView(createLayout(createTextView("3、计算公式", 15f)))
+        addView(createLayout(createTextView("3、幅频特性相对误差计算公式", 15f)))
         val aspectRatioHeight = (350.0 / (3914.0 / 2126.0)).toInt()
         addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight), R.drawable.jjg_1163_2019_formula4), createSpace()))
     }

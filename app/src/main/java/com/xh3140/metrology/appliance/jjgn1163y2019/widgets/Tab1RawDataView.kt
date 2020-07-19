@@ -17,16 +17,16 @@ import java.math.BigDecimal
  */
 
 class Tab1RawDataView : RawDataView {
-    private val editText1 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText2 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText3  = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText4 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText5 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val textView1 = createTextView(null, 0.8f)
-    private val textView2 = createTextView(null, 0.8f)
-    private val textView3 = createTextView(null, 0.8f)
-    private val textView4 = createTextView(null, 0.8f)
-    private val textView5 = createTextView(null, 0.8f)
+    private val editText1 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText2 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText3 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText4 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText5 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val textView1 = newTextView(null, 0.8f)
+    private val textView2 = newTextView(null, 0.8f)
+    private val textView3 = newTextView(null, 0.8f)
+    private val textView4 = newTextView(null, 0.8f)
+    private val textView5 = newTextView(null, 0.8f)
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -36,38 +36,38 @@ class Tab1RawDataView : RawDataView {
         orientation = VERTICAL
         dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-        addView(createLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, createTextView("电压测量误差", 1f)))
+        addView(newLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, newTextView("电压测量误差", 1f)))
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("增益转换方式", 0.8f),
-                createTextView("增益设置值", 1f),
-                createTextView("电压标称值", 1f),
-                createTextView("幅值测得值\nmm", 0.8f),
-                createTextView("相对误差\n%", 0.8f)
+                newTextView("增益转换方式", 0.8f),
+                newTextView("增益设置值", 1f),
+                newTextView("电压标称值", 1f),
+                newTextView("幅值测得值\nmm", 0.8f),
+                newTextView("相对误差\n%", 0.8f)
             )
         )
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("步进增益转换", 0.797f),
-                createNestLayout(
+                newTextView("步进增益转换", 0.797f),
+                newNestLayout(
                     3.6f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("10 mm/mV", 1f), createTextView("1.0 mV", 1f), editText1, textView1),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("5 mm/mV", 1f), createTextView("2.0 mV", 1f), editText2, textView2),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("20 mm/mV", 1f), createTextView("0.5 mV", 1f), editText3, textView3)
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("10 mm/mV", 1f), newTextView("1.0 mV", 1f), editText1, textView1),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("5 mm/mV", 1f), newTextView("2.0 mV", 1f), editText2, textView2),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("20 mm/mV", 1f), newTextView("0.5 mV", 1f), editText3, textView3)
                 )
             )
         )
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("连续可调增益转换", 0.8f),
-                createTextView("20 mm/mV", 0.997f),
-                createNestLayout(
+                newTextView("连续可调增益转换", 0.8f),
+                newTextView("20 mm/mV", 0.997f),
+                newNestLayout(
                     2.6f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("1.0 mV", 1f), editText4, textView4),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("0.5 mV", 1f), editText5, textView5)
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("1.0 mV", 1f), editText4, textView4),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("0.5 mV", 1f), editText5, textView5)
                 )
             )
         )
@@ -121,11 +121,7 @@ class Tab1RawDataView : RawDataView {
                 .setScale(1, BigDecimal.ROUND_HALF_UP)
             val error2 = error1.toDouble()
             textView.text = "$error1"
-            if (error2 >= -10.0 && error2 <= 10.0) {
-                textView.setTextColor(Color.parseColor("#8A000000"))
-            } else {
-                textView.setTextColor(Color.RED)
-            }
+            setTextViewErrorColor(textView, error2 >= -10.0 && error2 <= 10.0)
         }
     }
 }

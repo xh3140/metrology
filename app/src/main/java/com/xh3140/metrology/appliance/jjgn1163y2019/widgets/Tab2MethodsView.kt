@@ -57,7 +57,7 @@ class Tab2MethodsView : MethodsView {
                 "按公式计算扫描速度和扫描速度误差，应符合技术要求。\n" +
                 "　　具有50mm/s扫描速度的监护仪，应按上述方法，测量2个完整周期波形所对应的显示宽度，检定扫描速度，应符合技术要求。"
         addView(createLayout(createTextView(method, 13f)))
-        addView(createLayout(createTextView("2、技术要求", 15f)))
+        addView(createLayout(createTextView("2、扫描速度误差技术要求", 15f)))
         val request = "　　扫描速度最大允许误差为±10%。"
         addView(createLayout(createTextView(request, 13f)))
         addView(createLayout(createTextView("3、扫描速度计算公式", 15f)))

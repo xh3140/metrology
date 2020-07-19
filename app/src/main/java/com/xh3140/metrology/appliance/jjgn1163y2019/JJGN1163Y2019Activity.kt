@@ -49,6 +49,8 @@ class JJGN1163Y2019Activity : BaseActivity() {
                     1 -> TabFragment(context, Tab2MethodsView(context), Tab2RawDataView(context))
                     2 -> TabFragment(context, Tab3MethodsView(context), Tab3RawDataView(context))
                     3 -> TabFragment(context, Tab4MethodsView(context), Tab4RawDataView(context))
+                    4 -> TabFragment(context, Tab5MethodsView(context), null)
+                    5 -> TabFragment(context, Tab6MethodsView(context), Tab6RawDataView(context))
                     else -> Fragment()
                 }
         }
@@ -71,7 +73,7 @@ class JJGN1163Y2019Activity : BaseActivity() {
         }.attach()
     }
 
-    class TabFragment(context: Context, methodsView: MethodsView, rawDataView: RawDataView) : Fragment() {
+    class TabFragment(context: Context, methodsView: MethodsView?, rawDataView: RawDataView?) : Fragment() {
         private val mMethodsView = methodsView
         private val mRawDataView = rawDataView
         private val mButtonCalculate = NiceButton(context, "计算数据", NiceButton.ColorStyle.BLUE)
@@ -79,17 +81,20 @@ class JJGN1163Y2019Activity : BaseActivity() {
         private val mButtonClear = NiceButton(context, "清除数据", NiceButton.ColorStyle.RED)
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            val scrollView = ScrollView(requireContext())
+            val context = requireContext()
+            val scrollView = ScrollView(context)
             val linearLayout = LinearLayout(context).apply {
                 orientation = LinearLayout.VERTICAL
                 layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
             }
-            linearLayout.addView(mMethodsView)
-            linearLayout.addView(mRawDataView)
-            val buttonGroup = NiceButtonGroup(context, LinearLayout.HORIZONTAL, mButtonCalculate, mButtonRandom, mButtonClear).apply {
-                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { setMargins(dp2px(6)) }
+            mMethodsView?.also { linearLayout.addView(it) }
+            mRawDataView?.also {
+                linearLayout.addView(it)
+                val buttonGroup = NiceButtonGroup(context, LinearLayout.HORIZONTAL, mButtonCalculate, mButtonRandom, mButtonClear).apply {
+                    layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { setMargins(dp2px(6)) }
+                }
+                linearLayout.addView(buttonGroup)
             }
-            linearLayout.addView(buttonGroup)
             val space = Space(context).apply {
                 layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp2px(300))
             }
@@ -100,25 +105,27 @@ class JJGN1163Y2019Activity : BaseActivity() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            mButtonCalculate.setOnClickListener {
-                mRawDataView.calculateAllData()
-            }
-            mButtonRandom.setOnClickListener {
-                mRawDataView.randomAllData()
-            }
-            mButtonClear.setOnClickListener {
-                val builder = CircleContentDialog.Builder(2)
-                    .setTitleText("清除数据")
-                    .setContentText("请问是否清除数据？")
-                    .setButtonText(0, "取消")
-                    .setButtonText(1, "确定")
-                    .setButtonOnClickListener { dialog, _, i ->
-                        if (i == 1) {
-                            mRawDataView.clearAllData()
+            if (mRawDataView != null) {
+                mButtonCalculate.setOnClickListener {
+                    mRawDataView.calculateAllData()
+                }
+                mButtonRandom.setOnClickListener {
+                    mRawDataView.randomAllData()
+                }
+                mButtonClear.setOnClickListener {
+                    val builder = CircleContentDialog.Builder(2)
+                        .setTitleText("清除数据")
+                        .setContentText("请问是否清除数据？")
+                        .setButtonText(0, "取消")
+                        .setButtonText(1, "确定")
+                        .setButtonOnClickListener { dialog, _, i ->
+                            if (i == 1) {
+                                mRawDataView.clearAllData()
+                            }
+                            dialog.dismiss()
                         }
-                        dialog.dismiss()
-                    }
-                builder.create().show(parentFragmentManager, null)
+                    builder.create().show(parentFragmentManager, null)
+                }
             }
         }
     }

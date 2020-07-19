@@ -18,16 +18,16 @@ import java.math.BigDecimal
  */
 
 class Tab3RawDataView : RawDataView {
-    private val editText1 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText2 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText3 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText4 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val editText5 = createEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
-    private val textView1 = createTextView(null, 0.8f)
-    private val textView2 = createTextView(null, 0.8f)
-    private val textView3 = createTextView(null, 0.8f)
-    private val textView4 = createTextView(null, 0.8f)
-    private val textView5 = createTextView(null, 0.8f)
+    private val editText1 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText2 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText3 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText4 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val editText5 = newEditText(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL, 0.8f)
+    private val textView1 = newTextView(null, 0.8f)
+    private val textView2 = newTextView(null, 0.8f)
+    private val textView3 = newTextView(null, 0.8f)
+    private val textView4 = newTextView(null, 0.8f)
+    private val textView5 = newTextView(null, 0.8f)
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -37,40 +37,40 @@ class Tab3RawDataView : RawDataView {
         orientation = VERTICAL
         dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-        addView(createLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, createTextView("幅频特性", 1f)))
+        addView(newLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, newTextView("幅频特性", 1f)))
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("频率", 1f),
-                createNestLayout(
+                newTextView("频率", 1f),
+                newNestLayout(
                     2f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("输入标准值", 2f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("增益", 1f), createTextView("电压", 1f))
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("输入标准值", 2f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("增益", 1f), newTextView("电压", 1f))
                 ),
-                createTextView("幅值测得值\nmm", 0.8f),
-                createTextView("相对误差\n%", 0.8f)
+                newTextView("幅值测得值\nmm", 0.8f),
+                newTextView("相对误差\n%", 0.8f)
             )
         )
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createNestLayout(
+                newNestLayout(
                     0.997f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("1 Hz", 1f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("2 Hz", 1f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("5 Hz", 1f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("10 Hz", 1f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("25 Hz", 1f))
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("1 Hz", 1f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("2 Hz", 1f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("5 Hz", 1f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("10 Hz", 1f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("25 Hz", 1f))
                 ),
-                createTextView("10 mm/mV", 0.997f),
-                createTextView("1.0 mV", 0.997f),
-                createNestLayout(
+                newTextView("10 mm/mV", 0.997f),
+                newTextView("1.0 mV", 0.997f),
+                newNestLayout(
                     1.6f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, editText1, textView1),
-                    createLayout(SHOW_DIVIDER_MIDDLE, editText2, textView2),
-                    createLayout(SHOW_DIVIDER_MIDDLE, editText3, textView3),
-                    createLayout(SHOW_DIVIDER_MIDDLE, editText4, textView4),
-                    createLayout(SHOW_DIVIDER_MIDDLE, editText5, textView5)
+                    newLayout(SHOW_DIVIDER_MIDDLE, editText1, textView1),
+                    newLayout(SHOW_DIVIDER_MIDDLE, editText2, textView2),
+                    newLayout(SHOW_DIVIDER_MIDDLE, editText3, textView3),
+                    newLayout(SHOW_DIVIDER_MIDDLE, editText4, textView4),
+                    newLayout(SHOW_DIVIDER_MIDDLE, editText5, textView5)
                 )
             )
         )
@@ -112,7 +112,7 @@ class Tab3RawDataView : RawDataView {
         textView5.text = ""
     }
 
-    private fun calculateData(editText:AppCompatEditText, textView:AppCompatTextView) {
+    private fun calculateData(editText: AppCompatEditText, textView: AppCompatTextView) {
         val value = editText.text.toString()
         val value0 = editText4.text.toString()
         if (value.isNotEmpty() && value0.isNotEmpty()) {
@@ -123,11 +123,7 @@ class Tab3RawDataView : RawDataView {
                 .setScale(1, BigDecimal.ROUND_HALF_UP)
             val error2 = error1.toDouble()
             textView.text = "$error1"
-            if (error2 >= -30.0 && error2 <= 5.0) {
-                textView.setTextColor(Color.parseColor("#8A000000"))
-            } else {
-                textView.setTextColor(Color.RED)
-            }
+            setTextViewErrorColor(textView, error2 >= -30.0 && error2 <= 5.0)
         }
     }
 }

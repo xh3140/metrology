@@ -19,9 +19,9 @@ import java.math.BigDecimal
 
 class Tab4RawDataView : RawDataView {
 
-    private val editTextArray1 = Array(18) { createEditText(InputType.TYPE_CLASS_NUMBER, 1f) }
-    private val editTextArray2 = Array(18) { createEditText(InputType.TYPE_CLASS_NUMBER, 1f) }
-    private val textViewArray = Array(18) { createTextView(null, 0.997f) }
+    private val editTextArray1 = Array(18) { newEditText(InputType.TYPE_CLASS_NUMBER, 1f) }
+    private val editTextArray2 = Array(18) { newEditText(InputType.TYPE_CLASS_NUMBER, 1f) }
+    private val textViewArray = Array(18) { newTextView(null, 0.997f) }
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -31,24 +31,24 @@ class Tab4RawDataView : RawDataView {
         orientation = VERTICAL
         dividerDrawable = LinearLayoutDivider(Color.GRAY)
         showDividers = SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END
-        addView(createLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, createTextView("心率示值误差(单位：次/min)", 1f)))
+        addView(newLayout(SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_END, newTextView("心率示值误差(单位：次/min)", 1f)))
         addView(
-            createLayout(
+            newLayout(
                 SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                createTextView("标准值", 1f),
-                createNestLayout(
+                newTextView("标准值", 1f),
+                newNestLayout(
                     2f, SHOW_DIVIDER_MIDDLE,
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("监护仪测量的心率示值", 2f)),
-                    createLayout(SHOW_DIVIDER_MIDDLE, createTextView("0.5 mV", 1f), createTextView("2.0 mV", 1f))
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("监护仪测量的心率示值", 2f)),
+                    newLayout(SHOW_DIVIDER_MIDDLE, newTextView("0.5 mV", 1f), newTextView("2.0 mV", 1f))
                 ),
-                createTextView("相对误差\n%", 1f)
+                newTextView("相对误差\n%", 1f)
             )
         )
         for (i in 0..17) {
             addView(
-                createLayout(
+                newLayout(
                     SHOW_DIVIDER_BEGINNING or SHOW_DIVIDER_MIDDLE or SHOW_DIVIDER_END,
-                    createTextView("${30 + i * 10}", 1.003f),
+                    newTextView("${30 + i * 10}", 1.003f),
                     editTextArray1[i],
                     editTextArray2[i],
                     textViewArray[i]
@@ -101,11 +101,7 @@ class Tab4RawDataView : RawDataView {
                 .toInt()
             val error3 = error.toInt()
             textView.text = "$error3"
-            if (error3 >= -limit && error3 <= limit) {
-                textView.setTextColor(Color.parseColor("#8A000000"))
-            } else {
-                textView.setTextColor(Color.RED)
-            }
+            setTextViewErrorColor(textView, error3 >= -limit && error3 <= limit)
         }
     }
 }

@@ -40,10 +40,10 @@ class Tab4MethodsView : MethodsView {
                 "首次检定测量间隔应不大于10次/min，后续检定测量点应较均匀且不少于4个。" +
                 "用公式计算监护仪心率示值误差，每个测量点的心率示值误差应符合技术要求。"
         addView(createLayout(createTextView(method, 13f)))
-        addView(createLayout(createTextView("2、技术要求", 15f)))
+        addView(createLayout(createTextView("2、心率示值误差技术要求", 15f)))
         val request = "　　在(30～200)次/min范围内，最大允许误差为±(示值的5%+1)次/min。"
         addView(createLayout(createTextView(request, 13f)))
-        addView(createLayout(createTextView("3、计算公式", 15f)))
+        addView(createLayout(createTextView("3、心率示值误差计算公式", 15f)))
         val aspectRatioHeight = (350.0 / (3801.0 / 1424.0)).toInt()
         addView(createLayout(createSpace(), createImageView(dp2px(350), dp2px(aspectRatioHeight), R.drawable.jjg_1163_2019_formula5), createSpace()))
     }

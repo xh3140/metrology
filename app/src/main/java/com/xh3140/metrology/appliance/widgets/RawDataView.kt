@@ -12,7 +12,6 @@ import androidx.core.view.setMargins
 import androidx.core.view.setPadding
 import com.xh3140.core.extensions.dp2px
 import com.xh3140.core.widgets.common.LinearLayoutDivider
-import java.math.BigDecimal
 
 
 /**
@@ -40,7 +39,7 @@ abstract class RawDataView : LinearLayout {
 
     abstract fun clearAllData()
 
-    protected fun createLayout(showDividers: Int, vararg views: View): LinearLayout {
+    protected fun newLayout(showDividers: Int, vararg views: View): LinearLayout {
         return LinearLayout(context).apply {
             orientation = HORIZONTAL
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -52,7 +51,7 @@ abstract class RawDataView : LinearLayout {
         }
     }
 
-    protected fun createNestLayout(weight: Float, showDividers: Int, vararg views: View): LinearLayout {
+    protected fun newNestLayout(weight: Float, showDividers: Int, vararg views: View): LinearLayout {
         return LinearLayout(context).apply {
             orientation = VERTICAL
             layoutParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, weight)
@@ -64,7 +63,7 @@ abstract class RawDataView : LinearLayout {
         }
     }
 
-    protected fun createTextView(text: String?, weight: Float): AppCompatTextView {
+    protected fun newTextView(text: String?, weight: Float): AppCompatTextView {
         return AppCompatTextView(context).apply {
             layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, weight)
             this.text = text
@@ -74,7 +73,7 @@ abstract class RawDataView : LinearLayout {
         }
     }
 
-    protected fun createEditText(inputType: Int, weight: Float): AppCompatEditText {
+    protected fun newEditText(inputType: Int, weight: Float): AppCompatEditText {
         return AppCompatEditText(context).apply {
             layoutParams = LayoutParams(0, LayoutParams.MATCH_PARENT, weight)
             this.inputType = inputType
@@ -83,5 +82,9 @@ abstract class RawDataView : LinearLayout {
             gravity = Gravity.CENTER
             setPadding(dp2px(8))
         }
+    }
+
+    protected fun setTextViewErrorColor(textView: AppCompatTextView, flag: Boolean) {
+        textView.setTextColor(if (flag) Color.parseColor("#8A000000") else Color.RED)
     }
 }
